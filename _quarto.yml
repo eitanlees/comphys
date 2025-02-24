@@ -1,0 +1,31 @@
+project:
+  type: book
+
+book:
+  title: "Computational Physics"
+  author: "Eitan Lees"
+  date: "2/24/2025"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+    - 04-interpolation.qmd
+    - 05-roots.qmd
+    - 06-extrema.qmd
+    - 07-integration.qmd
+    - 08-odes.qmd
+    - 09-modeling.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+
