@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3584025bd2775ba93d20b6dabf7256d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -207,7 +207,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-odes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Integration of Ordinary Differ- ential Equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Integration of Ordinary Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -233,6 +233,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#linear-interpolation" id="toc-linear-interpolation" class="nav-link active" data-scroll-target="#linear-interpolation"><span class="header-section-number">1.1</span> Linear Interpolation</a></li>
+  <li><a href="#polynomial-interpolation" id="toc-polynomial-interpolation" class="nav-link" data-scroll-target="#polynomial-interpolation"><span class="header-section-number">1.2</span> Polynomial Interpolation</a></li>
   </ul>
 </nav>
     </div>
@@ -518,6 +519,75 @@ B = \frac{x-x_j}{x_{j+1}-x_j}
 <p>The file <code>data/boiling.dat</code> contains data in two columns for the boiling point of water at different atmospheric pressures. The first column is the pressure in millibars, the second is the corresponding boiling point temperature in degrees Celsius. Write a C-function that initializes two vectors, <code>P</code> and <code>T</code> with the data in that data file (don’t read in the datafile – hardwire the data into your program), accepts the pressure as a double floating-point parameter, and returns the value of the temperature of the boiling point at that pressure. You should also write a driver program that will prompt the user for an atmospheric pressure, check whether it is within the limits of the data <span class="math inline">\((50 ≤ P ≤ 2150)\)</span>, calls your C-function, and prints to the screen the boiling point of water at that pressure.</p>
 </div>
 </div>
+</section>
+<section id="polynomial-interpolation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="polynomial-interpolation"><span class="header-section-number">1.2</span> Polynomial Interpolation</h2>
+<p>Linear interpolation is good enough for government work, and it is even better than that. Because it is simple and makes the simplest possible assumption about the data, it should be employed in all cases except where it is manifestly inadequate. There are such cases. Sometimes the function being interpolated is very non-linear or has been tabulated at such wide intervals that linear interpolation would lead to large errors. Some applications demand more than simply the functional values at the interpolated points; sometimes the derivative of the function is required as well. With linear interpolation, the derivative is a constant between the tabulated points, and may actually be undefined at the tabulated points!</p>
+<p>For such applications it may be best to interpolate using a polynomial interpolating function or functions. It can be shown that the following poly- nomial <span class="math inline">\(P(x)\)</span> of degree <span class="math inline">\(N−1\)</span> will exactly pass through the N tabulated points of the function <span class="math inline">\(y = f(x)\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+P(x) =\;&amp;
+\frac{(x - x_2)(x - x_3)\cdots(x - x_N)}
+     {(x_1 - x_2)(x_1 - x_3)\cdots(x_1 - x_N)}\,y_1 \\[1em]
+&amp;+ \frac{(x - x_1)(x - x_3)\cdots(x - x_N)}
+     {(x_2 - x_1)(x_2 - x_3)\cdots(x_2 - x_N)}\,y_2 \\[1em]
+&amp;+ \cdots \\[1em]
+&amp;+ \frac{(x - x_1)(x - x_2)\cdots(x - x_{N-1})}
+     {(x_N - x_1)(x_N - x_2)\cdots(x_N - x_{N-1})}\,y_N
+\end{align*}\]</span></p>
+<p>The problem with the direct application of the polynomial <span class="math inline">\(P(x)\)</span> is that for tabulations with many points, it can lead to very high degree polynomials. For instance, if a function is tabulated at 100 points, the above equation would yield a polynomial of degree 99! Such a polynomial could potentially fluctuate wildly between the tabulated points and thus not be a good representation of the actual function. <span class="math inline">\(P(x)\)</span> is more usually applied to subsets of the tabulated points. For instance, if the polynomial is applied to subsets of 3 points, it yields parabolic interpolation, which can be much superior to linear interpolation if the function has a number of minima and maxima.</p>
+<p>One problem with parabolic 3-point interpolation is that when it comes to bracketing <span class="math inline">\(x\)</span>, there is an ambiguity – does one bracket between <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> or between <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span>? This is one reason why cubic 4-point interpolation is more commonly practiced – the bracketing is then between <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span> with no ambiguity. Such interpolation is also called Lagrangian 4-point interpolation. The Lagrangian 4-point interpolation equation can be written:</p>
+<p><span class="math display">\[\begin{align*}
+L(x) =\;&amp;
+\frac{(x - x_2)(x - x_3)(x - x_4)}
+     {(x_1 - x_2)(x_1 - x_3)(x_1 - x_4)}\,y_1 \\[1em]
+&amp;+ \frac{(x - x_1)(x - x_3)(x - x_4)}
+     {(x_2 - x_1)(x_2 - x_3)(x_2 - x_4)}\,y_2 \\[1em]
+&amp;+ \frac{(x - x_1)(x - x_2)(x - x_4)}
+     {(x_3 - x_1)(x_3 - x_2)(x_3 - x_4)}\,y_3 \\[1em]
+&amp;+ \frac{(x - x_1)(x - x_2)(x - x_3)}
+     {(x_4 - x_1)(x_4 - x_2)(x_4 - x_3)}\,y_4
+\end{align*}\]</span></p>
+<p>which the student can easily verify by reference to the equation for <span class="math inline">\(P(x)\)</span>.</p>
+<p>To apply this interpolation equation, the user should first bracket <span class="math inline">\(x\)</span> between <span class="math inline">\(x_j\)</span> and <span class="math inline">\(x_{j+1}\)</span> as before, but now identify <span class="math inline">\(x_j\)</span> with <span class="math inline">\(x_2\)</span> in the above equation and <span class="math inline">\(x_{j+1}\)</span> with <span class="math inline">\(x_3\)</span>. It then follows that <span class="math inline">\(x_1\)</span> will be <span class="math inline">\(x_{j−1}\)</span> and <span class="math inline">\(x_4\)</span> will be <span class="math inline">\(x_{j+2}\)</span>. The perceptive student will see that this will lead to a problem at the endpoints. For instance, if <span class="math inline">\(x\)</span> is situated between the first two tabulated points, <span class="math inline">\(x_{j−1}\)</span> will be undefined. Likewise, if <span class="math inline">\(x\)</span> is situated between the last two tabulated points, <span class="math inline">\(x_{j+2}\)</span> will be undefined. Thus in those intervals, the user must either interpolate linearly, or, in the first case, use the polynomial that would be used for an <span class="math inline">\(x\)</span> bracketed between the 2nd and 3rd tabulated points, and similarly for the last case.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise 4.4">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exercise 4.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Write a C-function that will implement the 4-point Lagrangian interpolation formula above. For the endpoints, use the polynomial that would have been defined for the adjacent interval as described above. Modify the driver program in Exercise 4.2 (interpolation in a table of the wavelength and the index of refraction for BK-7 glass) to use this new C-function. Compare the results between the two programs.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise 4.5">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exercise 4.5
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Write a C-function that will implement the 4-point Lagrangian interpolation formula above. For the endpoints, use the polynomial that would have been defined for the adjacent interval as described above. Modify the driver program in Exercise 4.3 (interpolation in a table of atmospheric pressure and the boiling point of water) to use this new C-function. Compare the results between the two programs.</p>
+</div>
+</div>
+<p>We have only scratched the surface of the subject of interpolation. The subject of Extrapolation – finding a value for a function outside the range of the defined points – is much more dangerous. Interpolation schemes can be used for extrapolation, but only with great care!</p>
+<p>Before we leave the subject of interpolation, let us examine one further subject, that of efficiently bracketing <span class="math inline">\(x\)</span>. If we have a set of <span class="math inline">\(x\)</span>’s (say in a vector <code>x[i]</code>) in numerical order that we must find interpolated values for, there is a simple time saving step that we can use, implemented in the following fragment of code (assume <code>x</code> is a vector of dimension <code>n</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span>k<span class="op">=</span><span class="dv">1</span><span class="op">;</span>k<span class="op">&lt;=</span>n<span class="op">;</span>k<span class="op">++)</span> <span class="op">{</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span>i<span class="op">=</span>j<span class="op">;</span>i<span class="op">&lt;</span>N<span class="op">;</span>i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>xn<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> x<span class="op">[</span>k<span class="op">]</span> <span class="op">&amp;&amp;</span> xn<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">]</span> <span class="op">&gt;=</span> x<span class="op">[</span>k<span class="op">])</span> <span class="op">{</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    here is your interpolation function code </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Notice that the second <code>for</code> loop begins at <code>i=j</code> and not <code>i=1</code>; since the <span class="math inline">\(x_k\)</span>’s are in numerical order, if <span class="math inline">\(x_k\)</span> is bracketed between <code>xn[j]</code> and <code>xn[j+1]</code>, there is no need to search beginning at <code>i=1</code> for <span class="math inline">\(x_{k+1}\)</span> because it will either be bracketed between the same pair or later pairs (note that we are obviously also assuming that the <code>xn[j]</code>’s are in numerical order). This can save an enormous amount of time in a code that needs to interpolate in a large (say <span class="math inline">\(N &gt; 100\)</span>) table. Another useful trick is that of bisection. Further notes on bisection and other techniques for efficiently bracketing <span class="math inline">\(x\)</span> can be found in <em>Numerical Recipes</em>.</p>
 
 
 </section>
