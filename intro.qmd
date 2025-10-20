@@ -1,5 +1,22 @@
 # Introduction
 
+I first learned to program in 2011 in
+[Dr. Richard O. Gray](https://physics.appstate.edu/faculty-staff/dr-richard-o-gray)'s computational physics course. 
+
+It was a revelatory experience. It shaped the rest of my life. 
+
+I enjoyed the class so much that the following year I was the TA. 
+
+I went on to get a PhD in Computational Science. 
+
+Ever since I took the course I have kept the lecture notes on my various computers. 
+
+Here I am attempting to convert them to [Quarto](https://quarto.org/).
+
+I am also thinking of updating the content to Python.
+
+# Colophon
+
 This is a book created from markdown and executable code.
 
 See @knuth84 for additional discussion of literate programming.
