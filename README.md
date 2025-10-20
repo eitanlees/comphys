@@ -27,3 +27,5 @@ To publish the site:
 ```bash
 quarto publish gh-pages
 ```
+
+I have set up a github action to automatically publish the site on push to main.
