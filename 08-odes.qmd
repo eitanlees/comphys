@@ -1,1 +1,1 @@
-# Numerical Integration of Ordinary Differ- ential Equations
+# Numerical Integration of Ordinary Differential Equations
