@@ -2,6 +2,8 @@
 
 A repository for an old computational physics course.
 
+https://eitanlees.github.io/comphys/
+
 ## Dev Log
 
 **2025-10-20**: 
