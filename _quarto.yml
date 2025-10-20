@@ -7,7 +7,6 @@ book:
   date: "2/24/2025"
   chapters:
     - index.qmd
-    - intro.qmd
     - 04-interpolation.qmd
     - 05-roots.qmd
     - 06-extrema.qmd

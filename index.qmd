@@ -1,5 +1,18 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+I first learned to program in 2011 in
+[Dr. Richard O. Gray](https://physics.appstate.edu/faculty-staff/dr-richard-o-gray)'s computational physics course. 
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+It was a revelatory experience that shaped my life. I enjoyed the class so much that I served as the TA the following year and later earned a PhD in Computational Science.
+
+I've kept the lecture notes on my various computers ever since. Rather than posting the original notes unchanged, I'm converting them into a [Quarto](https://quarto.org/) book, updating examples from C to Python and adding some of my own material.
+
+Note: Most of the content and examples are taken from Dr. Gray's original course materials.
+
+# Colophon {.unnumbered}
+
+This is a book created from markdown and executable code.
+
+See @knuth84 for additional discussion of literate programming.
+
+To learn more about Quarto books, visit <https://quarto.org/docs/books>
