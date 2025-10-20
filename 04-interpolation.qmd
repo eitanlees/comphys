@@ -93,7 +93,7 @@ the function $y$ at a point $x$ that lies someplace in the interval between
 $x_1$ and $x_N$.
 
 The first thing that we must do is to bracket $x$, that is we must find a $j$ such
-that $x_j \lt x \leq x_j+1$. This can be accomplished by the following code fragment:
+that $x_j < x \leq x_{j+1}$. This can be accomplished by the following code fragment:
 
 ```c
 for(i=1;i<N;i++) {
