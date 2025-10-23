@@ -304,42 +304,34 @@ point $(x_1, x_2)$ in this grid (see figure below):
 
 import matplotlib.pyplot as plt
 
-# Put rc settings in a variable for clarity
-latex_rc_config = {
-    "text.usetex": True,
-    "font.family": "serif",
-    "font.size": 14
+fig, ax = plt.subplots(figsize=(4, 4))
+
+points = {
+     (0, 0): r'$(x_{1,i}, x_{2,j})$',
+     (1, 0): r'$(x_{1,i+1}, x_{2,j})$',
+     (0, 1): r'$(x_{1,i}, x_{2,j+1})$',
+     (1, 1): r'$(x_{1,i+1}, x_{2,j+1})$'
 }
 
-with plt.rc_context(latex_rc_config):
-    fig, ax = plt.subplots(figsize=(4, 4))
+for xi in [0, 1]:
+     ax.plot([xi, xi], [-0.5, 1.5], 'k-', lw=1)
+for yj in [0, 1]:
+     ax.plot([-0.5, 1.5], [yj, yj], 'k-', lw=1)
 
-    points = {
-        (0, 0): r'$(x_{1,i}, x_{2,j})$',
-        (1, 0): r'$(x_{1,i+1}, x_{2,j})$',
-        (0, 1): r'$(x_{1,i}, x_{2,j+1})$',
-        (1, 1): r'$(x_{1,i+1}, x_{2,j+1})$'
-    }
+for (x, y), label in points.items():
+     ax.plot(x, y, 'ko', markersize=10)
+     ax.text(x + 0.05, y - 0.06, label, ha='left', va='top')
 
-    for xi in [0, 1]:
-        ax.plot([xi, xi], [-0.5, 1.5], 'k-', lw=1)
-    for yj in [0, 1]:
-        ax.plot([-0.5, 1.5], [yj, yj], 'k-', lw=1)
+ax.text(0.25, 0.3, r'$\oplus$', fontsize=20, ha='center', va='center')
+ax.text(0.35, 0.3, r'$(x_1, x_2)$', ha='left', va='center')
 
-    for (x, y), label in points.items():
-        ax.plot(x, y, 'ko', markersize=10)
-        ax.text(x + 0.05, y - 0.06, label, ha='left', va='top')
+ax.set_xlim(-0.5, 1.5)
+ax.set_ylim(-0.5, 1.5)
+ax.set_aspect('equal')
+ax.axis('off')
 
-    ax.text(0.25, 0.3, r'$\oplus$', fontsize=20, ha='center', va='center')
-    ax.text(0.35, 0.3, r'$(x_1, x_2)$', ha='left', va='center')
-
-    ax.set_xlim(-0.5, 1.5)
-    ax.set_ylim(-0.5, 1.5)
-    ax.set_aspect('equal')
-    ax.axis('off')
-
-    plt.tight_layout()
-    plt.show()
+plt.tight_layout()
+plt.show()
 
 ```
 
