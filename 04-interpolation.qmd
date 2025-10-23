@@ -181,6 +181,7 @@ interpolating function or functions. It can be shown that the following poly-
 nomial $P(x)$ of degree $N−1$ will exactly pass through the N tabulated points of
 the function $y = f(x)$:
 
+$$
 \begin{align*}
 P(x) =\;&
 \frac{(x - x_2)(x - x_3)\cdots(x - x_N)}
@@ -191,6 +192,7 @@ P(x) =\;&
 &+ \frac{(x - x_1)(x - x_2)\cdots(x - x_{N-1})}
      {(x_N - x_1)(x_N - x_2)\cdots(x_N - x_{N-1})}\,y_N
 \end{align*}
+$$
 
 The problem with the direct application of the polynomial $P(x)$ is that for
 tabulations with many points, it can lead to very high degree polynomials. For
@@ -209,6 +211,7 @@ is more commonly practiced – the bracketing is then between $x_2$ and $x_3$ wi
 no ambiguity. Such interpolation is also called Lagrangian 4-point
 interpolation. The Lagrangian 4-point interpolation equation can be written:
 
+$$
 \begin{align*}
 L(x) =\;&
 \frac{(x - x_2)(x - x_3)(x - x_4)}
@@ -220,6 +223,7 @@ L(x) =\;&
 &+ \frac{(x - x_1)(x - x_2)(x - x_3)}
      {(x_4 - x_1)(x_4 - x_2)(x_4 - x_3)}\,y_4
 \end{align*}
+$$
 
 which the student can easily verify by reference to the equation for $P(x)$.
 
@@ -342,20 +346,24 @@ using the technique discussed earlier.
 The simplest interpolation technique in two dimensions is _bilinear interpolation_. 
 If we define
 
+$$
 \begin{aligned}
 y_1 &= y(x_{1,i}, x_{2,j}) \\
 y_2 &= y(x_{1,i+1}, x_{2,j}) \\
 y_3 &= y(x_{1,i+1}, x_{2,j+1}) \\
 y_4 &= y(x_{1,i}, x_{2,j+1})
 \end{aligned}
+$$
 
 i.e., working our way counterclockwise around the above figure, then the
 interpolation formulae are:
 
+$$
 \begin{aligned}
 t &= (x_1 - x_{1,i})/(x_{1,i+1} - x_{1,i}) \\
 u &= (x_2 - x_{2,j})/(x_{2,j+1} - x_{2,j})
 \end{aligned}
+$$
 
 which make both $t$ and $u$ lie between 0 and 1. Then,
 
