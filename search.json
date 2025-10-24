@@ -90,6 +90,16 @@
     ]
   },
   {
+    "objectID": "05-roots.html#root-finding-in-python",
+    "href": "05-roots.html#root-finding-in-python",
+    "title": "2  Finding the Root of a Function",
+    "section": "2.3 Root Finding in Python",
+    "text": "2.3 Root Finding in Python\nIn SciPy all of the root finding methods are in the optimize subpackage.\nTo show off how it is done consider this suspiciously familiar function\n\nimport numpy as np\nfrom scipy.special import j0\nimport matplotlib.pyplot as plt\nplt.rcParams.update({\n  'figure.figsize': (7, 2),\n  'axes.spines.top': False, \n  'axes.spines.right': False\n  })\n\nx = np.linspace(0, 16, 400)\nfig, ax = plt.subplots()\nax.plot(x, j0(x))\n\n\n\n\n\n\n\n\nAll of the root finding algorithems for scalar functions can be accessed via a single method root_scalar.\nLet’s use a different method for each root! We need to supply a bracket for where to limit our search and a method name.\n\nfrom scipy.optimize import root_scalar\n\nmethod = ['bisect' ,'brentq' ,'brenth' ,'ridder' ,'toms748']\nbracket = [[2,4], [5,7], [8, 10], [11,13], [14, 16]]\nresults = []\n\nfor m, b in zip(method, bracket):\n    results.append(root_scalar(j0, bracket=b, method=m))\n\nfig, ax = plt.subplots()\nax.plot(x, j0(x))\n\nfor result in results:\n    ax.plot(result.root, 0, 'o')\n\n\n\n\n\n\n\n\nA call to root_scaler retuns a RootResults object which contains more information than only the root value.\n\nresults[0]\n\n      converged: True\n           flag: converged\n function_calls: 42\n     iterations: 40\n           root: 2.404825557694494\n         method: bisect\n\n\nFor a full overview of the supported methods see the root_scalar documentation.\nOptimization is a vast subject of which we will cover more in the next chapter.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Finding the Root of a Function</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "References",

@@ -237,6 +237,7 @@ window.Quarto = {
   <li><a href="#plotting-functions-in-gnuplot" id="toc-plotting-functions-in-gnuplot" class="nav-link" data-scroll-target="#plotting-functions-in-gnuplot">Plotting Functions in <code>gnuplot</code></a></li>
   </ul></li>
   <li><a href="#the-newton-raphson-method" id="toc-the-newton-raphson-method" class="nav-link" data-scroll-target="#the-newton-raphson-method"><span class="header-section-number">2.2</span> The Newton-Raphson Method</a></li>
+  <li><a href="#root-finding-in-python" id="toc-root-finding-in-python" class="nav-link" data-scroll-target="#root-finding-in-python"><span class="header-section-number">2.3</span> Root Finding in Python</a></li>
   </ul>
 </nav>
     </div>
@@ -358,7 +359,7 @@ x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}
 <p>From this, we can derive the Newton–Raphson formula for the <span class="math inline">\(n^{\text{th}}\)</span> estimate of the root: <span class="math display">\[
 x_n = x_{n-1} - \frac{f(x_{n-1})}{f'(x_{n-1})}
 \]</span></p>
-<div id="19e90d00" class="cell" data-execution_count="1">
+<div id="33a47177" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -471,6 +472,71 @@ R = x(t = T) \tag{7}
 </ol>
 </div>
 </div>
+</section>
+<section id="root-finding-in-python" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="root-finding-in-python"><span class="header-section-number">2.3</span> Root Finding in Python</h2>
+<p>In SciPy all of the root finding methods are in the <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html" target="_blank"><code>optimize</code></a> subpackage.</p>
+<p>To show off how it is done consider this suspiciously familiar function</p>
+<div id="02083706" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'figure.figsize'</span>: (<span class="dv">7</span>, <span class="dv">2</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'axes.spines.top'</span>: <span class="va">False</span>, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'axes.spines.right'</span>: <span class="va">False</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">16</span>, <span class="dv">400</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax.plot(x, j0(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-roots_files/figure-html/cell-3-output-1.png" width="571" height="189" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>All of the root finding algorithems for scalar functions can be accessed via a single method <code>root_scalar</code>.</p>
+<p>Let’s use a different method for each root! We need to supply a bracket for where to limit our search and a method name.</p>
+<div id="3b828029" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> root_scalar</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>method <span class="op">=</span> [<span class="st">'bisect'</span> ,<span class="st">'brentq'</span> ,<span class="st">'brenth'</span> ,<span class="st">'ridder'</span> ,<span class="st">'toms748'</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>bracket <span class="op">=</span> [[<span class="dv">2</span>,<span class="dv">4</span>], [<span class="dv">5</span>,<span class="dv">7</span>], [<span class="dv">8</span>, <span class="dv">10</span>], [<span class="dv">11</span>,<span class="dv">13</span>], [<span class="dv">14</span>, <span class="dv">16</span>]]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m, b <span class="kw">in</span> <span class="bu">zip</span>(method, bracket):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    results.append(root_scalar(j0, bracket<span class="op">=</span>b, method<span class="op">=</span>m))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.plot(x, j0(x))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> result <span class="kw">in</span> results:</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ax.plot(result.root, <span class="dv">0</span>, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-roots_files/figure-html/cell-4-output-1.png" width="571" height="189" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A call to <code>root_scaler</code> retuns a <code>RootResults</code> object which contains more information than only the root value.</p>
+<div id="77021d71" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>      converged: True
+           flag: converged
+ function_calls: 42
+     iterations: 40
+           root: 2.404825557694494
+         method: bisect</code></pre>
+</div>
+</div>
+<p>For a full overview of the supported methods see the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html#scipy.optimize.root_scalar" target="_blank"><code>root_scalar</code></a> documentation.</p>
+<p>Optimization is a vast subject of which we will cover more in the next chapter.</p>
 
 
 </section>
