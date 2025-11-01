@@ -618,7 +618,7 @@ L(x) =\;&amp;
 <section id="interpolation-in-2-dimensions" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="interpolation-in-2-dimensions"><span class="header-section-number">1.3</span> Interpolation in 2 dimensions</h2>
 <p>Some problems require interpolation in a two-dimensional grid of data. Let us suppose, for instance, that <span class="math inline">\(y = y(x_1, x_2)\)</span> where <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are the two independent variables. The functional value <span class="math inline">\(y\)</span> is tabulated on a Cartesian grid, and so the first thing the programmer must do is to bracket the desired point <span class="math inline">\((x_1, x_2)\)</span> in this grid (see figure below):</p>
-<div id="3471da25" class="cell" data-execution_count="1">
+<div id="a9496be5" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -974,7 +974,7 @@ Table&nbsp;1.3: Hydrogen Ionization: Ratio of Ionized to Total
 <section id="interpolation-in-python" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="interpolation-in-python"><span class="header-section-number">1.4</span> Interpolation in Python</h2>
 <p>Let’s say you have run an experiment and have some data.</p>
-<div id="10798bcf" class="cell" data-execution_count="3">
+<div id="0b1f7c6f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pretend you don't know the functional form of the data.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>num_samples <span class="op">=</span> <span class="dv">11</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, num<span class="op">=</span>num_samples) <span class="op">+</span> np.random.normal(scale<span class="op">=</span><span class="fl">.2</span>, size<span class="op">=</span>num_samples)</span>
@@ -992,7 +992,7 @@ Table&nbsp;1.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 <p>Now you want to connect the dots … I mean interpolate your data.</p>
 <p>Numpy has a method (<a href="https://numpy.org/doc/2.3/reference/generated/numpy.interp.html" target="_blank"><code>numpy.interp</code></a>) for simple linear interpolation. The method takes in an array of new <code>x</code>’s where you want to calculate the new <code>y</code>’s. The original <code>x</code> and <code>y</code> points are also needed.</p>
-<div id="d6a955ed" class="cell" data-execution_count="4">
+<div id="fbc6e496" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x_interp <span class="op">=</span> np.linspace(x_data.<span class="bu">min</span>(), x_data.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">1001</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y_interp <span class="op">=</span> np.interp(x_interp, x_data, y_data)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1009,7 +1009,7 @@ Table&nbsp;1.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 <p>If you want a fancier smooth line SciPy has got you covered! The <a href="https://docs.scipy.org/doc/scipy/reference/interpolate.html" target="_blank"><code>interpolate</code></a> subpackage contains many methods to suit your needs. These methods follow a different pattern than the Numpy approach. When using the SciPy <code>interpolate</code> methods you provide the original data points and are returned a function you can call to interpolate new values.</p>
 <p>As an example consider the <code>CubicSpline</code> method</p>
-<div id="1c45bde5" class="cell" data-execution_count="5">
+<div id="de5023e0" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> CubicSpline</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> CubicSpline(x_data, y_data)</span>
@@ -1028,7 +1028,7 @@ Table&nbsp;1.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 </div>
 <p>Quick and easy! There are other interpolation methods. For instance, maybe you are concerned with the line overshooting the data. An alternative is to use a so-called <em>monotone</em> cubic interpolant which attempts to preserve the local shape implied by the data. An example is the <code>PchipInterpolator</code>.</p>
-<div id="a407b37e" class="cell" data-execution_count="6">
+<div id="99365376" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> PchipInterpolator</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> PchipInterpolator(x_data, y_data)</span>
@@ -1047,7 +1047,7 @@ Table&nbsp;1.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 </div>
 <p>These cubic methods are typically fine for most application. There is also a generalized method for making interpolating splines of any degree but use with caution. You may introduce unexpected wiggles!</p>
-<div id="f17789c0" class="cell" data-execution_count="7">
+<div id="7eb57aeb" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> make_interp_spline</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> make_interp_spline(x_data, y_data, k<span class="op">=</span><span class="dv">5</span>)</span>
