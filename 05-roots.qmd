@@ -157,6 +157,7 @@ $$
 
 ```{python}
 #| echo: false
+
 import numpy as np
 import sympy as sp
 import matplotlib.pyplot as plt
@@ -169,9 +170,28 @@ plt.rcParams.update({
     "figure.figsize": (5, 6)
 })
 
-# --- Define symbolic function ---
+# Now this is fun. I want to replicate the parabola
+# in the original text but I don't know the coefficients. 
+# Instead of guessing the coefficients directly, I can eyeball
+# A few of the points and the solve for the coefficients. 
+# Three points uniquely defines a parabola! A little Ax=b
+# and bingo-bango!
+
+points = [ 
+    (-1.0, 0.0), 
+    (0.8, -2.5), 
+    (2.2, 0.0),
+    ]
+x = np.array([p[0] for p in points], dtype=float)
+y = np.array([p[1] for p in points], dtype=float)
+A = np.vstack([x**2, x, np.ones(3)]).T
+a, b, c = np.linalg.solve(A, y)
+
+# I _could_ hard code the function and the derivative
+# but I could also use Sympy to figure out the derivative
+# for me! Much cooler!
 x = sp.Symbol('x', real=True)
-f_expr = (x-0.6)**2 - 2.5
+f_expr = a * x**2 + b * x + c
 f_prime_expr = sp.diff(f_expr, x)
 
 # Convert to numerical functions for plotting
@@ -185,6 +205,11 @@ newton_step = lambda x: x - f(x)/df(x)
 x0 = 4
 x1 = newton_step(x0)
 xr = newton_step(x1)
+
+# Iterate a few times to refine the root
+for _ in range(10):
+    xr = newton_step(xr)
+
 
 # Domain for plotting
 x = np.linspace(-1, 5, 400)
