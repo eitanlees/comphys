@@ -4,3 +4,6 @@
 /.quarto/
 /_site/
 /experiments/
+*DS_Store
+.ipynb_checkpoints
+.vscode/

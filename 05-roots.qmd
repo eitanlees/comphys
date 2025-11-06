@@ -1,4 +1,4 @@
-# Finding the Root of a Function
+# Finding the Root of a Function {#sec-roots}
 
 The need to determine the roots of a function – i.e. where that function crosses
 the x-axis – is a recurring problem in practical and computational physics. For
@@ -17,7 +17,7 @@ closely bracket the root until we know it to the precision that we desire.
 Alternately, we may be able to differentiate the function. In that case, we can
 use the Newton-Raphson method (or similar methods) to zero in on the root.
 
-## The Method of Bracketing and Bisection
+## The Method of Bracketing and Bisection {#sec-bisection}
 
 The first thing that we need to know in root-finding is an approximate location
 of the root we are interested in. How can we determine this? The easiest way is
