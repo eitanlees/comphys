@@ -627,7 +627,7 @@ f(x, y) = x^2 + (y - 1)^2 + 1.0
 <span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>z<span class="op">);</span></span>
 <span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The initial simplex looks like this:</p>
-<div id="0bc80661" class="cell" data-execution_count="3">
+<div id="6fe1d7bd" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -649,7 +649,7 @@ f(x, y) = x^2 + (y - 1)^2 + 1.0
 </div>
 <div class="callout-body-container callout-body">
 <p>In this exercise, we explore a very useful application of function minimization — optimizing a fit to a model. Consider the following data, which come from an exponentially decaying oscillating system:</p>
-<div id="76dbae10" class="cell" data-execution_count="4">
+<div id="3c76cb53" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -719,7 +719,7 @@ f(t) = A e^{-\gamma t} \sin(Bt + C)
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>chi2<span class="op">);</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>What remains for you to do is to figure out reasonable starting values for <span class="math inline">\(A\)</span>, <span class="math inline">\(\gamma\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>, use them to initialize the components of p, and then to invoke amoeba. The next figure shows a plot of what I got.</p>
-<div id="59ac7964" class="cell" data-execution_count="5">
+<div id="79faa21f" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -849,7 +849,7 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 <h2 data-number="3.3" class="anchored" data-anchor-id="optimization-in-python"><span class="header-section-number">3.3</span> Optimization in Python</h2>
 <p>Optimization is a vast subject. SciPy has got you covered with the <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html" target="_blank">optimize</a> subpackages, which we previously met in <a href="05-roots.html" class="quarto-xref"><span>Chapter 2</span></a> for all of our root finding needs.</p>
 <p>For scalar functions the <code>minimize_scalar</code> method is used. As an example we will return to our favorite wiggle</p>
-<div id="164e0402" class="cell" data-execution_count="6">
+<div id="def71c6d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
@@ -871,7 +871,7 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 </div>
 </div>
 <p>The call to <code>minimize_scalar</code> returns an object with other information about the result.</p>
-<div id="33e665f6" class="cell" data-execution_count="7">
+<div id="e2d8ead1" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize_scalar(j0)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -887,7 +887,7 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 </div>
 </div>
 <p>Notice there are many function evaluations. If your function is expensive to evaluate, minimization can be expensive.</p>
-<div id="5af36cd3" class="cell" data-execution_count="8">
+<div id="856e7643" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x, j0(x))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.plot(result.x, result.fun, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -899,7 +899,7 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 </div>
 </div>
 <p>Note this is a local minium. Passing a bracket we can find multiple local minima</p>
-<div id="ef53e1fc" class="cell" data-execution_count="9">
+<div id="64e5beea" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>bracket <span class="op">=</span> [[<span class="dv">2</span>,<span class="dv">4</span>], [<span class="dv">8</span>, <span class="dv">10</span>], [<span class="dv">14</span>, <span class="dv">16</span>]]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -961,7 +961,7 @@ Figure&nbsp;3.4: The Rosenbrock function
 </div>
 <p>The Rosenbrock function as a minimum at <span class="math inline">\(f(x,y)=f(1,1)=0\)</span> shown in <a href="#fig-rosen-2" class="quarto-xref">Figure&nbsp;<span>3.4 (b)</span></a>.</p>
 <p>The Rosenbrock function is so commonly used in optimization that SciPy provides an method <code>rosen</code>.</p>
-<div id="1cb4b6c0" class="cell" data-execution_count="11">
+<div id="1b034854" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> rosen</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rosen([<span class="dv">1</span>, <span class="dv">2</span>]))</span>
@@ -974,7 +974,7 @@ Figure&nbsp;3.4: The Rosenbrock function
 </div>
 </div>
 <p>Let’s say we start at a point <span class="math inline">\((-1.5, 2.5)\)</span> and we want to minimize the function. For multivariet minimization, SciPy provides the <code>minimize</code> method.</p>
-<div id="2fb5340b" class="cell" data-execution_count="12">
+<div id="65d229b6" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">2.5</span>])</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(rosen, x0)</span>
@@ -994,7 +994,7 @@ Figure&nbsp;3.4: The Rosenbrock function
 </div>
 </div>
 <p>Again as with the root finding methods, the results contain more than just the minimum. In this case we also get the number of function evaluates and an estimate of the jacobian and hessian. The defauly method is <code>'BFGS'</code> but you can pass which method you want to use such as <code>Nelder-Mead</code></p>
-<div id="c3f8fd94" class="cell" data-execution_count="13">
+<div id="706c7227" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>minimize(rosen, x0, method<span class="op">=</span><span class="st">'Nelder-Mead'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>       message: Optimization terminated successfully.
@@ -1011,7 +1011,7 @@ Figure&nbsp;3.4: The Rosenbrock function
 </div>
 <p>in which case we are returned the final simplex. Notice there were a few more function evaluations but not so bad compared to the default.</p>
 <p>Consider our good old friend <code>Powell</code></p>
-<div id="d29b46c2" class="cell" data-execution_count="14">
+<div id="afe0a2f1" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>minimize(rosen, x0, method<span class="op">=</span><span class="st">'Powell'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code> message: Optimization terminated successfully.
