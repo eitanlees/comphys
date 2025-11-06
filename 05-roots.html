@@ -232,7 +232,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-method-of-bracketing-and-bisection" id="toc-the-method-of-bracketing-and-bisection" class="nav-link active" data-scroll-target="#the-method-of-bracketing-and-bisection"><span class="header-section-number">2.1</span> The Method of Bracketing and Bisection</a>
+  <li><a href="#sec-bisection" id="toc-sec-bisection" class="nav-link active" data-scroll-target="#sec-bisection"><span class="header-section-number">2.1</span> The Method of Bracketing and Bisection</a>
   <ul class="collapse">
   <li><a href="#plotting-functions-in-gnuplot" id="toc-plotting-functions-in-gnuplot" class="nav-link" data-scroll-target="#plotting-functions-in-gnuplot">Plotting Functions in <code>gnuplot</code></a></li>
   </ul></li>
@@ -246,7 +246,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Finding the Root of a Function</span></h1>
+<h1 class="title"><span id="sec-roots" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Finding the Root of a Function</span></span></h1>
 </div>
 
 
@@ -264,8 +264,8 @@ window.Quarto = {
 
 
 <p>The need to determine the roots of a function – i.e.&nbsp;where that function crosses the x-axis – is a recurring problem in practical and computational physics. For example, the density of matter in the interior of a star may be approximately represented by a type of function called a polytropic function. The edge or surface of the star occurs where the appropriate polytropic function goes to zero. There are many other examples. All of you know how to find analytically the roots of a parabola. For more complex functions, it may not be possible or easy to find the roots analytically, and so it is necessary to use numerical methods. The numerical method that is used depends upon whether or not it is possible to determine the derivative of the function. The function, for instance, may be given to us as a “black box” – it may be in tabular form, or given to us as a “C” function, or it may be known only through a recursion equation. In such a case, the appropriate method would be to more and more closely bracket the root until we know it to the precision that we desire. Alternately, we may be able to differentiate the function. In that case, we can use the Newton-Raphson method (or similar methods) to zero in on the root.</p>
-<section id="the-method-of-bracketing-and-bisection" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="the-method-of-bracketing-and-bisection"><span class="header-section-number">2.1</span> The Method of Bracketing and Bisection</h2>
+<section id="sec-bisection" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-bisection"><span class="header-section-number">2.1</span> The Method of Bracketing and Bisection</h2>
 <p>The first thing that we need to know in root-finding is an approximate location of the root we are interested in. How can we determine this? The easiest way is to use a plotting program, such as <code>gnuplot</code>, <code>EXCEL</code>, etc., to plot the function. Another way is to calculate the function at a number of points. Then, unless the function is pathological in some way, we can say that a root exists in the interval <span class="math inline">\((a, b)\)</span> if <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span> have opposite signs. An exception to this is a function with a singularity in this interval. Suppose <span class="math inline">\(c\)</span> is in the interval <span class="math inline">\((a, b)\)</span>, and the function is given by <span class="math display">\[
 f(x) = \frac{1}{x - c}
 \]</span> Then, <span class="math inline">\(f(x)\)</span> has a singularity at <span class="math inline">\(c\)</span> and not a root. There are other pathological functions such as <span class="math inline">\(\sin(1/x)\)</span>, which has infinitely many roots in the vicinity of <span class="math inline">\(x = 0\)</span>. So, the user must be aware of such problems, as such pathologies will give problems to even the most clever programs.</p>
@@ -359,7 +359,7 @@ x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}
 <p>From this, we can derive the Newton–Raphson formula for the <span class="math inline">\(n^{\text{th}}\)</span> estimate of the root: <span class="math display">\[
 x_n = x_{n-1} - \frac{f(x_{n-1})}{f'(x_{n-1})}
 \]</span></p>
-<div id="eaec2278" class="cell" data-execution_count="1">
+<div id="c0224643" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -477,7 +477,7 @@ R = x(t = T) \tag{7}
 <h2 data-number="2.3" class="anchored" data-anchor-id="root-finding-in-python"><span class="header-section-number">2.3</span> Root Finding in Python</h2>
 <p>In SciPy all of the root finding methods are in the <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html" target="_blank"><code>optimize</code></a> subpackage.</p>
 <p>To show off how it is done consider this suspiciously familiar function</p>
-<div id="60612454" class="cell" data-execution_count="2">
+<div id="9e254fe0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -500,7 +500,7 @@ R = x(t = T) \tag{7}
 </div>
 <p>All of the root finding algorithems for scalar functions can be accessed via a single method <code>root_scalar</code>.</p>
 <p>Let’s use a different method for each root! We need to supply a bracket for where to limit our search and a method name.</p>
-<div id="7e44d26c" class="cell" data-execution_count="3">
+<div id="e7dc55b4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> root_scalar</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>method <span class="op">=</span> [<span class="st">'bisect'</span> ,<span class="st">'brentq'</span> ,<span class="st">'brenth'</span> ,<span class="st">'ridder'</span> ,<span class="st">'toms748'</span>]</span>
@@ -524,7 +524,7 @@ R = x(t = T) \tag{7}
 </div>
 </div>
 <p>A call to <code>root_scaler</code> retuns a <code>RootResults</code> object which contains more information than only the root value.</p>
-<div id="fb1c758c" class="cell" data-execution_count="4">
+<div id="d0cb07fd" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>      converged: True
