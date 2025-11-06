@@ -7,13 +7,9 @@ It was a revelatory experience that shaped my life. I enjoyed the class so much
 that I served as the TA the following year and later earned a PhD in
 Computational Science.
 
-I've kept the lecture notes on my various computers ever since. Rather than
-posting the original notes unchanged, I'm converting them into a
-[Quarto](https://quarto.org/) book, possibly updating examples from C to Python
-and adding some of my own material.
-
-Note: Most of the content and examples are taken from Dr. Gray's original course
-materials.
+I've kept the lecture notes on my various computers ever since. I want to convert the notes into a
+[Quarto](https://quarto.org/) book as a conservation project. In addition to replicating the source material 
+I want to add some examples from Python and Scipy.
 
 # Colophon {.unnumbered}
 
