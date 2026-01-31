@@ -557,3 +557,126 @@ rn = ran1(&idum);
 /* Use ran1 */
 rn = ran1(&idum);
 ```
+
+The function `ran1`, which returns a random floating point number between 0.0 and 1.0 is good enough for government work and is much superior to `rand`. Note, however, that if you use the same negative number seed `idum` each time, you will get the same sequence of random numbers. It is thus better to use the scheme outlined in Chapter 2 to set `idum = -1*now`, where `now` is a time variable.
+
+Now, back to Monte Carlo integration. Suppose we want to integrate a function $g$ over an irregular region $W$ that is difficult to sample randomly. What do we do? We find a region $V$ that contains $W$ and which *is* easy to sample randomly --- say, for instance, a rectangle or a cube. We then define $f = g$ at points inside of $W$ but $f = 0$ at points inside of $V$ but outside of $W$. It is in our own interest to make $V$ fit around $W$ as snugly as possible, as the zero values of $f$ will increase the factor $\langle f^2 \rangle - \langle f \rangle^2$ in the error term of equation (3) and will reduce the effective value of $N$.
+
+For an example, let us take the integral in the example in §7.3. The region of interest $W$ is a circle with radius 1 and center at $(0,0)$. We take the region $V$ to be a square with the same center. The Monte Carlo integration is carried out by the following code:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "comphys.h"
+#include "comphys.c"
+#define N 100
+
+int main()
+{
+  float x,y,rn,r2,f,integral,V,sum,av,sum2,av2;
+  float error;
+  long i;
+  long idum = -1;
+  time_t now;
+
+  /* Use the time function to supply a different seed to the
+     random number generator every time the program is run */
+
+  now = time(NULL);
+
+  idum = -1*now;
+
+  /* Initialize random number generator */
+
+  rn = ran1(&idum);
+
+  /* Our region V that encloses W, a circle of unit radius,
+     is a square with sides of length 2.  Thus, the area of
+     this square is 4 */
+
+  V = 4.0;
+  sum = 0.0;
+  sum2 = 0.0;
+  for(i=0;i<N;i++) {
+    /* Following gives x and y between -1.0 and 1.0 */
+    x = 2.0*ran1(&idum) - 1.0;
+    y = 2.0*ran1(&idum) - 1.0;
+    r2 = x*x + y*y;
+
+    /* Is the point in the region W? */
+    if(r2 <= 1.0) f = r2;
+    else f = 0.0;
+
+    /* Evaluate sums */
+    sum += f;
+    sum2 += f*f;
+  }
+  /* Calculate Integral and error */
+  av = sum/(float)N;
+  av2 = sum2/(float)N;
+  integral = av*V;
+  error = V*sqrt((av2-av*av)/(float)N);
+
+  printf("\nIntegral = %f +/- %f\n",integral,error);
+  return(0);
+}
+```
+
+The result of the first 10 runs of this program (your numbers will be different) with $N = 100$ are: 1.825, 1.640, 1.414, 1.700, 1.532, 1.571, 1.413, 1.600, 1.519, 1.745 each with a calculated error of about $\pm 0.130$. The mean of these determinations is $1.596 \pm 0.043$ (where the error is the standard error of the mean). If we increase $N$ to 1000, we get the following run: 1.593, 1.574, 1.614, 1.589, 1.545, 1.531, 1.592, 1.570, 1.627, 1.579 each with a calculated error of about $\pm 0.042$. The mean of these determinations is $1.581 \pm 0.009$.
+
+<!-- TODO: Recreate figure showing circle W inscribed in square V with 100 random points plotted -->
+
+Notice that increasing $N$ by a factor of 10 decreased the error by a factor of only about 3. A single run with $N = 100000$ gives $1.575 \pm 0.004$. Recall that the exact value of this integral is $\pi/2 = 1.571$.
+
+The moral of the story is --- run your Monte Carlo program many times as the individual results are scattered around the true value.
+
+::: {.callout-note title="Exercise 7.7"}
+Use Monte Carlo integration to evaluate the integral in Exercise 7.5. The program should prompt the user for N, the number of random points used in the integration.
+:::
+
+::: {.callout-note title="Exercise 7.8"}
+Using Monte Carlo integration, find the center of mass of a 2-D right triangle with base of length 1 and height of length 2. With the right angle positioned at $(0,0)$, the density varies as $\rho = y \sin x^2 + 2$. Recall that the center of mass of a planar object is given by
+
+$$
+X = \frac{1}{M} \iint x \rho\, dS
+$$
+
+$$
+Y = \frac{1}{M} \iint y \rho\, dS
+$$
+
+where
+
+$$
+M = \iint \rho\, dS
+$$
+:::
+
+::: {.callout-note title="Exercise 7.9"}
+Repeat the problem of Exercise 7.6 using Monte Carlo integration.
+:::
+
+::: {.callout-note title="Exercise 7.10"}
+**The Ising Model:** Monte Carlo methods may be used in applications other than integration. Consider the following from atomic physics. An Ising chain is a 1-D array made of $N$ particles with spin. The spin ($s$) of an individual particle can be either up (+1) or down (-1), and the total energy of the chain is given by
+
+$$
+E = -J \sum_{i=1}^{N-1} s_i s_{i+1}
+$$
+
+The energy is a minimum when all the spins are the same. Consider an event that randomly flips the spin of one of the particles in the array. Thermodynamically, if that change results in a lower energy, it is highly probable. If the change results in a higher energy, it will have a probability given by the Boltzmann distribution
+
+$$
+R = \exp(-\Delta E / kT)
+$$
+
+Write a program that will implement the following algorithm:
+
+1) Generate a trial spin configuration consisting of $N$ particles with random spins $s_i$.
+
+2) Pick a particle $j$ randomly, flip its spin, and calculate the resulting new energy $E_{\text{new}}$.
+
+3) Accept the new configuration if $E_{\text{new}} \le E_{\text{old}}$. If $E_{\text{new}} > E_{\text{old}}$, then assign a relative probability $R$ given by the above equation. Generate a random number $0 < r < 1$. If $R > r$ accept the new configuration. If not, restore the old configuration as the accepted configuration and go back to step 2.
+
+The above steps 2 → 3 should be incorporated into a for loop which will run from `l=1` to 5000. Print out `l` and the energy resulting from the configuration decided upon in step 3 for each passage through the loop. Take the following values for the constants: $N = 50$, $J = 2.0$, $k = 0.001$. Use Gnuplot to plot out $l$ versus $E$. Note that for low temperatures ($T < 1000$), the system rapidly declines in energy and reaches equilibrium within the 5000 iterations. For high temperatures, the energy simply fluctuates and does not reach equilibrium. The Ising model can be used to simulate many quantum physical systems. One example is magnetism. In a ferromagnetic material, individual atoms have a net magnetic moment. Magnetization will occur when those magnetic moments line up, and this represents the minimum energy configuration. In the presence of an external magnetic field, a macroscopic sample of the material can be magnetized, but as the temperature increases, the alignment of the magnetic moments becomes more chaotic. At sufficiently high temperatures, no magnetization will occur.
+:::
