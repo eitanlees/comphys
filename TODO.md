@@ -27,3 +27,8 @@ A loose collection of things to do and open questions.
 - Fix "aside" ref
 - Make NR simplex figure from scratch. I think this will be a bigger project than I want to take on right now.
 - Think about factoring out the style for the plot into a stand alone mplotlib style file.
+
+## Integration
+
+- EQ lables in first part are refereneced in Gauss quadrature section. Try to use cross refs.
+

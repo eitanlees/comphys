@@ -1,4 +1,4 @@
-I am working on converting some PDF documents from a computational phyics course into Quarto format. 
+I am working on converting some PDF documents from a computational phyics course into Quarto format.
 
 I have used a script to extract raw text from the PDFs, but the formatting is not suitable for Quarto markdown.
 
@@ -8,7 +8,7 @@ Make sure to include proper formatting for equations, sections, and any other re
 
 There are some specific requirements for the conversion:
 
-- This is a restoration project so be careful to preserve all original content. 
+- This is a restoration project so be careful to preserve all original content.
 - Focus particularly on converting mathematical equations into LaTeX format suitable for Quarto.
 - Don't use \[ \] for equations; instead, use $$ ... $$ for display equations.
 - Don't use \( \) for inline equations; instead, use $ ... $ for inline equations.
@@ -19,3 +19,6 @@ Below is an example of raw text extracted from a PDF document I would like you t
 ```
 
 ```
+
+Please reply in a formatted text chunk inside a text block such that it is easy to copy and paste into my editor.
+
