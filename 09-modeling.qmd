@@ -247,6 +247,7 @@ Determine the $a_n$'s and their errors for this dataset.
 
 ```{python}
 #| echo: false
+
 import numpy as np
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
@@ -370,6 +371,7 @@ The best way to explain how to use `mrqmin` is with an example. The following fi
 <!-- TODO: Recreate Figure 2 showing histogram data to be fit with double Gaussian -->
 ```{python}
 #| echo: false
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -542,6 +544,7 @@ void fgauss(float x, float a[], float *y, float dyda[], int na)
 
 ```{python}
 #| echo: false
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit

@@ -640,6 +640,7 @@ double integrate(double x1,double y1,double z1,double y11)
 
 ```{python}
 #| echo: false
+
 import numpy as np
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt

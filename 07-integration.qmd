@@ -451,6 +451,7 @@ using two applications of the trapezoidal method.  The exact value of this integ
 
 ```{python}
 #| echo: false
+
 fig, ax = plt.subplots(figsize=(4, 4))
 ax.set_aspect("equal")
 ax.axis("off")
@@ -627,6 +628,7 @@ The result of the first 10 runs of this program (your numbers will be different)
 
 ```{python}
 #| echo: false
+
 import numpy as np 
 data = np.loadtxt("data/MC.csv", delimiter=",")
 x, y = data[:, 0], data[:, 1]
