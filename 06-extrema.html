@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Minimization and Maximization of Functions – Computational Physics</title>
+<title>4&nbsp; Minimization and Maximization of Functions – Computational Physics</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -85,19 +87,18 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07-integration.html" rel="next">
+<link href="./references.html" rel="next">
 <link href="./05-roots.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-87b7f55de2e0c9887283481eb31a794c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -127,7 +128,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -167,7 +168,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-extrema.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Minimization and Maximization of Functions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-extrema.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Minimization and Maximization of Functions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,9 +181,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Computational Physics</a> 
     </div>
@@ -202,38 +201,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./01-c-intro-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to C – part I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04-interpolation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Interpolation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Interpolation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-roots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Finding the Root of a Function</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Finding the Root of a Function</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-extrema.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Minimization and Maximization of Functions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Integration</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-odes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Integration of Ordinary Differential Equations</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-modeling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Modeling of Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Minimization and Maximization of Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -252,18 +239,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-min-1D" id="toc-sec-min-1D" class="nav-link active" data-scroll-target="#sec-min-1D"><span class="header-section-number">3.1</span> The Minimization of 1-D Functions</a>
+  <li><a href="#sec-min-1D" id="toc-sec-min-1D" class="nav-link active" data-scroll-target="#sec-min-1D"><span class="header-section-number">4.1</span> The Minimization of 1-D Functions</a>
   <ul class="collapse">
-  <li><a href="#bracketing-a-minimum-in-1-d" id="toc-bracketing-a-minimum-in-1-d" class="nav-link" data-scroll-target="#bracketing-a-minimum-in-1-d"><span class="header-section-number">3.1.1</span> Bracketing a Minimum in 1-D</a></li>
-  <li><a href="#bracketing-a-minimum-in-1-d-with-derivatives" id="toc-bracketing-a-minimum-in-1-d-with-derivatives" class="nav-link" data-scroll-target="#bracketing-a-minimum-in-1-d-with-derivatives"><span class="header-section-number">3.1.2</span> Bracketing a Minimum in 1-D with Derivatives</a></li>
-  <li><a href="#an-aside---how-to-get-gnuplot-to-fit-a-line-to-data" id="toc-an-aside---how-to-get-gnuplot-to-fit-a-line-to-data" class="nav-link" data-scroll-target="#an-aside---how-to-get-gnuplot-to-fit-a-line-to-data"><span class="header-section-number">3.1.3</span> An Aside - How to get Gnuplot to fit a line to data</a></li>
+  <li><a href="#bracketing-a-minimum-in-1-d" id="toc-bracketing-a-minimum-in-1-d" class="nav-link" data-scroll-target="#bracketing-a-minimum-in-1-d"><span class="header-section-number">4.1.1</span> Bracketing a Minimum in 1-D</a></li>
+  <li><a href="#bracketing-a-minimum-in-1-d-with-derivatives" id="toc-bracketing-a-minimum-in-1-d-with-derivatives" class="nav-link" data-scroll-target="#bracketing-a-minimum-in-1-d-with-derivatives"><span class="header-section-number">4.1.2</span> Bracketing a Minimum in 1-D with Derivatives</a></li>
+  <li><a href="#an-aside---how-to-get-gnuplot-to-fit-a-line-to-data" id="toc-an-aside---how-to-get-gnuplot-to-fit-a-line-to-data" class="nav-link" data-scroll-target="#an-aside---how-to-get-gnuplot-to-fit-a-line-to-data"><span class="header-section-number">4.1.3</span> An Aside - How to get Gnuplot to fit a line to data</a></li>
   </ul></li>
-  <li><a href="#the-minimization-of-multi-dimensional-functions" id="toc-the-minimization-of-multi-dimensional-functions" class="nav-link" data-scroll-target="#the-minimization-of-multi-dimensional-functions"><span class="header-section-number">3.2</span> The Minimization of Multi-dimensional Functions</a>
+  <li><a href="#the-minimization-of-multi-dimensional-functions" id="toc-the-minimization-of-multi-dimensional-functions" class="nav-link" data-scroll-target="#the-minimization-of-multi-dimensional-functions"><span class="header-section-number">4.2</span> The Minimization of Multi-dimensional Functions</a>
   <ul class="collapse">
-  <li><a href="#the-multidimensional-downhill-simplex-method" id="toc-the-multidimensional-downhill-simplex-method" class="nav-link" data-scroll-target="#the-multidimensional-downhill-simplex-method"><span class="header-section-number">3.2.1</span> The Multidimensional Downhill Simplex Method</a></li>
-  <li><a href="#powells-method" id="toc-powells-method" class="nav-link" data-scroll-target="#powells-method"><span class="header-section-number">3.2.2</span> Powell’s Method</a></li>
+  <li><a href="#the-multidimensional-downhill-simplex-method" id="toc-the-multidimensional-downhill-simplex-method" class="nav-link" data-scroll-target="#the-multidimensional-downhill-simplex-method"><span class="header-section-number">4.2.1</span> The Multidimensional Downhill Simplex Method</a></li>
+  <li><a href="#powells-method" id="toc-powells-method" class="nav-link" data-scroll-target="#powells-method"><span class="header-section-number">4.2.2</span> Powell’s Method</a></li>
   </ul></li>
-  <li><a href="#optimization-in-python" id="toc-optimization-in-python" class="nav-link" data-scroll-target="#optimization-in-python"><span class="header-section-number">3.3</span> Optimization in Python</a></li>
+  <li><a href="#optimization-in-python" id="toc-optimization-in-python" class="nav-link" data-scroll-target="#optimization-in-python"><span class="header-section-number">4.3</span> Optimization in Python</a></li>
   </ul>
 </nav>
     </div>
@@ -272,7 +259,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Minimization and Maximization of Functions</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Minimization and Maximization of Functions</span></h1>
 </div>
 
 
@@ -294,12 +281,12 @@ window.Quarto = {
 <p>That this is a problem related to minimization becomes clear when one considers a function <span class="math inline">\(f(x_1, x_2, x_3, \ldots)\)</span> which is equal to the sum of the squared differences between the theoretical model and the experimental results. The variables <span class="math inline">\(x_1, x_2, x_3, \ldots\)</span> are the model parameters, and we can consider them to define an <span class="math inline">\(n\)</span>-dimensional space. The function <span class="math inline">\(f\)</span> then takes on a value at each point in this <span class="math inline">\(n\)</span>-dimensional space, and the problem reduces to finding the global minimum of <span class="math inline">\(f\)</span>.</p>
 <p>Finding the maximum of a function is equivalent to finding a minimum, because if <span class="math inline">\(f(x)\)</span> has a maximum at <span class="math inline">\(x_m\)</span>, then <span class="math inline">\(-f(x)\)</span> has a minimum at the same point <span class="math inline">\(x_m\)</span>. Thus, in what follows, we will consider algorithms to determine the <em>minimum</em> of a function only.</p>
 <p>Let us first begin with 1-D functions, and then move on to multi-dimensional functions.</p>
-<section id="sec-min-1D" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sec-min-1D"><span class="header-section-number">3.1</span> The Minimization of 1-D Functions</h2>
-<p>Analogous to <a href="05-roots.html" class="quarto-xref"><span>Chapter 2</span></a>, in which we considered how to find the root of a 1-D function, we can divide the problem into functions for which we can determine the first derivative and those for which we cannot. Let us first consider the case for which we cannot determine the derivative, or are too lazy to do so.</p>
-<section id="bracketing-a-minimum-in-1-d" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="bracketing-a-minimum-in-1-d"><span class="header-section-number">3.1.1</span> Bracketing a Minimum in 1-D</h3>
-<p>In <a href="05-roots.html#sec-bisection" class="quarto-xref"><span>Section 2.1</span></a> we used the method of bisection to zero in on the root of a 1-D function. We can use a similar method here, but we must first define what we mean by “bracketing” a minimum. A minimum can be bracketed only by a triplet of points <span class="math inline">\(a &lt; b &lt; c\)</span> such that <span class="math inline">\(f(b)\)</span> is less than both <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(c)\)</span>. Only then do we know that the function has a minimum in the interval <span class="math inline">\((a, c)\)</span> (see <a href="#fig-parab-min" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>). To zero in on the minimum, we choose a new point <span class="math inline">\(x\)</span>, which is either between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, or between <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>. Let us suppose <span class="math inline">\(x\)</span> is between <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>. We evaluate <span class="math inline">\(f(x)\)</span>. If <span class="math inline">\(f(b) &lt; f(x)\)</span>, then we replace <span class="math inline">\(c\)</span> with <span class="math inline">\(x\)</span>. If, however, <span class="math inline">\(f(b) &gt; f(x)\)</span>, then the new bracketing triplet is <span class="math inline">\((b, x, c)\)</span>.<br>
+<section id="sec-min-1D" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-min-1D"><span class="header-section-number">4.1</span> The Minimization of 1-D Functions</h2>
+<p>Analogous to <a href="05-roots.html" class="quarto-xref"><span>Chapter 3</span></a>, in which we considered how to find the root of a 1-D function, we can divide the problem into functions for which we can determine the first derivative and those for which we cannot. Let us first consider the case for which we cannot determine the derivative, or are too lazy to do so.</p>
+<section id="bracketing-a-minimum-in-1-d" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="bracketing-a-minimum-in-1-d"><span class="header-section-number">4.1.1</span> Bracketing a Minimum in 1-D</h3>
+<p>In <a href="05-roots.html#sec-bisection" class="quarto-xref"><span>Section 3.1</span></a> we used the method of bisection to zero in on the root of a 1-D function. We can use a similar method here, but we must first define what we mean by “bracketing” a minimum. A minimum can be bracketed only by a triplet of points <span class="math inline">\(a &lt; b &lt; c\)</span> such that <span class="math inline">\(f(b)\)</span> is less than both <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(c)\)</span>. Only then do we know that the function has a minimum in the interval <span class="math inline">\((a, c)\)</span> (see <a href="#fig-parab-min" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>). To zero in on the minimum, we choose a new point <span class="math inline">\(x\)</span>, which is either between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, or between <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>. Let us suppose <span class="math inline">\(x\)</span> is between <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>. We evaluate <span class="math inline">\(f(x)\)</span>. If <span class="math inline">\(f(b) &lt; f(x)\)</span>, then we replace <span class="math inline">\(c\)</span> with <span class="math inline">\(x\)</span>. If, however, <span class="math inline">\(f(b) &gt; f(x)\)</span>, then the new bracketing triplet is <span class="math inline">\((b, x, c)\)</span>.<br>
 We continue until we know the position of the minimum to a precision consistent with both our needs and the machine precision.</p>
 <div id="cell-fig-parab-min" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
@@ -309,7 +296,7 @@ We continue until we know the position of the minimum to a precision consistent 
 <img src="06-extrema_files/figure-html/fig-parab-min-output-1.png" width="471" height="566" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-parab-min-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: A parabola we want to minimize
+Figure&nbsp;4.1: A parabola we want to minimize
 </figcaption>
 </figure>
 </div>
@@ -397,8 +384,8 @@ P_3(x) = \frac{1}{2}(5x^3 - 3x)
 </div>
 </div>
 </section>
-<section id="bracketing-a-minimum-in-1-d-with-derivatives" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="bracketing-a-minimum-in-1-d-with-derivatives"><span class="header-section-number">3.1.2</span> Bracketing a Minimum in 1-D with Derivatives</h3>
+<section id="bracketing-a-minimum-in-1-d-with-derivatives" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="bracketing-a-minimum-in-1-d-with-derivatives"><span class="header-section-number">4.1.2</span> Bracketing a Minimum in 1-D with Derivatives</h3>
 <p>In the previous section, we cornered the minimum of our function by successively reducing the size of the bracketing interval until we knew the location of the minimum to the desired precision. We did this by arbitrarily selecting a new evaluation point in the center of the <em>largest</em> interval, <span class="math inline">\((a, b)\)</span> or <span class="math inline">\((b, c)\)</span>. Now, this is inefficient, as the minimum may not be in the largest interval, and so our algorithm actually wasted nearly 50% of its steps. If we can calculate the derivative of the function, we can use this information to determine which interval the minimum is actually in and thus avoid wasting steps. Furthermore, if we retain the derivatives of the function at all bracketing points <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>, then we can utilize linear <em>extrapolation</em> to predict where the derivative of the function goes to zero — i.e., the location of the minimum. This scheme should zero in on the minimum with far fewer steps than the previous algorithm.</p>
 <p>This is how we proceed:</p>
 <ol type="1">
@@ -407,7 +394,7 @@ P_3(x) = \frac{1}{2}(5x^3 - 3x)
 <ul>
 <li>If <span class="math inline">\(f'(b) &gt; 0\)</span>, the minimum is in the interval <span class="math inline">\((a, b)\)</span>.<br>
 </li>
-<li>If <span class="math inline">\(f'(b) &lt; 0\)</span>, the minimum is in <span class="math inline">\((b, c)\)</span>. See <a href="#fig-parab-min-div" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</li>
+<li>If <span class="math inline">\(f'(b) &lt; 0\)</span>, the minimum is in <span class="math inline">\((b, c)\)</span>. See <a href="#fig-parab-min-div" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>.</li>
 </ul></li>
 <li><p>If <span class="math inline">\(f'(b) &lt; 0\)</span>, use <span class="math inline">\(f'(a)\)</span> and <span class="math inline">\(f'(b)\)</span> to extrapolate the derivative to 0.<br>
 The straight line that passes through the points <span class="math inline">\((a, f'(a))\)</span> and <span class="math inline">\((b, f'(b))\)</span> is given by: <span class="math display">\[
@@ -436,7 +423,7 @@ x = b - \frac{f'(b)(c - b)}{f'(c) - f'(b)}
 <img src="06-extrema_files/figure-html/fig-parab-min-div-output-1.png" width="471" height="566" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-parab-min-div-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: A parabola with derivative information
+Figure&nbsp;4.2: A parabola with derivative information
 </figcaption>
 </figure>
 </div>
@@ -516,8 +503,8 @@ B(\lambda) = \frac{1.19106 \times 10^{27}}{\lambda^5 \left( e^{1.43879 \times 10
 </div>
 </div>
 </section>
-<section id="an-aside---how-to-get-gnuplot-to-fit-a-line-to-data" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="an-aside---how-to-get-gnuplot-to-fit-a-line-to-data"><span class="header-section-number">3.1.3</span> An Aside - How to get Gnuplot to fit a line to data</h3>
+<section id="an-aside---how-to-get-gnuplot-to-fit-a-line-to-data" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="an-aside---how-to-get-gnuplot-to-fit-a-line-to-data"><span class="header-section-number">4.1.3</span> An Aside - How to get Gnuplot to fit a line to data</h3>
 <p>Let us suppose that we have some data in the file <code>data.dat</code> and we want to get gnuplot to fit a regression line to those data. This is how to do it manually – the same commands can be used in “response” mode. Carry out the following steps:</p>
 <pre class="text"><code>gnuplot &gt; plot "data.dat" using 1:2
 gnuplot &gt; f(x) = a + b*x
@@ -528,13 +515,13 @@ gnuplot &gt; replot f(x)</code></pre>
 <pre class="text"><code>gnuplot &gt; plot "data.dat" using (1/$1):($2*$2)</code></pre>
 </section>
 </section>
-<section id="the-minimization-of-multi-dimensional-functions" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="the-minimization-of-multi-dimensional-functions"><span class="header-section-number">3.2</span> The Minimization of Multi-dimensional Functions</h2>
+<section id="the-minimization-of-multi-dimensional-functions" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="the-minimization-of-multi-dimensional-functions"><span class="header-section-number">4.2</span> The Minimization of Multi-dimensional Functions</h2>
 <p>The subject of the minimization of multidimensional functions, i.e.&nbsp;functions of the form<br>
 <span class="math inline">\(y = f(x_1, x_2, x_3, \ldots)\)</span> is a huge subject, and we will only be able to scratch the surface.<br>
 We begin with the so-called <em>downhill simplex method</em>.</p>
-<section id="the-multidimensional-downhill-simplex-method" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="the-multidimensional-downhill-simplex-method"><span class="header-section-number">3.2.1</span> The Multidimensional Downhill Simplex Method</h3>
+<section id="the-multidimensional-downhill-simplex-method" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="the-multidimensional-downhill-simplex-method"><span class="header-section-number">4.2.1</span> The Multidimensional Downhill Simplex Method</h3>
 <p>A <em>simplex</em> is a geometrical figure consisting, in <span class="math inline">\(N\)</span> dimensions, of <span class="math inline">\(N + 1\)</span> vertices and all their interconnecting line segments, faces, etc. For <span class="math inline">\(N = 2\)</span>, the simplex is a triangle; for <span class="math inline">\(N = 3\)</span>, it is a tetrahedron, etc. In 1-D minimization, it is possible to bracket the minimum, but in multidimensional space, this is impossible. What we can do, however, is to <em>surround</em> the minimum with a <em>simplex</em> and then shrink that <em>simplex</em> until we know the position of the minimum to the desired precision. The way the <em>simplex</em> method works is as follows. Let us suppose we begin with a rough estimate of the position of the minimum in <span class="math inline">\(N\)</span>-dimensional space. This point <span class="math inline">\((x_1, x_2, \ldots, x_N)\)</span> makes up one of the vertices of the simplex. We then supply the remaining vertices of the simplex by adding a small value to each of the coordinates, thus: <span class="math display">\[
 \begin{aligned}
 &amp;(x_1 + \Delta x_1,\, x_2,\, \ldots,\, x_N), \\
@@ -543,14 +530,14 @@ We begin with the so-called <em>downhill simplex method</em>.</p>
 &amp;(x_1,\, x_2,\, \ldots,\, x_N + \Delta x_N)
 \end{aligned}
 \]</span> The <span class="math inline">\(\Delta x_j\)</span>’s can all be the same, or they can be different, according to the needs of the problem. These <span class="math inline">\(N + 1\)</span> points define the initial simplex.</p>
-<p>The downhill simplex method now takes a number of steps in the “downhill” direction in an attempt to find the minimum of the function. Most of these steps are in the form of reflections, in which the “highest” vertex of the simplex (i.e.&nbsp;the vertex at which the function evaluates to the highest value) is reflected through the opposite face of the simplex to a lower point. Other steps (see <a href="#fig-simplex" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>) involve reflection and expansion, or contraction. The goal is to surround the minimum and then contract on it until we know the minimum to the required precision. If you could watch the simplex in action, it would appear somewhat like an amoeba, first pursuing its prey and then engulfing it.</p>
+<p>The downhill simplex method now takes a number of steps in the “downhill” direction in an attempt to find the minimum of the function. Most of these steps are in the form of reflections, in which the “highest” vertex of the simplex (i.e.&nbsp;the vertex at which the function evaluates to the highest value) is reflected through the opposite face of the simplex to a lower point. Other steps (see <a href="#fig-simplex" class="quarto-xref">Figure&nbsp;<span>4.3</span></a>) involve reflection and expansion, or contraction. The goal is to surround the minimum and then contract on it until we know the minimum to the required precision. If you could watch the simplex in action, it would appear somewhat like an amoeba, first pursuing its prey and then engulfing it.</p>
 <div id="fig-simplex" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simplex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./assets/images/NRIC-Simplex.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simplex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: Possible outcomes for a step in the downhill simplex method
+Figure&nbsp;4.3: Possible outcomes for a step in the downhill simplex method
 </figcaption>
 </figure>
 </div>
@@ -627,7 +614,7 @@ f(x, y) = x^2 + (y - 1)^2 + 1.0
 <span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>z<span class="op">);</span></span>
 <span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The initial simplex looks like this:</p>
-<div id="6fe1d7bd" class="cell" data-execution_count="3">
+<div id="28a2d4e2" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -649,7 +636,7 @@ f(x, y) = x^2 + (y - 1)^2 + 1.0
 </div>
 <div class="callout-body-container callout-body">
 <p>In this exercise, we explore a very useful application of function minimization — optimizing a fit to a model. Consider the following data, which come from an exponentially decaying oscillating system:</p>
-<div id="3c76cb53" class="cell" data-execution_count="4">
+<div id="dcc44ea3" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -719,7 +706,7 @@ f(t) = A e^{-\gamma t} \sin(Bt + C)
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>chi2<span class="op">);</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>What remains for you to do is to figure out reasonable starting values for <span class="math inline">\(A\)</span>, <span class="math inline">\(\gamma\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>, use them to initialize the components of p, and then to invoke amoeba. The next figure shows a plot of what I got.</p>
-<div id="79faa21f" class="cell" data-execution_count="5">
+<div id="488ac4bf" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -753,10 +740,10 @@ V(x, y) = \left\{
 </div>
 </div>
 </section>
-<section id="powells-method" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="powells-method"><span class="header-section-number">3.2.2</span> Powell’s Method</h3>
+<section id="powells-method" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="powells-method"><span class="header-section-number">4.2.2</span> Powell’s Method</h3>
 <p>The downhill simplex method has the virtue that it is easy to implement, and often will do the job as well as other much more sophisticated methods. A problem with the simplex method is that it uses more function evaluations than other multidimensional minimization techniques, and if evaluating your function is computationally expensive, then the simplex method can be very slow. So, if you are dealing with a complicated, computationally expensive function, it is worthwhile to investigate other methods.</p>
-<p>One straightforward way to minimize a multidimensional function is to use the methods of <a href="#sec-min-1D" class="quarto-xref"><span>Section 3.1</span></a> to minimize first along one direction, then along the next and so on until you spiral into the minimum — i.e., if <span class="math inline">\(y = f(x_1, x_2,
+<p>One straightforward way to minimize a multidimensional function is to use the methods of <a href="#sec-min-1D" class="quarto-xref"><span>Section 4.1</span></a> to minimize first along one direction, then along the next and so on until you spiral into the minimum — i.e., if <span class="math inline">\(y = f(x_1, x_2,
 x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span> constant and minimize <span class="math inline">\(f\)</span> along <span class="math inline">\(x_1\)</span>, then hold <span class="math inline">\(x_1, x_3, \ldots\)</span> constant and minimize along <span class="math inline">\(x_2\)</span>, and so on, cycling through the directions until you know the minimum to the desired precision. This is actually a very good algorithm to follow in most situations, especially if the minimum of your function is nice and symmetric, as is quite often the case. However, the method becomes very inefficient if the minimum is found at the bottom of a long, narrow valley. Then the method will have to cycle through the directions many, many times, bouncing against the sides of this valley to get to the minimum.</p>
 <p>The key is to abandon the coordinate directions <span class="math inline">\(x_1, x_2, x_3, \ldots\)</span> and instead use a new basis set of “conjugate directions”, with the idea that the first of these directions will be along the direction of maximum descent — i.e., along the direction of that long narrow valley. The algorithm moves as far as it can along this direction; it then abandons that direction and finds the next direction of maximum descent, and so on, until the actual function minimum is found. This is the basis of Powell’s method, which is implemented in the C-function <code>powell</code> found in <code>comphys.c</code>. The function definition is</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> powell<span class="op">(</span><span class="dt">float</span> p<span class="op">[],</span> <span class="dt">float</span> <span class="op">**</span>xi<span class="op">,</span> <span class="dt">int</span> n<span class="op">,</span> <span class="dt">float</span> ftol<span class="op">,</span></span>
@@ -845,11 +832,11 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 </div>
 </section>
 </section>
-<section id="optimization-in-python" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="optimization-in-python"><span class="header-section-number">3.3</span> Optimization in Python</h2>
-<p>Optimization is a vast subject. SciPy has got you covered with the <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html" target="_blank">optimize</a> subpackages, which we previously met in <a href="05-roots.html" class="quarto-xref"><span>Chapter 2</span></a> for all of our root finding needs.</p>
+<section id="optimization-in-python" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="optimization-in-python"><span class="header-section-number">4.3</span> Optimization in Python</h2>
+<p>Optimization is a vast subject. SciPy has got you covered with the <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html" target="_blank">optimize</a> subpackages, which we previously met in <a href="05-roots.html" class="quarto-xref"><span>Chapter 3</span></a> for all of our root finding needs.</p>
 <p>For scalar functions the <code>minimize_scalar</code> method is used. As an example we will return to our favorite wiggle</p>
-<div id="def71c6d" class="cell" data-execution_count="6">
+<div id="e84a5620" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
@@ -871,7 +858,7 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 </div>
 </div>
 <p>The call to <code>minimize_scalar</code> returns an object with other information about the result.</p>
-<div id="e2d8ead1" class="cell" data-execution_count="7">
+<div id="214d3d36" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize_scalar(j0)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -887,7 +874,7 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 </div>
 </div>
 <p>Notice there are many function evaluations. If your function is expensive to evaluate, minimization can be expensive.</p>
-<div id="856e7643" class="cell" data-execution_count="8">
+<div id="4bef8699" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x, j0(x))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.plot(result.x, result.fun, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -899,7 +886,7 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 </div>
 </div>
 <p>Note this is a local minium. Passing a bracket we can find multiple local minima</p>
-<div id="64e5beea" class="cell" data-execution_count="9">
+<div id="0514d8fb" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>bracket <span class="op">=</span> [[<span class="dv">2</span>,<span class="dv">4</span>], [<span class="dv">8</span>, <span class="dv">10</span>], [<span class="dv">14</span>, <span class="dv">16</span>]]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -923,7 +910,7 @@ x_3, \ldots)\)</span>, hold <span class="math inline">\(x_2, x_3, \ldots\)</span
 <p><span class="math display">\[
 f\left(\mathbf{x}\right)=\sum_{i=1}^{N-1}100\left(x_{i+1}-x_{i}^{2}\right)^{2}+\left(1-x_{i}\right)^{2}
 \]</span></p>
-<p>Don’t worry too much about the exact form of the equation. The Rosenbrock function is a horseshoe type valley shown in <a href="#fig-rosen-1" class="quarto-xref">Figure&nbsp;<span>3.4 (a)</span></a>. The Rosenbrock function is used as a benchmark for optimization techniques as it can be difficult for methods to navigate the shallow curved valley.</p>
+<p>Don’t worry too much about the exact form of the equation. The Rosenbrock function is a horseshoe type valley shown in <a href="#fig-rosen-1" class="quarto-xref">Figure&nbsp;<span>4.4 (a)</span></a>. The Rosenbrock function is used as a benchmark for optimization techniques as it can be difficult for methods to navigate the shallow curved valley.</p>
 <div id="fig-rosen" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rosen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -955,13 +942,13 @@ f\left(\mathbf{x}\right)=\sum_{i=1}^{N-1}100\left(x_{i+1}-x_{i}^{2}\right)^{2}+\
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rosen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: The Rosenbrock function
+Figure&nbsp;4.4: The Rosenbrock function
 </figcaption>
 </figure>
 </div>
-<p>The Rosenbrock function as a minimum at <span class="math inline">\(f(x,y)=f(1,1)=0\)</span> shown in <a href="#fig-rosen-2" class="quarto-xref">Figure&nbsp;<span>3.4 (b)</span></a>.</p>
+<p>The Rosenbrock function as a minimum at <span class="math inline">\(f(x,y)=f(1,1)=0\)</span> shown in <a href="#fig-rosen-2" class="quarto-xref">Figure&nbsp;<span>4.4 (b)</span></a>.</p>
 <p>The Rosenbrock function is so commonly used in optimization that SciPy provides an method <code>rosen</code>.</p>
-<div id="1b034854" class="cell" data-execution_count="11">
+<div id="09a31bf1" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> rosen</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rosen([<span class="dv">1</span>, <span class="dv">2</span>]))</span>
@@ -974,7 +961,7 @@ Figure&nbsp;3.4: The Rosenbrock function
 </div>
 </div>
 <p>Let’s say we start at a point <span class="math inline">\((-1.5, 2.5)\)</span> and we want to minimize the function. For multivariet minimization, SciPy provides the <code>minimize</code> method.</p>
-<div id="65d229b6" class="cell" data-execution_count="12">
+<div id="b25f9958" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">2.5</span>])</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(rosen, x0)</span>
@@ -994,7 +981,7 @@ Figure&nbsp;3.4: The Rosenbrock function
 </div>
 </div>
 <p>Again as with the root finding methods, the results contain more than just the minimum. In this case we also get the number of function evaluates and an estimate of the jacobian and hessian. The defauly method is <code>'BFGS'</code> but you can pass which method you want to use such as <code>Nelder-Mead</code></p>
-<div id="706c7227" class="cell" data-execution_count="13">
+<div id="286914d1" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>minimize(rosen, x0, method<span class="op">=</span><span class="st">'Nelder-Mead'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>       message: Optimization terminated successfully.
@@ -1011,7 +998,7 @@ Figure&nbsp;3.4: The Rosenbrock function
 </div>
 <p>in which case we are returned the final simplex. Notice there were a few more function evaluations but not so bad compared to the default.</p>
 <p>Consider our good old friend <code>Powell</code></p>
-<div id="afe0a2f1" class="cell" data-execution_count="14">
+<div id="de4f645b" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>minimize(rosen, x0, method<span class="op">=</span><span class="st">'Powell'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code> message: Optimization terminated successfully.
@@ -1057,15 +1044,15 @@ Figure&nbsp;3.4: The Rosenbrock function
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-min-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5: Comparing optimization traces
+Figure&nbsp;4.5: Comparing optimization traces
 </figcaption>
 </figure>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-press92" class="csl-entry" role="listitem">
-Press, William H., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery. 1992. <em>Numerical Recipes in c (2nd Ed.): The Art of Scientific Computing</em>. USA: Cambridge University Press.
+Press, William H., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery. 1992. <em>Numerical Recipes in c (2nd Ed.): The Art of Scientific Computing</em>. Cambridge University Press.
 </div>
 </div>
 </section>
@@ -1474,12 +1461,12 @@ Press, William H., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flanne
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./05-roots.html" class="pagination-link" aria-label="Finding the Root of a Function">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Finding the Root of a Function</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Finding the Root of a Function</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07-integration.html" class="pagination-link" aria-label="Numerical Integration">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Integration</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
