@@ -459,6 +459,7 @@ Let's say you have run an experiment and have some data.
 
 ```{python}
 #| echo: false
+
 import numpy as np
 import matplotlib.pyplot as plt
 plt.rcParams.update({

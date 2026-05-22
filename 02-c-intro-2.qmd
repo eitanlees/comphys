@@ -477,7 +477,8 @@ int main()
 
 This same program structure can be illustrated with a flowchart:
 
-<!-- TODO: Recreate flowchart for factorial calculation showing Input n -> x=1,f=1 -> decision box "x > n?" -> if No: f=f*x, x=x+1 loop back; if Yes: print f -> End -->
+<!--- TODO: 2-1 Figure out how to do this with mermaid -->
+![Flowchart for computing n!](experiments/plot-shots/2-1.png){#fig-factorial-flowchart}
 
 where the diagonal box is known as a "decision box", which corresponds to the conditional in the `while` statement (which asks, is $x > n$?). The *while* loop itself is represented by the arrow moving to the right from "No", which leads to execution of $f = f * x$ and $x = x + 1$ followed by a return to the top of the decision box, when the question "is $x > n$?" asked again.
 
@@ -492,6 +493,7 @@ else T = 0
 
 can be represented in flowchart form by a series of decision boxes:
 
-<!-- TODO: Recreate flowchart for if-else chain showing three decision boxes "is n=0?", "is n=1?", "is n=2?" with Yes branches leading to T=50, T=100, T=200 respectively, and final No branch leading to T=0 -->
+<!--- TODO: 2-2 Figure out how to do this with mermaid -->
+![Flowchart for if-else chain](experiments/plot-shots/2-2.png){#fig-ifelse-flowchart}
 
 Flowchart diagrams can be quite useful in reasoning out a complex program, but may be overkill (once programming is learned) for simple programs. We don't have time to go into more detail on flowcharting, but there are resources on the web.

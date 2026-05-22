@@ -8,14 +8,9 @@ book:
   chapters:
     - index.qmd
     - 01-c-intro-1.qmd
-    - 02-c-intro-2.qmd
-    - 03-c-intro-3.qmd
     - 04-interpolation.qmd
     - 05-roots.qmd
     - 06-extrema.qmd
-    - 07-integration.qmd
-    - 08-odes.qmd
-    - 09-modeling.qmd
     - references.qmd
 
 bibliography: references.bib

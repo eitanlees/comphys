@@ -11,6 +11,11 @@ I've kept the lecture notes on my various computers ever since. I want to conver
 [Quarto](https://quarto.org/) book as a conservation project. In addition to replicating the source material 
 I want to add some examples from Python and Scipy.
 
+::: {.callout-note}
+This project is a work in progress. I will be releasing lectures out of order
+as I finish them. I will leave a note here when the project is complete. 
+:::
+
 # Colophon {.unnumbered}
 
 This is a book created from markdown and executable code.

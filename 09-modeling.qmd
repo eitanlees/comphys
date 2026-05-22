@@ -244,9 +244,54 @@ y = a_1 + \sum_{n=2}^{4} a_n \sin[(n-1)\pi x]
 $$
 
 Determine the $a_n$'s and their errors for this dataset.
-:::
 
-<!-- TODO: Recreate Figure 1 showing data and resulting fit for Exercise 9.5 -->
+```{python}
+#| echo: false
+import numpy as np
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
+
+# Load the data
+data = np.loadtxt("data/data95.dat")
+x_data = data[:,0]
+y_data = data[:,1]
+
+
+# TODO: I need to check if this code is correct.
+# Correct harmonic series
+def harmonic_series(x, A0, *params):
+    N = len(params) // 2
+    y = A0
+    for n in range(1, N + 1):
+        An = params[2*(n-1)]
+        phi_n = params[2*(n-1)+1]
+        y += An * np.sin((n-1) * np.pi * x + phi_n)
+    return y
+
+# Initial guess: A0 + (A_n, phi_n) for N harmonics
+N_harmonics = 4
+initial_guess = [0] + [1, 0]*N_harmonics
+
+# Fit the curve
+popt, pcov = curve_fit(harmonic_series, x_data, y_data, p0=initial_guess)
+
+# Plotting
+x_fit = np.linspace(min(x_data), max(x_data), 1000)
+y_fit = harmonic_series(x_fit, *popt)
+fig, ax = plt.subplots()
+
+ax.plot(x_data, y_data, 'ko', clip_on=False)
+ax.plot(x_fit, y_fit, 'k-', linewidth=.5)
+# x ticks every 1 unit
+ax.set_xticks(np.arange(0, 5, 1))
+ax.set_xlabel('X Data')
+ax.set_ylabel('Y Data')
+ax.set_xlim(0, 4)
+ax.set_ylim(-.8, 1)
+plt.show()
+``` 
+
+:::
 
 ## Nonlinear Least Squares (Levenberg-Marquardt)
 
@@ -323,6 +368,46 @@ The constant `alambda` in the above discussion refers to the constant in the met
 The best way to explain how to use `mrqmin` is with an example. The following figure shows a histogram of data. The underlying theory is that the distribution of points in this diagram is a double Gaussian. We would like to fit these data to a function that looks like:
 
 <!-- TODO: Recreate Figure 2 showing histogram data to be fit with double Gaussian -->
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load the data
+data = np.loadtxt('data/hist.csv', delimiter=',')
+x = data[:, 0]
+y = data[:, 1]
+
+# Calculate bar width from the data spacing
+width = x[1] - x[0]
+
+# Create the figure
+fig, ax = plt.subplots()
+
+# Plot as bar chart (histogram style)
+ax.bar(x, y, width=width, color='#B6AFA9', edgecolor='black', linewidth=0.5, align='center')
+
+# Set axis labels
+ax.set_xlabel('X Data', fontsize=14)
+ax.set_ylabel('Y Data', fontsize=14)
+
+# Set axis limits to match the reference
+ax.set_xlim(-5.5, -3.5)
+ax.set_ylim(0, 80)
+
+# Set x-axis ticks to match original
+ax.set_xticks([-5.5, -5.0, -4.5, -4.0, -3.5])
+
+# Set tick parameters
+ax.tick_params(axis='both', which='major', labelsize=12)
+
+# Remove top and right spines for cleaner look (optional, based on reference)
+ax.spines['top'].set_visible(True)
+ax.spines['right'].set_visible(True)
+
+plt.tight_layout()
+plt.show()
+``` 
 
 $$
 f(x; a_1, \ldots, a_6) = a_1 \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \right] + a_4 \exp\left[ -\left( \frac{x - a_5}{a_6} \right)^2 \right]
@@ -455,7 +540,72 @@ void fgauss(float x, float a[], float *y, float dyda[], int na)
 }
 ```
 
-<!-- TODO: Recreate Figure 3 showing the resulting double Gaussian fit -->
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+
+# TODO: The plot still looks a bit different from the reference.
+
+# Define the double Gaussian function
+def double_gaussian(x, a1, a2, a3, a4, a5, a6):
+    """
+    f(x) = a1 * exp(-((x - a2) / a3)^2) + a4 * exp(-((x - a5) / a6)^2)
+    """
+    return a1 * np.exp(-((x - a2) / a3)**2) + a4 * np.exp(-((x - a5) / a6)**2)
+
+# Load the data
+data = np.loadtxt('data/hist.csv', delimiter=',')
+x = data[:, 0]
+y = data[:, 1]
+
+# Initial guesses for the parameters based on visual inspection
+# First Gaussian: peak at x ~ -4.95 with height ~ 76
+# Second Gaussian: peak at x ~ -4.5 with height ~ 25
+p0 = [76, -4.95, 0.15,   # a1, a2, a3 (first Gaussian)
+      25, -4.5, 0.2]     # a4, a5, a6 (second Gaussian)
+
+# Perform the fit
+popt, pcov = curve_fit(double_gaussian, x, y, p0=p0)
+
+# Generate smooth x values for plotting the fit
+x_fit = np.linspace(x.min() - 0.1, x.max() + 0.1, 500)
+y_fit = double_gaussian(x_fit, *popt)
+
+# Calculate bar width from the data spacing
+width = x[1] - x[0]
+
+# Create the figure
+fig, ax = plt.subplots()
+
+# Plot as bar chart (histogram style)
+ax.bar(x, y, width=width, color='#B6AFA9', edgecolor='black', linewidth=0.5, align='center')
+
+# Plot the fitted double Gaussian curve
+ax.plot(x_fit, y_fit, 'k-', linewidth=1.0)
+
+# Set axis labels
+ax.set_xlabel('X Data', fontsize=14)
+ax.set_ylabel('Y Data', fontsize=14)
+
+# Set axis limits to match the reference
+ax.set_xlim(-5.5, -3.5)
+ax.set_ylim(0, 80)
+
+# Set x-axis ticks to match original
+ax.set_xticks([-5.5, -5.0, -4.5, -4.0, -3.5])
+
+# Set tick parameters
+ax.tick_params(axis='both', which='major', labelsize=12)
+
+# Keep all spines visible
+ax.spines['top'].set_visible(True)
+ax.spines['right'].set_visible(True)
+
+plt.tight_layout()
+plt.show()
+``` 
 
 ::: {.callout-note title="Exercise 9.6"}
 Using the data in the file `decay.out` (see chapter 6), write a program which uses the Levenberg-Marquardt method to fit the four parameters $A$, $\gamma$, $B$ and $C$. Compare the values you get with the Simplex and Powell methods.

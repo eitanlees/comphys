@@ -625,8 +625,42 @@ int main()
 
 The result of the first 10 runs of this program (your numbers will be different) with $N = 100$ are: 1.825, 1.640, 1.414, 1.700, 1.532, 1.571, 1.413, 1.600, 1.519, 1.745 each with a calculated error of about $\pm 0.130$. The mean of these determinations is $1.596 \pm 0.043$ (where the error is the standard error of the mean). If we increase $N$ to 1000, we get the following run: 1.593, 1.574, 1.614, 1.589, 1.545, 1.531, 1.592, 1.570, 1.627, 1.579 each with a calculated error of about $\pm 0.042$. The mean of these determinations is $1.581 \pm 0.009$.
 
-<!-- TODO: Recreate figure showing circle W inscribed in square V with 100 random points plotted -->
+```{python}
+#| echo: false
+import numpy as np 
+data = np.loadtxt("data/MC.csv", delimiter=",")
+x, y = data[:, 0], data[:, 1]
 
+fig, ax = plt.subplots(figsize=(4, 4))
+ax.plot(x, y, "ko", markersize=2)
+
+circle = plt.Circle((0, 0), 1, color="k", fill=False, linewidth=1)
+ax.add_artist(circle)
+
+square = plt.Rectangle((-1, -1), 2, 2, color="k", fill=False, linewidth=1)
+ax.add_artist(square)
+
+points = [ (-0.35, 0.69, "W"), (0.79, 0.85, "V") ]
+for x, y, label in points:
+    ax.text(x, y, label, ha="center", va="center", fontweight="bold")
+
+ax.set_xlim(-2, 2)
+ax.set_ylim(-2, 2)
+ax.set_aspect("equal")
+ax.spines["left"].set_position("center")
+ax.spines["bottom"].set_position("center")
+ax.spines["right"].set_color("none")
+ax.spines["top"].set_color("none")
+ax.xaxis.set_ticks_position("bottom")
+ax.yaxis.set_ticks_position("left")
+
+# --- Integer ticks ---
+ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+plt.tight_layout()
+plt.show()
+```
 Notice that increasing $N$ by a factor of 10 decreased the error by a factor of only about 3. A single run with $N = 100000$ gives $1.575 \pm 0.004$. Recall that the exact value of this integral is $\pi/2 = 1.571$.
 
 The moral of the story is --- run your Monte Carlo program many times as the individual results are scattered around the true value.

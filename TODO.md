@@ -1,5 +1,9 @@
 # TODO
 
+- Review the chapters Claude converted for accuracy.
+  - Look over the missing figure sections as well and think about how to make them.
+- Add my sections at the end for python fun.
+
 A loose collection of things to do and open questions.
 
 ## General
@@ -31,4 +35,3 @@ A loose collection of things to do and open questions.
 ## Integration
 
 - EQ lables in first part are refereneced in Gauss quadrature section. Try to use cross refs.
-
