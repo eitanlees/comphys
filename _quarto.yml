@@ -17,6 +17,7 @@ book:
     - 08-odes.qmd
     - 09-modeling.qmd
     - references.qmd
+
 bibliography: references.bib
 
 format:
