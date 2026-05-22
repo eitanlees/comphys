@@ -10,6 +10,7 @@ A loose collection of things to do and open questions.
 
 - Change the `_foo_` to `*foo*` for italics?
 - Clean up quotations marks
+- Figure out how to put in Horizontal rules in `Exercise 2.8` at the end.
 
 ## Interpolation
 

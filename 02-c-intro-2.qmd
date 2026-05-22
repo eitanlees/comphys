@@ -344,13 +344,11 @@ for(i=0;i<50;i++) ni = scanf("%f",&grain[i]);
 
 and then, after compiling your program, running it with the command `./ex24 < grains.dat` where `ex24` is the name of your program. The use of "<" is called a pipe (see next section). We will see a better way to get file data into a program in the next lecture.
 
----
 
 **GRADUATE STUDENTS ONLY**
 
 5. Create a new routine `qsdouble` which applies quicksort to arguments that are of double precision. Include this in your versions of `comphys.h` and `comphys.c` and run part (1.) of this assignment with the grain sizes defined as double.
 
----
 :::
 
 ::: {.callout-note title="Exercise 2.9"}
