@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; The Modeling of Data – Computational Physics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./08-odes.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-87b7f55de2e0c9887283481eb31a794c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-modeling.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Modeling of Data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computational Physics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-c-intro-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to C – part I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-c-intro-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to C – part II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-c-intro-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to C – part III</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-interpolation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interpolation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-roots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Finding the Root of a Function</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-extrema.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Minimization and Maximization of Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-integration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-odes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Integration of Ordinary Differential Equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-modeling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Modeling of Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">9.1</span> Introduction</a></li>
+  <li><a href="#least-squares-fitting-of-data-to-a-straight-line" id="toc-least-squares-fitting-of-data-to-a-straight-line" class="nav-link" data-scroll-target="#least-squares-fitting-of-data-to-a-straight-line"><span class="header-section-number">9.2</span> Least Squares Fitting of Data to a Straight Line</a></li>
+  <li><a href="#general-linear-least-squares" id="toc-general-linear-least-squares" class="nav-link" data-scroll-target="#general-linear-least-squares"><span class="header-section-number">9.3</span> General Linear Least Squares</a></li>
+  <li><a href="#nonlinear-least-squares-levenberg-marquardt" id="toc-nonlinear-least-squares-levenberg-marquardt" class="nav-link" data-scroll-target="#nonlinear-least-squares-levenberg-marquardt"><span class="header-section-number">9.4</span> Nonlinear Least Squares (Levenberg-Marquardt)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Modeling of Data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">9.1</span> Introduction</h2>
+<p>Let us suppose that we have a set of experimental data in the form of data pairs <span class="math inline">\((x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)\)</span>. When plotted, these data may appear to have a linear relationship, or a higher-order functional relationship may be evident. A reasonable next step is to try to “fit” an appropriate function to these data, as part of the analysis process. The purpose may simply be to condense and summarize the observations using a mathematical function, or it may be that a theory for the phenomenon represented by the data exists, and we are attempting to determine empirically certain parameters in this theory through the fitting process. Whichever is the case, we need to devise some criterion for selecting a <em>best-fit</em> function.</p>
+<p>Traditionally, the procedure used to find this best-fit function is the process of least squares. Let us suppose that our model function is of the form:</p>
+<p><span id="eq-model"><span class="math display">\[
+y = f(x; a_1, a_2, \ldots, a_m)
+\tag{9.1}\]</span></span></p>
+<p>where the <span class="math inline">\(a_i\)</span>’s are the fitting parameters. Then, the least squares technique finds the combination of the <span class="math inline">\(a_i\)</span>’s such that the sum</p>
+<p><span class="math display">\[
+\sum_{i=1}^{N} [y_i - f(x_i; a_1, a_2, \ldots, a_m)]^2
+\]</span></p>
+<p>is minimized. Why do we choose this expression to minimize? Clearly, one does not want negative deviations to cancel with positive deviations, but why do we take the sum of the <em>square</em> of the deviations and not, for instance, the <em>absolute value</em> of the deviations? This is an important question. The answer is that it turns out that if the deviations (i.e.&nbsp;the errors) in the <span class="math inline">\(y_i\)</span>’s are normally distributed (i.e.&nbsp;have a Gaussian distribution), then minimizing the sum of the square of the deviations leads to the choice for the <span class="math inline">\(a_i\)</span>’s that is <em>most likely</em> to be correct. This result is derived from the theory of <em>Maximum Likelihood Estimators</em>. More information can be found in the book <em>Numerical Recipes</em>.</p>
+<p>What if our errors are not normally distributed? This is a fairly common occurrence in experimental physics. It turns out that if the distribution of errors is only approximately Gaussian, least squares is still a good way to go. However, the least squares technique is very sensitive to data points that are very deviant (<em>outliers</em>). These very deviant points can exert enormous leverage over the sum of the squares of the deviations to the extent that they may even dominate the sum, leading to a fitted function which clearly does not represent the majority of the data points. In such a case, we should either eliminate the outliers using a valid (i.e.&nbsp;honest) statistical process, or use another fitting strategy. One such fitting strategy is called <em>robust fitting</em> in which it is the sum of the absolute value of the deviations which is minimized.</p>
+<p>It should be noted that in the above discussion we have tacitly assumed that all of the errors are in the <span class="math inline">\(y_i\)</span>’s and not in the <span class="math inline">\(x_i\)</span>’s. This situation is often the case in experimental physics, but sometimes it turns out that both the <span class="math inline">\(x_i\)</span>’s and the <span class="math inline">\(y_i\)</span>’s have significant errors. In this case, we need to use a slightly different approach (see <em>Numerical Recipes</em> for more information).</p>
+<p>Let us begin our discussion of the modeling of data with a review of using least squares to fit data to a straight line, and use that as a springboard to a discussion on fitting data to nonlinear functions.</p>
+</section>
+<section id="least-squares-fitting-of-data-to-a-straight-line" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="least-squares-fitting-of-data-to-a-straight-line"><span class="header-section-number">9.2</span> Least Squares Fitting of Data to a Straight Line</h2>
+<p>Let us suppose that the y-value for each data point <span class="math inline">\((x_i, y_i)\)</span> has its own, known, standard deviation, <span class="math inline">\(\sigma_i\)</span>. Then the expression that we wish to minimize becomes:</p>
+<p><span class="math display">\[
+\chi^2 = \sum_{i=1}^{N} \left( \frac{y_i - f(x_i; a_1, a_2, \ldots, a_m)}{\sigma_i} \right)^2
+\]</span></p>
+<p>Dividing each term in the sum by <span class="math inline">\(\sigma_i^2\)</span> <em>weights</em> each data point according to its error—those data points with the smallest errors contribute the most to the sum<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. If our model function is a straight line,</p>
+<p><span class="math display">\[
+f(x) = f(x; a, b) = a + bx
+\]</span></p>
+<p>then the above expression becomes</p>
+<p><span id="eq-chisq-line"><span class="math display">\[
+\chi^2(a, b) = \sum_{i=1}^{N} \left( \frac{y_i - a - bx_i}{\sigma_i} \right)^2
+\tag{9.2}\]</span></span></p>
+<p>This sum must be minimized with respect to the two parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, which means that we must have</p>
+<p><span class="math display">\[
+0 = \frac{\partial \chi^2}{\partial a} = -2 \sum_{i=1}^{N} \frac{y_i - a - bx_i}{\sigma_i^2}
+\]</span></p>
+<p><span class="math display">\[
+0 = \frac{\partial \chi^2}{\partial b} = -2 \sum_{i=1}^{N} \frac{x_i(y_i - a - bx_i)}{\sigma_i^2}
+\]</span></p>
+<p>if we make the following substitutions</p>
+<p><span class="math display">\[
+S \equiv \sum_{i=1}^{N} \frac{1}{\sigma_i^2} \qquad S_x \equiv \sum_{i=1}^{N} \frac{x_i}{\sigma_i^2} \qquad S_y \equiv \sum_{i=1}^{N} \frac{y_i}{\sigma_i^2}
+\]</span></p>
+<p><span class="math display">\[
+S_{xx} = \sum_{i=1}^{N} \frac{x_i^2}{\sigma_i^2} \qquad S_{xy} = \sum_{i=1}^{N} \frac{x_i y_i}{\sigma_i^2}
+\]</span></p>
+<p>we derive the following equations</p>
+<p><span class="math display">\[
+aS + bS_x = S_y
+\]</span></p>
+<p><span class="math display">\[
+aS_x + bS_{xx} = S_{xy}
+\]</span></p>
+<p>which may be written as a matrix equation</p>
+<p><span class="math display">\[
+\begin{pmatrix} S &amp; S_x \\ S_x &amp; S_{xx} \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} S_y \\ S_{xy} \end{pmatrix}
+\]</span></p>
+<p>To solve this equation, we need to find the inverse of the matrix</p>
+<p><span id="eq-inverse-matrix"><span class="math display">\[
+\begin{pmatrix} S &amp; S_x \\ S_x &amp; S_{xx} \end{pmatrix}^{-1} = \begin{pmatrix} S_{xx}/\Delta &amp; -S_x/\Delta \\ -S_x/\Delta &amp; S/\Delta \end{pmatrix}
+\tag{9.3}\]</span></span></p>
+<p>(where <span class="math inline">\(\Delta = SS_{xx} - (S_x)^2\)</span> is the determinant of the matrix) and multiply through by this inverse matrix. This leads to the well-known linear-least-squares equations:</p>
+<p><span id="eq-a-solution"><span class="math display">\[
+a = \frac{S_{xx}S_y - S_x S_{xy}}{\Delta}
+\tag{9.4}\]</span></span></p>
+<p><span id="eq-b-solution"><span class="math display">\[
+b = \frac{SS_{xy} - S_x S_y}{\Delta}
+\tag{9.5}\]</span></span></p>
+<p>Before we can say that we are done, we must estimate the errors in the fitted parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. The theory of the propagation of errors tells us that the variance <span class="math inline">\(\sigma_f^2\)</span> in the value of any function <span class="math inline">\(f\)</span> is given by</p>
+<p><span id="eq-error-propagation"><span class="math display">\[
+\sigma_f^2 = \sum_{i=1}^{N} \sigma_i^2 \left( \frac{\partial f}{\partial y_i} \right)
+\tag{9.6}\]</span></span></p>
+<p>We may derive the following equations directly from the solution (<a href="#eq-a-solution" class="quarto-xref">Equation&nbsp;<span>9.4</span></a> and <a href="#eq-b-solution" class="quarto-xref">Equation&nbsp;<span>9.5</span></a>)</p>
+<p><span class="math display">\[
+\frac{\partial a}{\partial y_i} = \frac{S_{xx} - S_x x_i}{\sigma_i^2 \Delta}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial b}{\partial y_i} = \frac{S x_i - S_x}{\sigma_i^2 \Delta}
+\]</span></p>
+<p>Summing over the points as in <a href="#eq-error-propagation" class="quarto-xref">Equation&nbsp;<span>9.6</span></a>, we derive for the variances:</p>
+<p><span class="math display">\[
+\sigma_a^2 = S_{xx}/\Delta
+\]</span></p>
+<p><span class="math display">\[
+\sigma_b^2 = S/\Delta
+\]</span></p>
+<p>Note that the right-hand sides of these two expressions are the diagonal entries in the inverse matrix (<a href="#eq-inverse-matrix" class="quarto-xref">Equation&nbsp;<span>9.3</span></a>). To derive the standard errors for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, we must multiply the variances above by the factor</p>
+<p><span class="math display">\[
+s^2 = \chi^2/(N - 2)
+\]</span></p>
+<p>where <span class="math inline">\(\chi^2\)</span> is calculated from <a href="#eq-chisq-line" class="quarto-xref">Equation&nbsp;<span>9.2</span></a> using the calculated values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and the factor <span class="math inline">\(N - 2\)</span> comes from the number of <em>degrees of freedom</em>; <span class="math inline">\(N\)</span> is the total number of points used to determine the 2 parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Thus, the standard errors for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> will be given by:</p>
+<p><span class="math display">\[
+\text{S.E.}(a) = s\sigma_a
+\]</span></p>
+<p><span class="math display">\[
+\text{S.E.}(b) = s\sigma_b
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.1">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exercise 9.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Write a program implementing the above equations to fit a straight line to the data in the datafile <code>data91.dat</code>. Your program should estimate the parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and their standard errors.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.2">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exercise 9.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Write a function which will multiply an <span class="math inline">\(N \times M\)</span> matrix with a vector of length <span class="math inline">\(M\)</span> to give a vector of length <span class="math inline">\(N\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.3">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exercise 9.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let us suppose we are confronted with a matrix equation of the form</p>
+<p><span id="eq-matrix-eq"><span class="math display">\[
+\mathbf{A} \cdot \mathbf{x} = \mathbf{b}
+\tag{9.7}\]</span></span></p>
+<p>where <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(N \times N\)</span> matrix, and <span class="math inline">\(\mathbf{b}\)</span> is an input vector of dimension <span class="math inline">\(N \times 1\)</span>. The <span class="math inline">\(\mathbf{x}\)</span> vector is the solution to this matrix equation. To find <span class="math inline">\(\mathbf{x}\)</span>, we must find <span class="math inline">\(\mathbf{A}^{-1}\)</span>, and then we have</p>
+<p><span class="math display">\[
+\mathbf{x} = \mathbf{A}^{-1} \cdot \mathbf{b}
+\]</span></p>
+<p>Now, imagine that both <span class="math inline">\(\mathbf{b}\)</span> and <span class="math inline">\(\mathbf{x}\)</span> are <span class="math inline">\(N \times M\)</span> matrices, then we may regard <a href="#eq-matrix-eq" class="quarto-xref">Equation&nbsp;<span>9.7</span></a> as a set of M simultaneous matrix equations. There is a C-function, found in <code>comphys.c</code>, which will solve this equation for you. It is declared as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> gaussj<span class="op">(</span><span class="dt">float</span> <span class="op">**</span>a<span class="op">,</span> <span class="dt">int</span> n<span class="op">,</span> <span class="dt">float</span> <span class="op">**</span>b<span class="op">,</span> <span class="dt">int</span> m<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and comes from the <em>Numerical Recipes</em> book. Its description is as follows:</p>
+<p>“Linear equation solution by Gauss-Jordan elimination. <code>a[1..n][1..n]</code> is the input matrix. <code>b[1..n][1..m]</code> is input containing the m right-hand side vectors. On output, <code>a</code> is replaced by its matrix inverse, and <code>b</code> is replaced by the corresponding set of solution vectors.”</p>
+<p>Write a short program using <code>gaussj</code> which will solve the following matrix equation:</p>
+<p><span class="math display">\[
+\begin{pmatrix} 1 &amp; 5 &amp; 3 \\ 2 &amp; 1 &amp; 9 \\ 3 &amp; 8 &amp; 8 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 5 \\ 2 \\ 1 \end{pmatrix}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="general-linear-least-squares" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="general-linear-least-squares"><span class="header-section-number">9.3</span> General Linear Least Squares</h2>
+<p>To generalize our discussion in the last section, let us go back to <a href="#eq-model" class="quarto-xref">Equation&nbsp;<span>9.1</span></a> and suppose that our model function <span class="math inline">\(f\)</span> may be written as a linear combination of a set of <span class="math inline">\(m\)</span> linearly independent functions<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="math inline">\(X_i(x)\)</span> such that</p>
+<p><span id="eq-general-model"><span class="math display">\[
+y(x) = \sum_{k=1}^{m} a_k X_k(x)
+\tag{9.8}\]</span></span></p>
+<p>where the functions <span class="math inline">\(X_i(x)\)</span> are arbitrary fixed functions of <span class="math inline">\(x\)</span>, called the <em>basis functions</em>. We note that the functions could be <span class="math inline">\(1, x, x^2, \ldots, x^{m-1}\)</span> in which case <span class="math inline">\(f(x)\)</span> is simply a polynomial of degree <span class="math inline">\(m - 1\)</span> in <span class="math inline">\(x\)</span>. However, the <span class="math inline">\(X_i(x)\)</span> can be any set of linearly independent functions of <span class="math inline">\(x\)</span>, such as, for instance, sines and cosines.</p>
+<p>Our linear least squares expression for <span class="math inline">\(\chi^2\)</span> now becomes:</p>
+<p><span class="math display">\[
+\chi^2 = \sum_{i=1}^{N} \left[ \frac{y_i - \sum_{k=1}^{m} a_k X_k(x_i)}{\sigma_i} \right]^2
+\]</span></p>
+<p>The problem of finding the set of <span class="math inline">\(a_k\)</span>’s such that they minimize the above expression for <span class="math inline">\(\chi^2\)</span> is called the problem of <em>general linear least squares</em>, not because the <span class="math inline">\(X_k(x)\)</span>’s are linear (they generally are not!), but because the <span class="math inline">\(a_k\)</span>’s appear in <a href="#eq-general-model" class="quarto-xref">Equation&nbsp;<span>9.8</span></a> in a linear way.</p>
+<p>We proceed to solve the problem of general linear least squares in a way analogous to section 9.2. We minimize <span class="math inline">\(\chi^2\)</span> individually with respect to each of the <span class="math inline">\(a_k\)</span>’s, yielding the following equations:</p>
+<p><span id="eq-general-minimize"><span class="math display">\[
+0 = \sum_{i}^{N} \frac{1}{\sigma_i^2} \left[ y_i - \sum_{j=1}^{m} a_j X_j(x_i) \right] X_k(x_i) \quad k = 1, \ldots, m
+\tag{9.9}\]</span></span></p>
+<p>If we define a matrix <span class="math inline">\(\mathbf{A}\)</span> with entries</p>
+<p><span class="math display">\[
+A_{kj} = \sum_{i=1}^{N} \frac{X_j(x_i) X_k(x_i)}{\sigma_i^2}
+\]</span></p>
+<p>and a vector <span class="math inline">\(\mathbf{b}\)</span> with entries</p>
+<p><span class="math display">\[
+b_k = \sum_{i=1}^{N} \frac{y_i X_k(x_i)}{\sigma_i^2}
+\]</span></p>
+<p>then <a href="#eq-general-minimize" class="quarto-xref">Equation&nbsp;<span>9.9</span></a> may be written as</p>
+<p><span class="math display">\[
+\mathbf{A} \cdot \mathbf{a} = \mathbf{b}
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{a}\)</span> has the entries <span class="math inline">\(a_1, a_2, \ldots a_m\)</span>. We may thus determine <span class="math inline">\(\mathbf{a}\)</span> by inverting <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<p>Of course, we are not finished until we have determined the errors for each of the <span class="math inline">\(a_k\)</span>’s. It turns out, in analogy with section 9.2, that the variances for the <span class="math inline">\(a_k\)</span>’s are given by the diagonal entries of the inverse matrix <span class="math inline">\(\mathbf{A}^{-1}\)</span>, also called the <em>covariant matrix</em>. To derive the standard errors of the coefficients <span class="math inline">\(a_k\)</span>, we must multiply these variances by the factor</p>
+<p><span class="math display">\[
+s^2 = \chi^2/(N - M)
+\]</span></p>
+<p>where <span class="math inline">\(M\)</span> is the number of coefficients, and then take the square root. The number <span class="math inline">\(N - M\)</span> is the number of degrees of freedom.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.4">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exercise 9.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The datafile <code>data94.dat</code> contains <span class="math inline">\(x, y\)</span> data which can be fit with a polynomial. Write a program which will fit these data to a polynomial of degree <span class="math inline">\(M - 1\)</span>, where <span class="math inline">\(M - 1\)</span> is a user input. The program should output the <span class="math inline">\(M\)</span> coefficients and their errors. Determine the best value of the degree of the polynomial for this dataset by trial and error. Hint: the best polynomial will have a small value for <span class="math inline">\(\chi^2\)</span>, but not necessarily the smallest value. If increasing the degree of the polynomial only marginally improves the value for <span class="math inline">\(\chi^2\)</span>, it may not represent a better fit. You also need to look at the standard errors of the coefficients. If the absolute value of a coefficient is no greater than 3 times its error, it is not statistically significant, i.e.&nbsp;it is not statistically different from zero.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.5">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exercise 9.5
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The datafile <code>data95.dat</code> contains <span class="math inline">\(x, y\)</span> data which can be fit with a harmonic sine series of the form:</p>
+<p><span class="math display">\[
+y = a_1 + \sum_{n=2}^{4} a_n \sin[(n-1)\pi x]
+\]</span></p>
+<p>Determine the <span class="math inline">\(a_n\)</span>’s and their errors for this dataset.</p>
+<div id="fdc28ead" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09-modeling_files/figure-html/cell-2-output-1.png" width="604" height="434" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="nonlinear-least-squares-levenberg-marquardt" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="nonlinear-least-squares-levenberg-marquardt"><span class="header-section-number">9.4</span> Nonlinear Least Squares (Levenberg-Marquardt)</h2>
+<p>Forget about least squares for a moment, and think about a function <span class="math inline">\(f\)</span>, defined in an m-dimensional space, which has a minimum. If we consider some point <span class="math inline">\(\mathbf{P}\)</span>, and take that point as the origin of the coordinate system, then we can expand this function <span class="math inline">\(f\)</span> about that point in a Taylor series:</p>
+<p><span class="math display">\[
+f(\mathbf{x}) = f(\mathbf{P}) + \sum_i \frac{\partial f}{\partial x_i} x_i + \frac{1}{2} \sum_{i,j} \frac{\partial^2 f}{\partial x_i \partial x_j} x_i x_j + \ldots
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{x}\)</span> is the vector <span class="math inline">\((x_1, x_2, \ldots, x_m)\)</span> and the derivatives are evaluated at point <span class="math inline">\(\mathbf{P}\)</span>. We note the above expression may be written in the form</p>
+<p><span class="math display">\[
+f(\mathbf{x}) \approx c - \mathbf{b} \cdot \mathbf{x} + \frac{1}{2} \mathbf{x} \cdot \mathbf{A} \cdot \mathbf{x}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+c \equiv f(\mathbf{P}) \quad \mathbf{b} \equiv -\nabla f|_\mathbf{P} \quad [\mathbf{A}]_{ij} \equiv \left. \frac{\partial^2 f}{\partial x_i \partial x_j} \right|_\mathbf{P}
+\]</span></p>
+<p>The matrix <span class="math inline">\(\mathbf{A}\)</span> is called the <em>Hessian matrix</em> of the function at <span class="math inline">\(\mathbf{P}\)</span>. This mathematical expression is called a <em>quadratic form</em>.</p>
+<p>Now, in this approximation, it is easy to show that</p>
+<p><span class="math display">\[
+\nabla f = \mathbf{A} \cdot \mathbf{x} - \mathbf{b}
+\]</span></p>
+<p>but, of course, at the minimum of this function, this gradient vanishes, and thus the position of the minimum is given by solving the matrix equation</p>
+<p><span class="math display">\[
+\mathbf{A} \cdot \mathbf{x} = \mathbf{b}
+\]</span></p>
+<p>Now, shift your mind back to the problem of Least Squares. Let us suppose that we have a function which depends on parameters <span class="math inline">\(a_1, a_2, \ldots a_m\)</span> in a non-linear way. Unfortunately, we cannot proceed in precisely the way we did in section 9.3, but we can still write down the same expression for <span class="math inline">\(\chi^2\)</span> which we wish to minimize, that is,</p>
+<p><span class="math display">\[
+\chi^2 = \sum_{i=1}^{N} \left( \frac{y_i - f(x_i; a_1, a_2, \ldots, a_m)}{\sigma_i} \right)^2
+\]</span></p>
+<p>where the <span class="math inline">\(x_i\)</span>’s and the <span class="math inline">\(y_i\)</span>’s are, of course, the experimental data points we wish to fit with the function <span class="math inline">\(f\)</span>. We may regard <span class="math inline">\(\chi^2\)</span> as a non-linear function of the <span class="math inline">\(a_i\)</span>’s and write, according to the short discussion above,</p>
+<p><span class="math display">\[
+\chi^2(\mathbf{a}) \approx \gamma - \mathbf{d} \cdot \mathbf{a} + \frac{1}{2} \mathbf{a} \cdot \mathbf{D} \cdot \mathbf{a}
+\]</span></p>
+<p>If this is a good approximation, we may jump from a set of trial parameters <span class="math inline">\(\mathbf{a}_\text{cur}\)</span> to the minimum in one step using</p>
+<p><span class="math display">\[
+\mathbf{a}_\text{min} = \mathbf{a}_\text{cur} + \mathbf{D}^{-1} \cdot [-\nabla \chi^2(\mathbf{a}_\text{cur})]
+\]</span></p>
+<p>as we saw above. If, however, the quadratic form is <em>not</em> a good approximation to <span class="math inline">\(\chi^2\)</span>, then we can at least take a step downhill along the gradient toward the minimum (this is called the <em>steepest descent method</em>):</p>
+<p><span class="math display">\[
+\mathbf{a}_\text{next} = \mathbf{a}_\text{cur} - \text{constant} \times \nabla \chi^2(\mathbf{a}_\text{cur})
+\]</span></p>
+<p>where the constant is small enough so that one does not overshoot the minimum.</p>
+<p>The Levenberg-Marquardt Method applies both the inverse-Hessian method and the steepest descent method to find the minimum of <span class="math inline">\(\chi^2\)</span>. Far from the minimum, where the quadratic form is not a good approximation, the Levenberg-Marquardt Method uses the method of steepest descent, but shifts smoothly over to the inverse-Hessian method as the minimum is getting near, and the quadratic form is a better approximation. The Levenberg-Marquardt Method also allows one to hold some of the <span class="math inline">\(a_i\)</span>’s fixed, and to vary the others. This method is implemented in the <em>Numerical Recipes</em> function <code>mrqmin</code> (found in <code>comphys.c</code>) which is declared in the following way:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mrqmin<span class="op">(</span><span class="dt">float</span> x<span class="op">[],</span> <span class="dt">float</span> y<span class="op">[],</span> <span class="dt">float</span> sig<span class="op">[],</span> <span class="dt">int</span> ndata<span class="op">,</span> <span class="dt">float</span> a<span class="op">[],</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ia<span class="op">[],</span> <span class="dt">int</span> ma<span class="op">,</span> <span class="dt">float</span> <span class="op">**</span>covar<span class="op">,</span> <span class="dt">float</span> <span class="op">**</span>alpha<span class="op">,</span> <span class="dt">float</span> <span class="op">*</span>chisq<span class="op">,</span> <span class="dt">void</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">(*</span>funcs<span class="op">)(</span><span class="dt">float</span><span class="op">,</span> <span class="dt">float</span> <span class="op">[],</span> <span class="dt">float</span> <span class="op">*,</span> <span class="dt">float</span> <span class="op">[],</span> <span class="dt">int</span><span class="op">),</span> <span class="dt">float</span> <span class="op">*</span>alambda<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and comes with the directions: “Levenberg-Marquardt method, attempting to reduce the value <span class="math inline">\(\chi^2\)</span> of a fit between a set of data points <code>x[1..ndata]</code>, <code>y[1..ndata]</code> with individual standard deviations <code>sig[1..ndata]</code> and a nonlinear function dependent on <code>ma</code> coefficients <code>a[1..ma]</code>. The input array <code>ia[1..ma]</code> indicates by nonzero entries those components of <code>a</code> that should be fitted for, and by zero entries those components that should be held fixed at their input values. The program returns current best-fit values for the parameters <code>a[1..ma]</code> and <span class="math inline">\(\chi^2\)</span> = <code>chisq</code>. The arrays <code>covar[1..ma][1..ma]</code>, <code>alpha[1..ma][1..ma]</code> are used as working space during most iterations. Supply a routine <code>funcs(x,a,yfit,dyda,ma)</code> that evaluates the fitting function <code>yfit</code>, and its derivatives <code>dyda[1..ma]</code> with respect to the fitting parameters <code>a</code> at <code>x</code>. On the first call provide an initial guess for the parameters <code>a</code>, and set <code>alambda &lt; 0</code> for initialization (which then sets <code>alambda = .001</code>). If a step succeeds <code>chisq</code> becomes smaller and <code>alambda</code> decreases by a factor of 10. If a step fails <code>alambda</code> grows by a factor of 10. You must call this routine repeatedly until convergence is achieved. Then, make one final call with <code>alambda = 0</code>, so that <code>covar[1..ma][1..ma]</code> returns the covariance matrix, and <code>alpha</code> the curvature matrix. (Parameters held fixed will return zero covariances).”</p>
+<p>The constant <code>alambda</code> in the above discussion refers to the constant in the method of steepest descent.</p>
+<p>The best way to explain how to use <code>mrqmin</code> is with an example. The following figure shows a histogram of data. The underlying theory is that the distribution of points in this diagram is a double Gaussian. We would like to fit these data to a function that looks like:</p>
+<!-- TODO: Recreate Figure 2 showing histogram data to be fit with double Gaussian -->
+<div id="fc5fdf7c" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09-modeling_files/figure-html/cell-3-output-1.png" width="662" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+f(x; a_1, \ldots, a_6) = a_1 \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \right] + a_4 \exp\left[ -\left( \frac{x - a_5}{a_6} \right)^2 \right]
+\]</span></p>
+<p>To apply the Levenberg-Marquardt Method, we must obtain the derivatives of <span class="math inline">\(f\)</span> with respect to all of the <span class="math inline">\(a_i\)</span>’s. These derivatives are as follows:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial f}{\partial a_1} &amp;= \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \right] \\
+\frac{\partial f}{\partial a_2} &amp;= 2a_1 \left( \frac{x - a_2}{a_3} \right) \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \right] \\
+\frac{\partial f}{\partial a_3} &amp;= 2a_1 \left( \frac{x - a_2}{a_3} \right)^2 \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \right]
+\end{aligned}
+\]</span></p>
+<p>and similarly for <span class="math inline">\(a_4\)</span>, <span class="math inline">\(a_5\)</span> and <span class="math inline">\(a_6\)</span>.</p>
+<p>The C-code which performs this miracle is as follows:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"comphys.h"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NDATA </span><span class="dv">2000</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define MA </span><span class="dv">6</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fgauss<span class="op">(</span><span class="dt">float</span> x<span class="op">,</span> <span class="dt">float</span> a<span class="op">[],</span> <span class="dt">float</span> <span class="op">*</span>y<span class="op">,</span> <span class="dt">float</span> dyda<span class="op">[],</span> <span class="dt">int</span> na<span class="op">);</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> <span class="op">*</span>x<span class="op">,*</span>y<span class="op">,*</span>sig<span class="op">,**</span>covar<span class="op">,**</span>alpha<span class="op">,*</span>a<span class="op">,</span>chisq<span class="op">,</span>ochisq<span class="op">,</span>alambda<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> <span class="op">*</span>ia<span class="op">,</span>ma<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">char</span> name<span class="op">[</span><span class="dv">80</span><span class="op">],</span>initname<span class="op">[</span><span class="dv">80</span><span class="op">],</span>outname<span class="op">[</span><span class="dv">80</span><span class="op">];</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">FILE</span> <span class="op">*</span>in<span class="op">,*</span>init<span class="op">,*</span>out<span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> i<span class="op">,</span>k<span class="op">,</span>ndata<span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> vector<span class="op">(</span><span class="dv">1</span><span class="op">,</span>NDATA<span class="op">);</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> vector<span class="op">(</span><span class="dv">1</span><span class="op">,</span>NDATA<span class="op">);</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  sig <span class="op">=</span> vector<span class="op">(</span><span class="dv">1</span><span class="op">,</span>NDATA<span class="op">);</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  a <span class="op">=</span> vector<span class="op">(</span><span class="dv">1</span><span class="op">,</span>MA<span class="op">);</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  covar <span class="op">=</span> matrix<span class="op">(</span><span class="dv">1</span><span class="op">,</span>MA<span class="op">,</span><span class="dv">1</span><span class="op">,</span>MA<span class="op">);</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> matrix<span class="op">(</span><span class="dv">1</span><span class="op">,</span>MA<span class="op">,</span><span class="dv">1</span><span class="op">,</span>MA<span class="op">);</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  ia <span class="op">=</span> ivector<span class="op">(</span><span class="dv">1</span><span class="op">,</span>MA<span class="op">);</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Datafile contains data which are to be fitted to a double</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">     Gaussian.  Initial parameters file contains rough estimates</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">     of Gaussian parameters. */</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  ma <span class="op">=</span> MA<span class="op">;</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">"Enter name of datafile &gt; "</span> <span class="op">);</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  scanf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span>name<span class="op">);</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span><span class="op">((</span>in <span class="op">=</span> fopen<span class="op">(</span>name<span class="op">,</span><span class="st">"r"</span><span class="op">))</span> <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    nrerror<span class="op">(</span><span class="st">"Cannot find input file"</span><span class="op">);</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">"Enter initial parameters datafile &gt; "</span><span class="op">);</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  scanf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span>initname<span class="op">);</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span><span class="op">((</span>init <span class="op">=</span> fopen<span class="op">(</span>initname<span class="op">,</span><span class="st">"r"</span><span class="op">))</span> <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    nrerror<span class="op">(</span><span class="st">"Cannot find initial parameters file"</span><span class="op">);</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">"Enter output file &gt; "</span><span class="op">);</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  scanf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span>outname<span class="op">);</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  out <span class="op">=</span> fopen<span class="op">(</span>outname<span class="op">,</span><span class="st">"w"</span><span class="op">);</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Reads in data from datafile.  Defines sigma errors by taking</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co">     square roots of y-values, as these are counts.  Adds a small</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co">     number (0.1) so that zero values of y will not have 0 errors */</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span><span class="op">(</span>fscanf<span class="op">(</span>in<span class="op">,</span><span class="st">"</span><span class="sc">%f</span><span class="st"> </span><span class="sc">%f</span><span class="st">"</span><span class="op">,&amp;</span>x<span class="op">[</span>k<span class="op">],&amp;</span>y<span class="op">[</span>k<span class="op">])</span> <span class="op">!=</span> EOF<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    sig<span class="op">[</span>k<span class="op">]</span> <span class="op">=</span> sqrt<span class="op">(</span>y<span class="op">[</span>k<span class="op">])</span> <span class="op">+</span> <span class="fl">0.1</span><span class="op">;</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    k<span class="op">++;</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  ndata <span class="op">=</span> k<span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Reads in initial estimates for parameters */</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span>i<span class="op">=</span><span class="dv">1</span><span class="op">;</span>i<span class="op">&lt;=</span><span class="dv">4</span><span class="op">;</span>i<span class="op">+=</span><span class="dv">3</span><span class="op">)</span> fscanf<span class="op">(</span>init<span class="op">,</span><span class="st">"</span><span class="sc">%f</span><span class="st">,</span><span class="sc">%f</span><span class="st">,</span><span class="sc">%f</span><span class="st">"</span><span class="op">,&amp;</span>a<span class="op">[</span>i<span class="op">],&amp;</span>a<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">],&amp;</span>a<span class="op">[</span>i<span class="op">+</span><span class="dv">2</span><span class="op">]);</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* We are fitting all parameters a[1] .. a[6], so we fill up all</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co">     entries in ia[] with 1's */</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span>i<span class="op">=</span><span class="dv">1</span><span class="op">;</span>i<span class="op">&lt;=</span>MA<span class="op">;</span>i<span class="op">++)</span> ia<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Initializing mrqmin using a negative value of alambda.</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="co">     Note we are passing the function fgauss to mrqmin.  See</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="co">     below. */</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  alambda <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span><span class="op">;</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  chisq <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  mrqmin<span class="op">(</span>x<span class="op">,</span>y<span class="op">,</span>sig<span class="op">,</span>ndata<span class="op">,</span>a<span class="op">,</span>ia<span class="op">,</span>ma<span class="op">,</span>covar<span class="op">,</span>alpha<span class="op">,&amp;</span>chisq<span class="op">,</span>fgauss<span class="op">,&amp;</span>alambda<span class="op">);</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  ochisq <span class="op">=</span> chisq <span class="op">+</span> <span class="fl">2.0</span><span class="op">;</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Iterating with mrqmin until relative change in chisq is less</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="co">     than 0.001 */</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span><span class="op">(</span>fabs<span class="op">((</span>ochisq <span class="op">-</span> chisq<span class="op">)/</span>ochisq<span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0.001</span> <span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>    ochisq <span class="op">=</span> chisq<span class="op">;</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>    mrqmin<span class="op">(</span>x<span class="op">,</span>y<span class="op">,</span>sig<span class="op">,</span>ndata<span class="op">,</span>a<span class="op">,</span>ia<span class="op">,</span>ma<span class="op">,</span>covar<span class="op">,</span>alpha<span class="op">,&amp;</span>chisq<span class="op">,</span>fgauss<span class="op">,&amp;</span>alambda<span class="op">);</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Here we run mrqmin one more time with alambda = 0.0 to get</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="co">     covariant matrix, in case we want the errors */</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>  alambda <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>  mrqmin<span class="op">(</span>x<span class="op">,</span>y<span class="op">,</span>sig<span class="op">,</span>ndata<span class="op">,</span>a<span class="op">,</span>ia<span class="op">,</span>ma<span class="op">,</span>covar<span class="op">,</span>alpha<span class="op">,&amp;</span>chisq<span class="op">,</span>fgauss<span class="op">,&amp;</span>alambda<span class="op">);</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Print out the results (the a's) along with the errors (the</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="co">     squareroots of the diagonal members of the covariant matrix</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="co">     divided by the number of degrees of freedom). */</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span>i<span class="op">=</span><span class="dv">1</span><span class="op">;</span>i<span class="op">&lt;=</span>MA<span class="op">/</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span><span class="op">;</span>i<span class="op">+=</span>MA<span class="op">/</span><span class="dv">2</span><span class="op">)</span> fprintf<span class="op">(</span>out<span class="op">,</span><span class="st">"</span><span class="sc">%f</span><span class="st"> </span><span class="sc">%f\n%f</span><span class="st"> </span><span class="sc">%f\n%f</span><span class="st"> </span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>i<span class="op">],</span>sqrt<span class="op">(</span>chisq<span class="op">*</span>covar<span class="op">[</span>i<span class="op">][</span>i<span class="op">]/(</span><span class="dt">float</span><span class="op">)(</span>ndata<span class="op">-</span>MA<span class="op">)),</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">],</span>sqrt<span class="op">(</span>chisq<span class="op">*</span>covar<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">][</span>i<span class="op">+</span><span class="dv">1</span><span class="op">]/(</span><span class="dt">float</span><span class="op">)(</span>ndata<span class="op">-</span>MA<span class="op">)),</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>i<span class="op">+</span><span class="dv">2</span><span class="op">],</span>sqrt<span class="op">(</span>chisq<span class="op">*</span>covar<span class="op">[</span>i<span class="op">+</span><span class="dv">2</span><span class="op">][</span>i<span class="op">+</span><span class="dv">2</span><span class="op">])/(</span><span class="dt">float</span><span class="op">)(</span>ndata<span class="op">-</span>MA<span class="op">));</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="co">/* For a given value of x, and input parameters a[], this function</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="co">   returns the resulting value of y and the vector dyda[] which</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="co">   contains the derivatives of y with respect to all of the a[]</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="co">   parameters */</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fgauss<span class="op">(</span><span class="dt">float</span> x<span class="op">,</span> <span class="dt">float</span> a<span class="op">[],</span> <span class="dt">float</span> <span class="op">*</span>y<span class="op">,</span> <span class="dt">float</span> dyda<span class="op">[],</span> <span class="dt">int</span> na<span class="op">)</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> fac<span class="op">,</span>ex<span class="op">,</span>arg<span class="op">;</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  <span class="op">*</span>y <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span>i<span class="op">=</span><span class="dv">1</span><span class="op">;</span>i<span class="op">&lt;=</span>na<span class="op">-</span><span class="dv">1</span><span class="op">;</span>i<span class="op">+=</span><span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>    arg <span class="op">=</span> <span class="op">(</span>x<span class="op">-</span>a<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">])/</span>a<span class="op">[</span>i<span class="op">+</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>    ex<span class="op">=</span>exp<span class="op">(-</span>arg<span class="op">*</span>arg<span class="op">);</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>    fac<span class="op">=</span>a<span class="op">[</span>i<span class="op">]*</span>ex<span class="op">*</span><span class="fl">2.0</span><span class="op">*</span>arg<span class="op">;</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>y <span class="op">+=</span> a<span class="op">[</span>i<span class="op">]*</span>ex<span class="op">;</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>    dyda<span class="op">[</span>i<span class="op">]=</span>ex<span class="op">;</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>    dyda<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">]=</span>fac<span class="op">/</span>a<span class="op">[</span>i<span class="op">+</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>    dyda<span class="op">[</span>i<span class="op">+</span><span class="dv">2</span><span class="op">]=</span>fac<span class="op">*</span>arg<span class="op">/</span>a<span class="op">[</span>i<span class="op">+</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="9081d4ad" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09-modeling_files/figure-html/cell-4-output-1.png" width="662" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.6">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exercise 9.6
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using the data in the file <code>decay.out</code> (see chapter 6), write a program which uses the Levenberg-Marquardt method to fit the four parameters <span class="math inline">\(A\)</span>, <span class="math inline">\(\gamma\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>. Compare the values you get with the Simplex and Powell methods.</p>
+</div>
+</div>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>If individual errors <span class="math inline">\(\sigma_i\)</span> are not given or specified, one can set <span class="math inline">\(\sigma_i = 1\)</span> in this and all equations in this chapter.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A set of <span class="math inline">\(m\)</span> functions, <span class="math inline">\(X_i(x)\)</span> is called <em>linearly independent</em> if no function <span class="math inline">\(X_j(x)\)</span> in that set may be expressed as a linear combination of the other functions in that set. Thus, the set <span class="math inline">\(1, x, x^2\)</span> is a linearly independent set, as, for instance, <span class="math inline">\(x\)</span> may not be expressed as a sum of <span class="math inline">\(1\)</span> and <span class="math inline">\(x^2\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./08-odes.html" class="pagination-link" aria-label="Numerical Integration of Ordinary Differential Equations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Integration of Ordinary Differential Equations</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
