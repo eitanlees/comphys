@@ -4,12 +4,15 @@
   - Look over the missing figure sections as well and think about how to make them.
 - Add my sections at the end for python fun.
 
-A loose collection of things to do and open questions.
-
 ## General
 
 - Change the `_foo_` to `*foo*` for italics?
 - Clean up quotations marks
+
+## Intro C Part 2
+- Try to make the Dipole Moment figure. I didn't even include it because it was such poor quality.
+
+## Intro C Part 2
 - Figure out how to put in Horizontal rules in `Exercise 2.8` at the end.
 
 ## Interpolation
