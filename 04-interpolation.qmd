@@ -293,7 +293,7 @@ are obviously also assuming that the `xn[j]`’s are in numerical order). This c
 save an enormous amount of time in a code that needs to interpolate in a large
 (say $N > 100$) table. Another useful trick is that of bisection. Further notes
 on bisection and other techniques for efficiently bracketing $x$ can be found in
-_Numerical Recipes_ [@press92].
+_Numerical Recipes_ [@press92, sec. 3.4].
 
 ## Interpolation in 2 dimensions
 

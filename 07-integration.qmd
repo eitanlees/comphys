@@ -210,7 +210,7 @@ We will concentrate here on the simplest and most useful case, **Gauss–Legendr
 
 For a given number of abscissas, it is possible to compute the $x_i$’s and the
 $w_i$’s for Gauss–Legendre integration. We won’t go into how this is actually
-done; details can be found in *Numerical Recipes*.  Below is a table listing the
+done; details can be found in *Numerical Recipes* [@press92, sec. 4.5].  Below is a table listing the
 abscissas and weights for several values of $N$. These abscissas are based on
 the interval $[-1, 1]$:
 
@@ -545,7 +545,7 @@ x = (float)rand()/(RAND_MAX+1.0);
 Unfortunately, `rand` is not a good enough random number generator, even for
 government work. It does not give truly random sequences, and this can be fatal
 for Monte Carlo integrations. It is much better to use the function 
-`float ran1(long *idum)` (see *Numerical Recipes* for details). This function is
+`float ran1(long *idum)` (see *Numerical Recipes* for details [@press92, sec. 7.1]). This function is
 available in `comphys.c` and defined in `comphys.h` and, as we saw in Chapter 2,
 should be initialized by setting `idum` to a negative number, thus:
 
