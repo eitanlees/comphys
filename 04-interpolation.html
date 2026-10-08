@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -95,10 +98,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-87b7f55de2e0c9887283481eb31a794c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fd0503e23dce65854c81c5baaade3bdf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,7 +131,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -513,7 +516,7 @@ y_N\)</span> at the points <span class="math inline">\(x_1,x_2,x_3 ... x_N\)</sp
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where the <code>xn</code>’s are the tabulated points. When the <code>if</code> statement is satisfied, <code>j</code> is assigned the value of <code>i</code> and the procedure drops out of the loop. Please note that this is not the most efficient way to accomplish this task, especially if <span class="math inline">\(N\)</span> is very large. We will look at a more efficient way later on.</p>
-<p>Once we have bracketed <span class="math inline">\(x\)</span>, we can find the equation of the line between the points <span class="math inline">\((x_j,y_j)\)</span> and <span class="math inline">\((x_{j+1},y_{j+1})\)</span>. This equation will be of the form <span class="math inline">\(y = mx+b4 where\)</span>m$ is the slope and <span class="math inline">\(b\)</span> is the y-intercept. As we all know, the slope is given by</p>
+<p>Once we have bracketed <span class="math inline">\(x\)</span>, we can find the equation of the line between the points <span class="math inline">\((x_j,y_j)\)</span> and <span class="math inline">\((x_{j+1},y_{j+1})\)</span>. This equation will be of the form $y = mx+b4 where <span class="math inline">\(m\)</span> is the slope and <span class="math inline">\(b\)</span> is the y-intercept. As we all know, the slope is given by</p>
 <p><span class="math display">\[
 m = \frac{y_{j+1}-y_j}{x_{j+1}-x_j}
 \]</span></p>
@@ -635,11 +638,11 @@ L(x) =\;&amp;
 <section id="interpolation-in-2-dimensions" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="interpolation-in-2-dimensions"><span class="header-section-number">4.3</span> Interpolation in 2 dimensions</h2>
 <p>Some problems require interpolation in a two-dimensional grid of data. Let us suppose, for instance, that <span class="math inline">\(y = y(x_1, x_2)\)</span> where <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are the two independent variables. The functional value <span class="math inline">\(y\)</span> is tabulated on a Cartesian grid, and so the first thing the programmer must do is to bracket the desired point <span class="math inline">\((x_1, x_2)\)</span> in this grid (see figure below):</p>
-<div id="d6fd88c2" class="cell" data-execution_count="1">
+<div id="e4399c7d" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04-interpolation_files/figure-html/cell-2-output-1.png" width="367" height="346" class="figure-img"></p>
+<p><img src="04-interpolation_files/figure-html/cell-2-output-1.png" width="368" height="346" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -991,7 +994,7 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 <section id="interpolation-in-python" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="interpolation-in-python"><span class="header-section-number">4.4</span> Interpolation in Python</h2>
 <p>Let’s say you have run an experiment and have some data.</p>
-<div id="c769576a" class="cell" data-execution_count="3">
+<div id="44486593" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pretend you don't know the functional form of the data.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>num_samples <span class="op">=</span> <span class="dv">11</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, num<span class="op">=</span>num_samples) <span class="op">+</span> np.random.normal(scale<span class="op">=</span><span class="fl">.2</span>, size<span class="op">=</span>num_samples)</span>
@@ -1002,14 +1005,14 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04-interpolation_files/figure-html/cell-4-output-1.png" width="569" height="189" class="figure-img"></p>
+<p><img src="04-interpolation_files/figure-html/cell-4-output-1.png" width="569" height="190" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Now you want to connect the dots … I mean interpolate your data.</p>
 <p>Numpy has a method (<a href="https://numpy.org/doc/2.3/reference/generated/numpy.interp.html" target="_blank"><code>numpy.interp</code></a>) for simple linear interpolation. The method takes in an array of new <code>x</code>’s where you want to calculate the new <code>y</code>’s. The original <code>x</code> and <code>y</code> points are also needed.</p>
-<div id="175eedc6" class="cell" data-execution_count="4">
+<div id="2829230a" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x_interp <span class="op">=</span> np.linspace(x_data.<span class="bu">min</span>(), x_data.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">1001</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y_interp <span class="op">=</span> np.interp(x_interp, x_data, y_data)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1019,14 +1022,14 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04-interpolation_files/figure-html/cell-5-output-1.png" width="569" height="189" class="figure-img"></p>
+<p><img src="04-interpolation_files/figure-html/cell-5-output-1.png" width="569" height="190" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>If you want a fancier smooth line SciPy has got you covered! The <a href="https://docs.scipy.org/doc/scipy/reference/interpolate.html" target="_blank"><code>interpolate</code></a> subpackage contains many methods to suit your needs. These methods follow a different pattern than the Numpy approach. When using the SciPy <code>interpolate</code> methods you provide the original data points and are returned a function you can call to interpolate new values.</p>
 <p>As an example consider the <code>CubicSpline</code> method</p>
-<div id="c69632e1" class="cell" data-execution_count="5">
+<div id="15854221" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> CubicSpline</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> CubicSpline(x_data, y_data)</span>
@@ -1039,13 +1042,13 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04-interpolation_files/figure-html/cell-6-output-1.png" width="569" height="189" class="figure-img"></p>
+<p><img src="04-interpolation_files/figure-html/cell-6-output-1.png" width="569" height="190" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Quick and easy! There are other interpolation methods. For instance, maybe you are concerned with the line overshooting the data. An alternative is to use a so-called <em>monotone</em> cubic interpolant which attempts to preserve the local shape implied by the data. An example is the <code>PchipInterpolator</code>.</p>
-<div id="6d51b4d0" class="cell" data-execution_count="6">
+<div id="10f49ee1" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> PchipInterpolator</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> PchipInterpolator(x_data, y_data)</span>
@@ -1058,13 +1061,13 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04-interpolation_files/figure-html/cell-7-output-1.png" width="569" height="189" class="figure-img"></p>
+<p><img src="04-interpolation_files/figure-html/cell-7-output-1.png" width="569" height="190" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>These cubic methods are typically fine for most application. There is also a generalized method for making interpolating splines of any degree but use with caution. You may introduce unexpected wiggles!</p>
-<div id="a68097ca" class="cell" data-execution_count="7">
+<div id="05bae1b5" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> make_interp_spline</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> make_interp_spline(x_data, y_data, k<span class="op">=</span><span class="dv">5</span>)</span>
@@ -1077,7 +1080,7 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04-interpolation_files/figure-html/cell-8-output-1.png" width="569" height="189" class="figure-img"></p>
+<p><img src="04-interpolation_files/figure-html/cell-8-output-1.png" width="569" height="190" class="figure-img"></p>
 </figure>
 </div>
 </div>
