@@ -4,7 +4,7 @@ In this class, we will be employing the modern "C" language which is commonly us
 
 [^1]: Fortran (from Formula Translating System) is also commonly used for scientific programming. Fortran has evolved considerably in the past few decades and recent versions are actually quite similar in syntax to "C".
 
-Read: *The C Programming Language*: Chapter 1.
+Read: *The C Programming Language* [@kernighan88]: Chapter 1.
 
 ## Computer Memory and Variables
 
@@ -105,7 +105,7 @@ const double pi = 3.14159265;
 const double c = 2.99792458e+08;
 ```
 
-Read: *The C Programming Language*: pp. 35 -- 41
+Read: *The C Programming Language* [@kernighan88]: pp. 35 -- 41
 
 ## Input and Output
 
@@ -213,7 +213,7 @@ and then run it with the following command:
 ./hello2
 ```
 
-Read: *The C Programming Language*: Chapter 7
+Read: *The C Programming Language* [@kernighan88]: Chapter 7
 
 ## Mathematics {#sec-mathematics}
 
@@ -270,7 +270,7 @@ y = x/(double)a;
 
 in this example, we have *cast* the type of `a` to be a double, that is to say, in this expression, `a` is represented as 3.0, not 3.
 
-Read: *The C Programming Language*: Chapter 2; Appendix B4
+Read: *The C Programming Language* [@kernighan88]: Chapter 2; Appendix B4
 
 ## A Simple Program
 

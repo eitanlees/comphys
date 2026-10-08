@@ -260,7 +260,7 @@ double factorial(int i)
 ```
 :::
 
-Read: *The C Programming Language*: Sections 4.1 -- 4.7
+Read: *The C Programming Language* [@kernighan88]: Sections 4.1 -- 4.7
 
 ## File Input and Output
 
@@ -377,7 +377,7 @@ while(fscanf(in,"%lf",&wave) != EOF) {
 This will read in one line per passage through the loop and exit the loop when the End Of the File (`EOF`) is encountered.
 :::
 
-Read: *The C Programming Language*: Sections 7.5 -- 7.7
+Read: *The C Programming Language* [@kernighan88]: Sections 7.5 -- 7.7
 
 ## An Aside: Incorporating GNUPLOT in your program
 
@@ -443,7 +443,7 @@ Unit offset vectors can be quite convenient. To use the functions `vector` and `
 #include "comphys.c"
 ```
 
-Indeed, as we go through the semester, we will use a number of functions from `comphys.c`. Most of these functions are from the book *Numerical Recipes in C*, Second Edition by Press et al., published by Cambridge University Press. This is one of the best books ever written, and should be in the library of all physicists and astronomers.
+Indeed, as we go through the semester, we will use a number of functions from `comphys.c`. Most of these functions are from the book *Numerical Recipes in C*, Second Edition by Press et al., published by Cambridge University Press [@press92]. This is one of the best books ever written, and should be in the library of all physicists and astronomers.
 
 We have already seen in Lecture I how vectors can be initialized. We can similarly initialize arrays. For instance, the array `y` can be initialized with values in the following way:
 
@@ -478,4 +478,4 @@ One can in principle do the same thing for matrices, but the implementation of t
 Modify your program from Exercise 3.5 to read the values from the file `inputwave.dat` into the vector `wave` which has been allocated space using the function `dvector`. Then modify the *while loop* to use these values in the computation of the Planck function.
 :::
 
-Read: *The C Programming Language*: Chapter 5
+Read: *The C Programming Language* [@kernighan88]: Chapter 5

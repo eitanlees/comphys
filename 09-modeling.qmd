@@ -16,11 +16,11 @@ $$
 \sum_{i=1}^{N} [y_i - f(x_i; a_1, a_2, \ldots, a_m)]^2
 $$
 
-is minimized. Why do we choose this expression to minimize? Clearly, one does not want negative deviations to cancel with positive deviations, but why do we take the sum of the *square* of the deviations and not, for instance, the *absolute value* of the deviations? This is an important question. The answer is that it turns out that if the deviations (i.e. the errors) in the $y_i$'s are normally distributed (i.e. have a Gaussian distribution), then minimizing the sum of the square of the deviations leads to the choice for the $a_i$'s that is *most likely* to be correct. This result is derived from the theory of *Maximum Likelihood Estimators*. More information can be found in the book *Numerical Recipes*.
+is minimized. Why do we choose this expression to minimize? Clearly, one does not want negative deviations to cancel with positive deviations, but why do we take the sum of the *square* of the deviations and not, for instance, the *absolute value* of the deviations? This is an important question. The answer is that it turns out that if the deviations (i.e. the errors) in the $y_i$'s are normally distributed (i.e. have a Gaussian distribution), then minimizing the sum of the square of the deviations leads to the choice for the $a_i$'s that is *most likely* to be correct. This result is derived from the theory of *Maximum Likelihood Estimators*. More information can be found in the book *Numerical Recipes* [@press92, sec. 15.1].
 
 What if our errors are not normally distributed? This is a fairly common occurrence in experimental physics. It turns out that if the distribution of errors is only approximately Gaussian, least squares is still a good way to go. However, the least squares technique is very sensitive to data points that are very deviant (*outliers*). These very deviant points can exert enormous leverage over the sum of the squares of the deviations to the extent that they may even dominate the sum, leading to a fitted function which clearly does not represent the majority of the data points. In such a case, we should either eliminate the outliers using a valid (i.e. honest) statistical process, or use another fitting strategy. One such fitting strategy is called *robust fitting* in which it is the sum of the absolute value of the deviations which is minimized.
 
-It should be noted that in the above discussion we have tacitly assumed that all of the errors are in the $y_i$'s and not in the $x_i$'s. This situation is often the case in experimental physics, but sometimes it turns out that both the $x_i$'s and the $y_i$'s have significant errors. In this case, we need to use a slightly different approach (see *Numerical Recipes* for more information).
+It should be noted that in the above discussion we have tacitly assumed that all of the errors are in the $y_i$'s and not in the $x_i$'s. This situation is often the case in experimental physics, but sometimes it turns out that both the $x_i$'s and the $y_i$'s have significant errors. In this case, we need to use a slightly different approach (see *Numerical Recipes* for more information [@press92, sec. 15.3]).
 
 Let us begin our discussion of the modeling of data with a review of using least squares to fit data to a straight line, and use that as a springboard to a discussion on fitting data to nonlinear functions.
 
@@ -167,7 +167,7 @@ Now, imagine that both $\mathbf{b}$ and $\mathbf{x}$ are $N \times M$ matrices, 
 void gaussj(float **a, int n, float **b, int m)
 ```
 
-and comes from the *Numerical Recipes* book. Its description is as follows:
+and comes from the *Numerical Recipes* book. Its description is as follows [@press92, sec. 2.1]:
 
 "Linear equation solution by Gauss-Jordan elimination. `a[1..n][1..n]` is the input matrix. `b[1..n][1..m]` is input containing the m right-hand side vectors. On output, `a` is replaced by its matrix inverse, and `b` is replaced by the corresponding set of solution vectors."
 
@@ -354,7 +354,7 @@ $$
 
 where the constant is small enough so that one does not overshoot the minimum.
 
-The Levenberg-Marquardt Method applies both the inverse-Hessian method and the steepest descent method to find the minimum of $\chi^2$. Far from the minimum, where the quadratic form is not a good approximation, the Levenberg-Marquardt Method uses the method of steepest descent, but shifts smoothly over to the inverse-Hessian method as the minimum is getting near, and the quadratic form is a better approximation. The Levenberg-Marquardt Method also allows one to hold some of the $a_i$'s fixed, and to vary the others. This method is implemented in the *Numerical Recipes* function `mrqmin` (found in `comphys.c`) which is declared in the following way:
+The Levenberg-Marquardt Method applies both the inverse-Hessian method and the steepest descent method to find the minimum of $\chi^2$. Far from the minimum, where the quadratic form is not a good approximation, the Levenberg-Marquardt Method uses the method of steepest descent, but shifts smoothly over to the inverse-Hessian method as the minimum is getting near, and the quadratic form is a better approximation. The Levenberg-Marquardt Method also allows one to hold some of the $a_i$'s fixed, and to vary the others. This method is implemented in the *Numerical Recipes* function `mrqmin` [@press92, sec. 15.5] (found in `comphys.c`) which is declared in the following way:
 
 ```c
 void mrqmin(float x[], float y[], float sig[], int ndata, float a[],

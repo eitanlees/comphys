@@ -383,9 +383,9 @@ minimum to the required precision.  If you could watch the simplex in action, it
 would appear somewhat like an amoeba, first pursuing its prey and then engulfing
 it.
 
-![Possible outcomes for a step in the downhill simplex method](./assets/images/NRIC-Simplex.png){#fig-simplex}
+![Possible outcomes for a step in the downhill simplex method. From *Numerical Recipes* [@press92, fig. 10.4.1].](./assets/images/NRIC-Simplex.png){#fig-simplex}
 
-The C function `amoeba` — from *Numerical Recipes* [@press92] — implements the
+The C function `amoeba` — from *Numerical Recipes* [@press92, sec. 10.4] — implements the
 downhill simplex method.  Since this algorithm may be a bit difficult for you to
 code yourself, we have given you this routine in `comphys.c`, and you will
 explore a number of applications of this routine.
@@ -397,7 +397,7 @@ void amoeba(float **p, float y[], int ndim, float ftol,
             float (*funk)(float []), int *nfunk)
 ```
 
-Here are the specific instructions for the use of `amoeba`, taken from *Numerical Recipes* [@press92]:
+Here are the specific instructions for the use of `amoeba`, taken from *Numerical Recipes* [@press92, sec. 10.4]:
 
 > Multidimensional minimization of the function `funk(x)`  where `x[1...ndim]` is
 a vector in `ndim` dimensions, by the downhill simplex method of Nelder and
@@ -744,7 +744,7 @@ void powell(float p[], float **xi, int n, float ftol,
 int *iter, float *fret, float (*func)(float []))
 ```
 
-The *Numerical Recipes* instructions for this function are as follows:
+The *Numerical Recipes* instructions for this function are as follows [@press92, sec. 10.5]:
 
 > Minimization of a function `func` of `n` variables. Input consists of an initial starting point `p[1...n]`; an initial matrix `xi[1..n][1..n]`, whose columns contain the initial set of directions (usually the *n* unit vectors); and `ftol`, the fractional tolerance in the function value such that failure to decrease by more than this amount on one iteration signals doneness. On output, `p` is set to the best point found, `xi` is the then-current direction set, `fret` is the returned function value at `p`, and `iter` is the number of iterations taken.
 
