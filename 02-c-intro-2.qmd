@@ -475,8 +475,71 @@ int main()
 
 This same program structure can be illustrated with a flowchart:
 
-<!--- TODO: 2-1 Figure out how to do this with mermaid -->
-![Flowchart for computing n!](./assets/images/2-1.png){#fig-factorial-flowchart}
+```{python}
+#| echo: false
+#| label: fig-factorial-flowchart
+#| fig-cap: Flowchart for computing n!
+
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch, Polygon, Rectangle
+
+CX = 3
+
+outline = dict(fill=False)
+text = dict(ha="center", va="center")
+arrow = dict(arrowstyle="-|>", mutation_scale=18, shrinkA=0, shrinkB=0)
+
+with plt.style.context("styles/flowchart.mplstyle"):
+    # Canvas
+    xmax, ymax = 14, 19.4
+    fig = plt.figure(figsize=(xmax * 0.5, ymax * 0.5))
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_xlim(0, xmax)
+    ax.set_ylim(0, ymax)
+    ax.set_aspect("equal")
+    ax.axis("off")
+
+    # Input
+    ax.add_patch(Polygon([(1.3, 18.7), (5.3, 18.7), (4.6, 16.7), (0.6, 16.7)],
+                         **outline))
+    ax.text(CX, 17.7, "Input $n$", **text)
+
+    # Initialise
+    ax.add_patch(Rectangle((1, 13.7), 4, 2, **outline))
+    ax.text(CX, 15.1, r"$x \,=\, 1$", **text)
+    ax.text(CX, 14.3, r"$f \,=\, 1$", **text)
+
+    # Test
+    ax.add_patch(Polygon([(CX, 10.7), (CX + 2, 8.7), (CX, 6.7), (CX - 2, 8.7)],
+                         **outline))
+    ax.text(CX, 8.6, r"$x \,>\, n?$", **text)
+    ax.text(CX + 2.6, 9.0, "No", **text)
+    ax.text(CX + 1.2, 6.9, "Yes", **text)
+
+    # Loop body
+    ax.add_patch(Rectangle((8, 7.7), 4, 2, **outline))
+    ax.text(10, 9.1, r"$f \,=\, f * x$", **text)
+    ax.text(10, 8.2, r"$x \,=\, x + 1$", **text)
+    ax.annotate("", xy=(8, 8.7), xytext=(CX + 2, 8.7), arrowprops=arrow)
+    ax.plot([12, 13, 13], [8.7, 8.7, 11.7])
+    ax.annotate("", xy=(CX, 11.7), xytext=(13, 11.7), arrowprops=arrow)
+
+    # Output and End
+    ax.add_patch(Rectangle((1, 3.7), 4, 2, **outline))
+    ax.text(CX, 4.7, "print $f$", **text)
+    ax.add_patch(FancyBboxPatch((1, 0.7), 4, 2,
+                                boxstyle="round,pad=0,rounding_size=0.9",
+                                **outline))
+    ax.text(CX, 1.6, "End", **text)
+
+    # Column arrows
+    ax.annotate("", xy=(CX, 15.7), xytext=(CX, 16.7), arrowprops=arrow)
+    ax.annotate("", xy=(CX, 10.7), xytext=(CX, 13.7), arrowprops=arrow)
+    ax.annotate("", xy=(CX, 5.7), xytext=(CX, 6.7), arrowprops=arrow)
+    ax.annotate("", xy=(CX, 2.7), xytext=(CX, 3.7), arrowprops=arrow)
+
+    plt.show()
+```
 
 where the diagonal box is known as a "decision box", which corresponds to the conditional in the `while` statement (which asks, is $x > n$?). The *while* loop itself is represented by the arrow moving to the right from "No", which leads to execution of $f = f * x$ and $x = x + 1$ followed by a return to the top of the decision box, when the question "is $x > n$?" asked again.
 
@@ -491,7 +554,55 @@ else T = 0
 
 can be represented in flowchart form by a series of decision boxes:
 
-<!--- TODO: 2-2 Figure out how to do this with mermaid -->
-![Flowchart for if-else chain](./assets/images/2-2.png){#fig-ifelse-flowchart}
+```{python}
+#| echo: false
+#| label: fig-ifelse-flowchart
+#| fig-cap: Flowchart for if-else chain
+
+CY = 7.5
+HALF = 2
+STEP = 7
+BOX_W, BOX_H = 4, 2
+
+with plt.style.context("styles/flowchart.mplstyle"):
+    # Canvas
+    xmax, ymax = 26.6, 12.7
+    fig = plt.figure(figsize=(xmax * 0.5, ymax * 0.5))
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_xlim(0, xmax)
+    ax.set_ylim(0, ymax)
+    ax.set_aspect("equal")
+    ax.axis("off")
+
+    # Incoming arrow
+    first_cx = 2.9
+    ax.annotate("", xy=(first_cx, CY + HALF), xytext=(first_cx, 12.5),
+                arrowprops=arrow)
+
+    # Tests
+    tests = [(0, 50), (1, 100), (2, 200)]
+
+    for i, (n, T) in enumerate(tests):
+        cx = first_cx + i * STEP
+        ax.add_patch(Polygon([(cx, CY + HALF), (cx + HALF, CY),
+                              (cx, CY - HALF), (cx - HALF, CY)], **outline))
+        ax.text(cx, CY + 0.32, "is", **text)
+        ax.text(cx, CY - 0.46, rf"$n \,=\, {n}?$", **text)
+        ax.text(cx + 2.53, CY + 0.27, "No", **text)
+        ax.text(cx + 1.22, CY - 1.8, "Yes", **text)
+        ax.annotate("", xy=(cx + STEP - HALF, CY), xytext=(cx + HALF, CY),
+                    arrowprops=arrow)
+        ax.annotate("", xy=(cx, 0.45 + BOX_H), xytext=(cx, CY - HALF),
+                    arrowprops=arrow)
+        ax.add_patch(Rectangle((cx - BOX_W / 2, 0.45), BOX_W, BOX_H, **outline))
+        ax.text(cx, 0.45 + BOX_H / 2, rf"$T \,=\, {T}$", **text)
+
+    # Else box
+    else_left = first_cx + len(tests) * STEP - HALF
+    ax.add_patch(Rectangle((else_left, CY - BOX_H / 2), BOX_W, BOX_H, **outline))
+    ax.text(else_left + BOX_W / 2, CY, r"$T \,=\, 0$", **text)
+
+    plt.show()
+```
 
 Flowchart diagrams can be quite useful in reasoning out a complex program, but may be overkill (once programming is learned) for simple programs. We don't have time to go into more detail on flowcharting, but there are resources on the web.

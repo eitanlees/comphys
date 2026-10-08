@@ -159,98 +159,60 @@ $$
 #| echo: false
 
 import numpy as np
-import sympy as sp
 import matplotlib.pyplot as plt
 
-# Configure Matplotlib aesthetics
-plt.rcParams.update({
-    "axes.spines.top": False,
-    "axes.spines.right": False,
-    "axes.linewidth": 1.0,
-    "figure.figsize": (5, 6)
-})
 
-# Now this is fun. I want to replicate the parabola
-# in the original text but I don't know the coefficients. 
-# Instead of guessing the coefficients directly, I can eyeball
-# A few of the points and the solve for the coefficients. 
-# Three points uniquely defines a parabola! A little Ax=b
-# and bingo-bango!
-
-points = [ 
-    (-1.0, 0.0), 
-    (0.8, -2.5), 
-    (2.2, 0.0),
-    ]
-x = np.array([p[0] for p in points], dtype=float)
-y = np.array([p[1] for p in points], dtype=float)
-A = np.vstack([x**2, x, np.ones(3)]).T
-a, b, c = np.linalg.solve(A, y)
-
-# I _could_ hard code the function and the derivative
-# but I could also use Sympy to figure out the derivative
-# for me! Much cooler!
-x = sp.Symbol('x', real=True)
-f_expr = a * x**2 + b * x + c
-f_prime_expr = sp.diff(f_expr, x)
-
-# Convert to numerical functions for plotting
-f = sp.lambdify(x, f_expr, "numpy")
-df = sp.lambdify(x, f_prime_expr, "numpy")
-
-# Newton-Raphson step
-newton_step = lambda x: x - f(x)/df(x)
-
-# Initial guesses
-x0 = 4
-x1 = newton_step(x0)
-xr = newton_step(x1)
-
-# Iterate a few times to refine the root
-for _ in range(10):
-    xr = newton_step(xr)
+def f(x):
+    return (x + 1) * (x - 2.2)
 
 
-# Domain for plotting
-x = np.linspace(-1, 5, 400)
-y = f(x)
-
-# Tangent line function
-tangent_line = lambda xp: f(xp) + df(xp)*(x - xp)
-
-fig, ax = plt.subplots()
+def fprime(x):
+    return 2 * x - 1.2
 
 
-# Plot f(x)
-ax.plot(x, y, 'k', lw=1.2)
+# Newton step
+x0 = 4.0
+x1 = x0 - f(x0) / fprime(x0)
+xr = 2.2
 
-# Plot tangent lines at x0 and x1
-ax.plot(x, tangent_line(x0), 'k--', lw=1)
-# ax.plot(x, tangent_line(x1), 'k-', lw=1)
+with plt.style.context(["styles/function_plot.mplstyle", {
+    "font.size": 25,
+    "xtick.major.size": 9.4,
+    "ytick.major.size": 9.4,
+    "xtick.major.pad": 15.8,
+    "ytick.major.pad": 11.9,
+}]):
+    fig = plt.figure(figsize=(7.95, 9.13))
+    ax = fig.add_axes([0.035, 0.026, 0.928, 0.943])
+    ax.set_xlim(-1, 5)
+    ax.set_ylim(-5, 20)
 
-# Points
-ax.plot(x0, f(x0), 'ko', ms=7)
-ax.plot(x0, 0, 'ko', ms=5)
-ax.plot(x1, 0, 'ko', ms=5)
-ax.plot(xr, 0, 'ko', ms=5)
+    # Axes
+    ax.spines["left"].set_position("zero")
+    ax.spines["bottom"].set_position("zero")
+    ax.set_xticks(range(-1, 6))
+    ax.set_yticks(range(-5, 21, 5))
 
-# Dotted vertical line
-ax.plot([x0, x0], [0, f(x0)], 'k:', lw=0.8)
+    # Curve
+    x = np.linspace(-1, 5, 600)
+    ax.plot(x, f(x))
 
-# Labels
-ax.text(x0 + .1, .3, r"$x_0$")
-ax.text(x1 + .2, .3, r"$x_1$")
-ax.text(xr - .3, .3, r"$x_r$")
+    # Tangent and drop line
+    xt = np.array([1.99, 5.0])
+    ax.plot(xt, f(x0) + fprime(x0) * (xt - x0), dashes=(44, 11.5))
+    ax.plot([x0, x0], [f(x0), 0], dashes=(0.01, 6), dash_capstyle="round")
 
-# Axes limits
-ax.set_xlim(-1, 5)
-ax.set_ylim(-5, 20)
+    # Points
+    ax.plot(x0, f(x0), "o", ms=16)
+    ax.plot([xr, x1, x0], [0, 0, 0], "o", ms=11.5)
 
-# Move axes
-ax.spines["bottom"].set_position(("data", 0))
-ax.spines["left"].set_position(("data", 0))
+    # Labels
+    label = dict(ha="left", va="baseline")
+    ax.text(1.97, 0.39, "$x_r$", **label)
+    ax.text(2.84, 0.39, "$x_1$", **label)
+    ax.text(4.13, 0.39, "$x_0$", **label)
 
-plt.show()
+    plt.show()
 ```
 
 ::: {.callout-note title="Exercise 5.5"}

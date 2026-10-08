@@ -70,70 +70,49 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# === Common data setup ===
-f = np.poly1d([0.99668055, -1.18310027, -2.20337043])
-xp = [-0.5, 1.25, 3.0]
-yp = f(xp)
-x_range = np.linspace(-1, 5, 400)
-y_range = f(x_range)
+def plot_bracket(tangent=False):
+    """Bracketed minimum a < b < c, optionally with the tangent drawn at b."""
+
+    def f(x):
+        return (x + 1) * (x - 2.2)
+
+    def fprime(x):
+        return 2 * x - 1.2
+
+    a, b, c = -0.5, 1.25, 3.0
+
+    with plt.style.context("styles/function_plot.mplstyle"):
+        fig = plt.figure(figsize=(7.31, 8.34))
+        ax = fig.add_axes([0.047, 0.029, 0.918, 0.938])
+        ax.set_xlim(-1, 5)
+        ax.set_ylim(-5, 10)
+
+        # Axes
+        ax.spines["left"].set_position("zero")
+        ax.spines["bottom"].set_position("zero")
+        ax.set_xticks(range(-1, 6))
+        ax.set_yticks(range(-5, 11, 5))
+
+        # Curve
+        x = np.linspace(-1, 5, 600)
+        ax.plot(x, f(x))
+
+        # Tangent at b
+        if tangent:
+            xt = np.array([0.5, 1.9])
+            ax.plot(xt, f(b) + fprime(b) * (xt - b))
+
+        # Points and labels
+        ax.plot([a, b, c], [f(a), f(b), f(c)], "o")
+        label = dict(ha="center", va="center")
+        ax.text(-0.60, -2.375, "f(a)", **label)
+        ax.text(1.61, -2.725, "f(b)", **label)
+        ax.text(3.32, 2.58, "f(c)", **label)
+
+        plt.show()
 
 
-def plot_parabola(f, xp, yp, x_range, y_range, show_tangent=False):
-    """Plots a parabola and optional tangent line at f(b), with local styling."""
-    fig, ax = plt.subplots(figsize=(5, 6))
-
-    # === Local styling ===
-    for spine in ["top", "right"]:
-        ax.spines[spine].set_visible(False)
-    for spine in ["left", "bottom"]:
-        ax.spines[spine].set_linewidth(1.0)
-
-    ax.spines['left'].set_position('zero')
-    ax.spines['bottom'].set_position('zero')
-
-    ax.tick_params(axis='x', which='both', pad=10, length=6, direction='out')
-    ax.tick_params(axis='y', which='both', pad=5, length=6, direction='out')
-    ax.xaxis.set_ticks_position('bottom')
-    ax.yaxis.set_ticks_position('left')
-
-    # === Plot parabola and points ===
-    ax.plot(x_range, y_range, 'k-', linewidth=0.8)
-    ax.plot(xp, yp, 'ko', markersize=8)
-
-    # === Optional tangent line ===
-    if show_tangent:
-        b = xp[1]
-        fb = yp[1]
-        fprime = np.polyder(f)
-        slope = fprime(b)
-        ds = 0.6
-        x_tangent = np.linspace(b - ds, b + ds, 50)
-        y_tangent = slope * (x_tangent - b) + fb
-        ax.plot(x_tangent, y_tangent, 'k-', linewidth=0.8)
-
-    # === Labels ===
-    dx = 0.1
-    ax.text(xp[0]-dx, yp[0]-5*dx, 'f(a)', va='top', ha='center', fontsize=14)
-    ax.text(xp[1]+dx, yp[1]-dx, 'f(b)', va='top', ha='left', fontsize=14)
-    ax.text(xp[2]+dx, yp[2]-dx, 'f(c)', va='top', ha='left', fontsize=14)
-
-    # === Limits and ticks ===
-    ax.set_xlim(-1, 5)
-    ax.set_ylim(-5, 10)
-    ax.set_xticks(np.arange(-1, 6, 1))
-    ax.set_yticks(np.arange(-5, 11, 5))
-    ax.tick_params(labelsize=14)
-
-    fig.tight_layout()
-    return fig, ax
-
-
-# === Create the two figures ===
-# 1. Parabola only
-plot_parabola(f, xp, yp, x_range, y_range, show_tangent=False)
-
-
-plt.show() 
+plot_bracket()
 ```
 
 How do we choose $x$? There are a number of ways to choose $x$, but a straightforward way is to take $x$ halfway through the larger of the two intervals $(a, b)$ and $(b, c)$.
@@ -272,8 +251,7 @@ This is how we proceed:
 #| echo: false
 #| label: fig-parab-min-div
 #| fig-cap: A parabola with derivative information
-plot_parabola(f, xp, yp, x_range, y_range, show_tangent=True)
-plt.show()
+plot_bracket(tangent=True)
 ```
 
 ---
