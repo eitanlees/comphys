@@ -389,7 +389,111 @@ Note that the two formating codes are separated by a comma. This means that the 
 
 The magnetic field of the "pure" dipole in SI units is given as:
 
-<!-- TODO: Recreate figure showing magnetic dipole geometry with r, theta, phi coordinates -->
+```{python}
+#| echo: false
+#| label: fig-magnetic-dipole
+#| fig-cap: Magnetic Dipole
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+THIN = 1.3
+MEDIUM = 3.0
+THICK = 6.0
+
+# Vectors
+theta = np.radians(58.5)
+phi = np.radians(65.8)
+r = np.array([np.sin(theta) * np.cos(phi),
+              np.sin(theta) * np.sin(phi),
+              np.cos(theta)])
+foot = np.array([r[0], r[1], 0.0])
+Lx, Ly, Lz = 0.69, 0.69, 0.535
+
+with plt.style.context({
+    "font.family": "serif",
+    "font.serif": ["STIXGeneral", "Times New Roman", "DejaVu Serif"],
+    "mathtext.fontset": "stix",
+}):
+    # Canvas and camera
+    fig = plt.figure(figsize=(9, 6.8))
+    ax = fig.add_axes([0, 0, 1, 1], projection="3d")
+    ax.set_proj_type("ortho")
+    elev, azim = 22.0, 18.6
+    ax.view_init(elev=elev, azim=azim)
+    ax.set_xlim(-0.2, 1.0)
+    ax.set_ylim(-0.15, 1.05)
+    ax.set_zlim(-0.2, 1.0)
+    ax.set_box_aspect((1, 1, 1), zoom=1.5)
+    ax.set_axis_off()
+
+    # Axes
+    ax.plot([0, Lx], [0, 0], [0, 0], color="black", lw=THIN)
+    ax.plot([0, 0], [0, Ly], [0, 0], color="black", lw=THIN)
+    ax.plot([0, 0], [0, 0], [0, Lz], color="black", lw=THIN)
+
+    # r and its projection
+    ax.plot([0, r[0]], [0, r[1]], [0, r[2]], color="black", lw=MEDIUM)
+    ax.plot([0, foot[0]], [0, foot[1]], [0, 0],
+            color="black", lw=THIN, dashes=(7, 4))
+    ax.plot([r[0], foot[0]], [r[1], foot[1]], [r[2], 0],
+            color="black", lw=THIN, dashes=(7, 4))
+
+    # Arcs
+    R_phi = 0.24
+    s = np.linspace(0, phi, 100)
+    phi_arc_x = R_phi * np.cos(s)
+    phi_arc_y = R_phi * np.sin(s)
+    ax.plot(phi_arc_x, phi_arc_y, np.zeros_like(s), color="black", lw=THIN)
+
+    R_theta = 0.47
+    t = np.linspace(0, theta, 100)
+    theta_arc_x = R_theta * np.sin(t) * np.cos(phi)
+    theta_arc_y = R_theta * np.sin(t) * np.sin(phi)
+    theta_arc_z = R_theta * np.cos(t)
+    ax.plot(theta_arc_x, theta_arc_y, theta_arc_z, color="black", lw=THIN)
+
+    # Dipole m
+    m_bottom, m_top = -0.17, 0.20
+    ax.plot([0, 0], [0, 0], [m_bottom, m_top], color="black", lw=THICK,
+            solid_capstyle="butt")
+
+    # Arrowheads, drawn as two arms in the plane facing the camera
+    e, a = np.radians(elev), np.radians(azim)
+    toward_camera = np.array([np.cos(e) * np.cos(a),
+                              np.cos(e) * np.sin(a),
+                              np.sin(e)])
+
+    arrowheads = [
+        (r, r, 0.07, 30, 2.4),
+        (np.array([0, 0, m_top]), np.array([0, 0, 1]), 0.09, 46, 2.7),
+    ]
+
+    for tip, direction, arm_length, half_angle, width in arrowheads:
+        back = -direction / np.linalg.norm(direction)
+        side = np.cross(direction, toward_camera)
+        side = side / np.linalg.norm(side)
+        half_angle = np.radians(half_angle)
+        for sign in (+1, -1):
+            arm_dir = np.cos(half_angle) * back + sign * np.sin(half_angle) * side
+            arm_end = tip + arm_length * arm_dir
+            ax.plot([tip[0], arm_end[0]], [tip[1], arm_end[1]], [tip[2], arm_end[2]],
+                    color="black", lw=width, solid_capstyle="round")
+
+    # Labels
+    label = dict(color="black", fontsize=31, ha="center", va="center")
+    ax.text(0, 0, Lz + 0.07, "$z$", **label)
+    ax.text(0, Ly + 0.09, 0, "$y$", **label)
+    ax.text(Lx + 0.12, 0, 0, "$x$", **label)
+    ax.text(*(0.7 * r + [0, 0.02, -0.12]), "$r$", **label)
+    ax.text(*(1.2 * np.array([theta_arc_x[50], theta_arc_y[50], theta_arc_z[50]])),
+            r"$\theta$", **label)
+    ax.text(*(1.45 * np.array([phi_arc_x[70], phi_arc_y[70], 0])),
+            r"$\phi$", **label)
+    ax.text(0, -0.12, 0.08, r"$\mathbf{m}$", **label)
+
+    plt.show()
+```
 
 $$
 \vec{B}(r) = \left( \frac{\mu_0 m}{\pi r^3} \right) \left( 2 \cos\theta \hat{r} + \sin\theta \hat{\theta} \right)

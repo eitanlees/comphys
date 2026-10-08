@@ -1,0 +1,21 @@
+# TikZ-style flowcharts (figures 2-1, 2-2)
+#
+# Scope it to one figure so it doesn't leak into later cells:
+#
+#     with plt.style.context("styles/flowchart.mplstyle"):
+#         ...
+#         plt.show()
+
+font.family:                 serif
+font.serif:                  cmr10
+font.size:                   30
+mathtext.fontset:            cm
+axes.formatter.use_mathtext: True
+
+axes.prop_cycle:             cycler('color', ['black'])
+lines.linewidth:             1.1
+
+patch.linewidth:             1.1
+patch.edgecolor:             black
+patch.facecolor:             black
+patch.force_edgecolor:       True
