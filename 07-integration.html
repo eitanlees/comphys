@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -292,7 +311,7 @@ window.Quarto = {
 \int_{x_1}^{x_2} f(x)\,dx \approx \frac{h}{2}(f_1 + f_2)
 \]</span></p>
 <p>where <span class="math inline">\(h = x_2 - x_1\)</span>.</p>
-<div id="22478a8b" class="cell" data-execution_count="1">
+<div id="897c3b6d" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -398,7 +417,7 @@ f_1 + 4f_2 + 2f_3 + 4f_4 + \ldots + 2f_{N-2} + 4f_{N-1} + f_N
 <li><span class="math inline">\(W(x) = (1 - x^2)^{-1/2}\)</span> leads to <strong>Gauss–Chebyshev</strong> integration</li>
 </ul>
 <p>We will concentrate here on the simplest and most useful case, <strong>Gauss–Legendre integration</strong>.</p>
-<p>For a given number of abscissas, it is possible to compute the <span class="math inline">\(x_i\)</span>’s and the <span class="math inline">\(w_i\)</span>’s for Gauss–Legendre integration. We won’t go into how this is actually done; details can be found in <em>Numerical Recipes</em>. Below is a table listing the abscissas and weights for several values of <span class="math inline">\(N\)</span>. These abscissas are based on the interval <span class="math inline">\([-1, 1]\)</span>:</p>
+<p>For a given number of abscissas, it is possible to compute the <span class="math inline">\(x_i\)</span>’s and the <span class="math inline">\(w_i\)</span>’s for Gauss–Legendre integration. We won’t go into how this is actually done; details can be found in <em>Numerical Recipes</em> <span class="citation" data-cites="press92">(<a href="references.html#ref-press92" role="doc-biblioref">Press et al. 1992, sec. 4.5</a>)</span>. Below is a table listing the abscissas and weights for several values of <span class="math inline">\(N\)</span>. These abscissas are based on the interval <span class="math inline">\([-1, 1]\)</span>:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -648,7 +667,7 @@ I = \int_{x_1}^{x_2} H(x)\, dx
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="6ca3f430" class="cell" data-execution_count="2">
+<div id="935ae5f2" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -687,7 +706,7 @@ dV = -G \frac{dm}{r}
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> rand<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>rand</code> function is the actual random number generator, but the random number generator must be initialized by <code>srand</code> by supplying <code>srand</code> with an arbitrary unsigned integer, the <em>seed</em>. Note that the same initializing value of “seed” will always return the same random number sequence. The function <code>rand</code> returns, upon each call, a random number in the range 0 to the largest positive value the computer can produce for variables of type <code>int</code>; this number is available in <code>stdlib.h</code> as <code>RAND_MAX</code>. Thus, if we want a random floating point number in the range 0.0 – 1.0 we can use the code fragment:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="op">(</span><span class="dt">float</span><span class="op">)</span>rand<span class="op">()/(</span>RAND_MAX<span class="op">+</span><span class="fl">1.0</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Unfortunately, <code>rand</code> is not a good enough random number generator, even for government work. It does not give truly random sequences, and this can be fatal for Monte Carlo integrations. It is much better to use the function <code>float ran1(long *idum)</code> (see <em>Numerical Recipes</em> for details). This function is available in <code>comphys.c</code> and defined in <code>comphys.h</code> and, as we saw in Chapter 2, should be initialized by setting <code>idum</code> to a negative number, thus:</p>
+<p>Unfortunately, <code>rand</code> is not a good enough random number generator, even for government work. It does not give truly random sequences, and this can be fatal for Monte Carlo integrations. It is much better to use the function <code>float ran1(long *idum)</code> (see <em>Numerical Recipes</em> for details <span class="citation" data-cites="press92">(<a href="references.html#ref-press92" role="doc-biblioref">Press et al. 1992, sec. 7.1</a>)</span>). This function is available in <code>comphys.c</code> and defined in <code>comphys.h</code> and, as we saw in Chapter 2, should be initialized by setting <code>idum</code> to a negative number, thus:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> idum<span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> rn<span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* Initialize ran1 */</span></span>
@@ -755,7 +774,7 @@ dV = -G \frac{dm}{r}
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result of the first 10 runs of this program (your numbers will be different) with <span class="math inline">\(N = 100\)</span> are: 1.825, 1.640, 1.414, 1.700, 1.532, 1.571, 1.413, 1.600, 1.519, 1.745 each with a calculated error of about <span class="math inline">\(\pm 0.130\)</span>. The mean of these determinations is <span class="math inline">\(1.596 \pm 0.043\)</span> (where the error is the standard error of the mean). If we increase <span class="math inline">\(N\)</span> to 1000, we get the following run: 1.593, 1.574, 1.614, 1.589, 1.545, 1.531, 1.592, 1.570, 1.627, 1.579 each with a calculated error of about <span class="math inline">\(\pm 0.042\)</span>. The mean of these determinations is <span class="math inline">\(1.581 \pm 0.009\)</span>.</p>
-<div id="d5aa46f3" class="cell" data-execution_count="3">
+<div id="6bf5f313" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -844,6 +863,11 @@ R = \exp(-\Delta E / kT)
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-press92" class="csl-entry" role="listitem">
+Press, William H., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery. 1992. <em>Numerical Recipes in <span>C</span>: The Art of Scientific Computing</em>. 2nd ed. Cambridge University Press.
+</div>
+</div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

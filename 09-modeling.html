@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -293,9 +312,9 @@ y = f(x; a_1, a_2, \ldots, a_m)
 <p><span class="math display">\[
 \sum_{i=1}^{N} [y_i - f(x_i; a_1, a_2, \ldots, a_m)]^2
 \]</span></p>
-<p>is minimized. Why do we choose this expression to minimize? Clearly, one does not want negative deviations to cancel with positive deviations, but why do we take the sum of the <em>square</em> of the deviations and not, for instance, the <em>absolute value</em> of the deviations? This is an important question. The answer is that it turns out that if the deviations (i.e.&nbsp;the errors) in the <span class="math inline">\(y_i\)</span>’s are normally distributed (i.e.&nbsp;have a Gaussian distribution), then minimizing the sum of the square of the deviations leads to the choice for the <span class="math inline">\(a_i\)</span>’s that is <em>most likely</em> to be correct. This result is derived from the theory of <em>Maximum Likelihood Estimators</em>. More information can be found in the book <em>Numerical Recipes</em>.</p>
+<p>is minimized. Why do we choose this expression to minimize? Clearly, one does not want negative deviations to cancel with positive deviations, but why do we take the sum of the <em>square</em> of the deviations and not, for instance, the <em>absolute value</em> of the deviations? This is an important question. The answer is that it turns out that if the deviations (i.e.&nbsp;the errors) in the <span class="math inline">\(y_i\)</span>’s are normally distributed (i.e.&nbsp;have a Gaussian distribution), then minimizing the sum of the square of the deviations leads to the choice for the <span class="math inline">\(a_i\)</span>’s that is <em>most likely</em> to be correct. This result is derived from the theory of <em>Maximum Likelihood Estimators</em>. More information can be found in the book <em>Numerical Recipes</em> <span class="citation" data-cites="press92">(<a href="references.html#ref-press92" role="doc-biblioref">Press et al. 1992, sec. 15.1</a>)</span>.</p>
 <p>What if our errors are not normally distributed? This is a fairly common occurrence in experimental physics. It turns out that if the distribution of errors is only approximately Gaussian, least squares is still a good way to go. However, the least squares technique is very sensitive to data points that are very deviant (<em>outliers</em>). These very deviant points can exert enormous leverage over the sum of the squares of the deviations to the extent that they may even dominate the sum, leading to a fitted function which clearly does not represent the majority of the data points. In such a case, we should either eliminate the outliers using a valid (i.e.&nbsp;honest) statistical process, or use another fitting strategy. One such fitting strategy is called <em>robust fitting</em> in which it is the sum of the absolute value of the deviations which is minimized.</p>
-<p>It should be noted that in the above discussion we have tacitly assumed that all of the errors are in the <span class="math inline">\(y_i\)</span>’s and not in the <span class="math inline">\(x_i\)</span>’s. This situation is often the case in experimental physics, but sometimes it turns out that both the <span class="math inline">\(x_i\)</span>’s and the <span class="math inline">\(y_i\)</span>’s have significant errors. In this case, we need to use a slightly different approach (see <em>Numerical Recipes</em> for more information).</p>
+<p>It should be noted that in the above discussion we have tacitly assumed that all of the errors are in the <span class="math inline">\(y_i\)</span>’s and not in the <span class="math inline">\(x_i\)</span>’s. This situation is often the case in experimental physics, but sometimes it turns out that both the <span class="math inline">\(x_i\)</span>’s and the <span class="math inline">\(y_i\)</span>’s have significant errors. In this case, we need to use a slightly different approach (see <em>Numerical Recipes</em> for more information <span class="citation" data-cites="press92">(<a href="references.html#ref-press92" role="doc-biblioref">Press et al. 1992, sec. 15.3</a>)</span>).</p>
 <p>Let us begin our discussion of the modeling of data with a review of using least squares to fit data to a straight line, and use that as a springboard to a discussion on fitting data to nonlinear functions.</p>
 </section>
 <section id="least-squares-fitting-of-data-to-a-straight-line" class="level2" data-number="9.2">
@@ -423,7 +442,7 @@ s^2 = \chi^2/(N - 2)
 \]</span></p>
 <p>Now, imagine that both <span class="math inline">\(\mathbf{b}\)</span> and <span class="math inline">\(\mathbf{x}\)</span> are <span class="math inline">\(N \times M\)</span> matrices, then we may regard <a href="#eq-matrix-eq" class="quarto-xref">Equation&nbsp;<span>9.7</span></a> as a set of M simultaneous matrix equations. There is a C-function, found in <code>comphys.c</code>, which will solve this equation for you. It is declared as</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> gaussj<span class="op">(</span><span class="dt">float</span> <span class="op">**</span>a<span class="op">,</span> <span class="dt">int</span> n<span class="op">,</span> <span class="dt">float</span> <span class="op">**</span>b<span class="op">,</span> <span class="dt">int</span> m<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>and comes from the <em>Numerical Recipes</em> book. Its description is as follows:</p>
+<p>and comes from the <em>Numerical Recipes</em> book. Its description is as follows <span class="citation" data-cites="press92">(<a href="references.html#ref-press92" role="doc-biblioref">Press et al. 1992, sec. 2.1</a>)</span>:</p>
 <p>“Linear equation solution by Gauss-Jordan elimination. <code>a[1..n][1..n]</code> is the input matrix. <code>b[1..n][1..m]</code> is input containing the m right-hand side vectors. On output, <code>a</code> is replaced by its matrix inverse, and <code>b</code> is replaced by the corresponding set of solution vectors.”</p>
 <p>Write a short program using <code>gaussj</code> which will solve the following matrix equation:</p>
 <p><span class="math display">\[
@@ -494,7 +513,7 @@ s^2 = \chi^2/(N - M)
 y = a_1 + \sum_{n=2}^{4} a_n \sin[(n-1)\pi x]
 \]</span></p>
 <p>Determine the <span class="math inline">\(a_n\)</span>’s and their errors for this dataset.</p>
-<div id="51da05a0" class="cell" data-execution_count="1">
+<div id="ae8b274e" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -546,7 +565,7 @@ c \equiv f(\mathbf{P}) \quad \mathbf{b} \equiv -\nabla f|_\mathbf{P} \quad [\mat
 \mathbf{a}_\text{next} = \mathbf{a}_\text{cur} - \text{constant} \times \nabla \chi^2(\mathbf{a}_\text{cur})
 \]</span></p>
 <p>where the constant is small enough so that one does not overshoot the minimum.</p>
-<p>The Levenberg-Marquardt Method applies both the inverse-Hessian method and the steepest descent method to find the minimum of <span class="math inline">\(\chi^2\)</span>. Far from the minimum, where the quadratic form is not a good approximation, the Levenberg-Marquardt Method uses the method of steepest descent, but shifts smoothly over to the inverse-Hessian method as the minimum is getting near, and the quadratic form is a better approximation. The Levenberg-Marquardt Method also allows one to hold some of the <span class="math inline">\(a_i\)</span>’s fixed, and to vary the others. This method is implemented in the <em>Numerical Recipes</em> function <code>mrqmin</code> (found in <code>comphys.c</code>) which is declared in the following way:</p>
+<p>The Levenberg-Marquardt Method applies both the inverse-Hessian method and the steepest descent method to find the minimum of <span class="math inline">\(\chi^2\)</span>. Far from the minimum, where the quadratic form is not a good approximation, the Levenberg-Marquardt Method uses the method of steepest descent, but shifts smoothly over to the inverse-Hessian method as the minimum is getting near, and the quadratic form is a better approximation. The Levenberg-Marquardt Method also allows one to hold some of the <span class="math inline">\(a_i\)</span>’s fixed, and to vary the others. This method is implemented in the <em>Numerical Recipes</em> function <code>mrqmin</code> <span class="citation" data-cites="press92">(<a href="references.html#ref-press92" role="doc-biblioref">Press et al. 1992, sec. 15.5</a>)</span> (found in <code>comphys.c</code>) which is declared in the following way:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mrqmin<span class="op">(</span><span class="dt">float</span> x<span class="op">[],</span> <span class="dt">float</span> y<span class="op">[],</span> <span class="dt">float</span> sig<span class="op">[],</span> <span class="dt">int</span> ndata<span class="op">,</span> <span class="dt">float</span> a<span class="op">[],</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ia<span class="op">[],</span> <span class="dt">int</span> ma<span class="op">,</span> <span class="dt">float</span> <span class="op">**</span>covar<span class="op">,</span> <span class="dt">float</span> <span class="op">**</span>alpha<span class="op">,</span> <span class="dt">float</span> <span class="op">*</span>chisq<span class="op">,</span> <span class="dt">void</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">(*</span>funcs<span class="op">)(</span><span class="dt">float</span><span class="op">,</span> <span class="dt">float</span> <span class="op">[],</span> <span class="dt">float</span> <span class="op">*,</span> <span class="dt">float</span> <span class="op">[],</span> <span class="dt">int</span><span class="op">),</span> <span class="dt">float</span> <span class="op">*</span>alambda<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -554,7 +573,7 @@ c \equiv f(\mathbf{P}) \quad \mathbf{b} \equiv -\nabla f|_\mathbf{P} \quad [\mat
 <p>The constant <code>alambda</code> in the above discussion refers to the constant in the method of steepest descent.</p>
 <p>The best way to explain how to use <code>mrqmin</code> is with an example. The following figure shows a histogram of data. The underlying theory is that the distribution of points in this diagram is a double Gaussian. We would like to fit these data to a function that looks like:</p>
 <!-- TODO: Recreate Figure 2 showing histogram data to be fit with double Gaussian -->
-<div id="ba8c25a4" class="cell" data-execution_count="2">
+<div id="c5f023f5" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -686,7 +705,7 @@ f(x; a_1, \ldots, a_6) = a_1 \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \r
 <span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">;</span></span>
 <span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="e3e05fed" class="cell" data-execution_count="3">
+<div id="ef09f241" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -710,6 +729,11 @@ f(x; a_1, \ldots, a_6) = a_1 \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \r
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-press92" class="csl-entry" role="listitem">
+Press, William H., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery. 1992. <em>Numerical Recipes in <span>C</span>: The Art of Scientific Computing</em>. 2nd ed. Cambridge University Press.
+</div>
+</div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

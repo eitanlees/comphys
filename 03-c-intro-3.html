@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -522,7 +541,7 @@ p(x) = \sum_{i=1}^{N} \frac{x^{i-1}}{(i-1)!}.
 <span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>Read: <em>The C Programming Language</em>: Sections 4.1 – 4.7</p>
+<p>Read: <em>The C Programming Language</em> <span class="citation" data-cites="kernighan88">(<a href="references.html#ref-kernighan88" role="doc-biblioref">Kernighan and Ritchie 1988</a>)</span>: Sections 4.1 – 4.7</p>
 </section>
 <section id="file-input-and-output" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="file-input-and-output"><span class="header-section-number">3.2</span> File Input and Output</h2>
@@ -627,7 +646,7 @@ p(x) = \sum_{i=1}^{N} \frac{x^{i-1}}{(i-1)!}.
 <p>This will read in one line per passage through the loop and exit the loop when the End Of the File (<code>EOF</code>) is encountered.</p>
 </div>
 </div>
-<p>Read: <em>The C Programming Language</em>: Sections 7.5 – 7.7</p>
+<p>Read: <em>The C Programming Language</em> <span class="citation" data-cites="kernighan88">(<a href="references.html#ref-kernighan88" role="doc-biblioref">Kernighan and Ritchie 1988</a>)</span>: Sections 7.5 – 7.7</p>
 </section>
 <section id="an-aside-incorporating-gnuplot-in-your-program" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="an-aside-incorporating-gnuplot-in-your-program"><span class="header-section-number">3.3</span> An Aside: Incorporating GNUPLOT in your program</h2>
@@ -670,7 +689,7 @@ y[2][0],y[2][1],y[2][2],y[2][3],y[2][4]</code></pre>
 <p>Unit offset vectors can be quite convenient. To use the functions <code>vector</code> and <code>matrix</code> in our programs, we must include the following statements right at the beginning of our programs:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"comphys.h"</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"comphys.c"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Indeed, as we go through the semester, we will use a number of functions from <code>comphys.c</code>. Most of these functions are from the book <em>Numerical Recipes in C</em>, Second Edition by Press et al., published by Cambridge University Press. This is one of the best books ever written, and should be in the library of all physicists and astronomers.</p>
+<p>Indeed, as we go through the semester, we will use a number of functions from <code>comphys.c</code>. Most of these functions are from the book <em>Numerical Recipes in C</em>, Second Edition by Press et al., published by Cambridge University Press <span class="citation" data-cites="press92">(<a href="references.html#ref-press92" role="doc-biblioref">Press et al. 1992</a>)</span>. This is one of the best books ever written, and should be in the library of all physicists and astronomers.</p>
 <p>We have already seen in Lecture I how vectors can be initialized. We can similarly initialize arrays. For instance, the array <code>y</code> can be initialized with values in the following way:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> y<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">2</span><span class="op">},</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>               <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">},</span></span>
@@ -698,9 +717,17 @@ y[2][0],y[2][1],y[2][2],y[2][3],y[2][4]</code></pre>
 <p>Modify your program from Exercise 3.5 to read the values from the file <code>inputwave.dat</code> into the vector <code>wave</code> which has been allocated space using the function <code>dvector</code>. Then modify the <em>while loop</em> to use these values in the computation of the Planck function.</p>
 </div>
 </div>
-<p>Read: <em>The C Programming Language</em>: Chapter 5</p>
+<p>Read: <em>The C Programming Language</em> <span class="citation" data-cites="kernighan88">(<a href="references.html#ref-kernighan88" role="doc-biblioref">Kernighan and Ritchie 1988</a>)</span>: Chapter 5</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-kernighan88" class="csl-entry" role="listitem">
+Kernighan, Brian W., and Dennis M. Ritchie. 1988. <em>The <span>C</span> Programming Language</em>. 2nd ed. Prentice Hall.
+</div>
+<div id="ref-press92" class="csl-entry" role="listitem">
+Press, William H., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery. 1992. <em>Numerical Recipes in <span>C</span>: The Art of Scientific Computing</em>. 2nd ed. Cambridge University Press.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
