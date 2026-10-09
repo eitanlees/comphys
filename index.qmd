@@ -13,8 +13,12 @@ I want to add some examples from Python and Scipy.
 
 ::: {.callout-note}
 This project is a work in progress. I will be releasing lectures out of order
-as I finish them. I will leave a note here when the project is complete. 
+as I finish them. I will leave a note here when the project is complete.
 :::
+
+Found a mistake? Please [open an issue](https://github.com/eitanlees/comphys/issues).
+See [CONTRIBUTING](https://github.com/eitanlees/comphys/blob/main/CONTRIBUTING.md)
+for how I work.
 
 # Colophon {.unnumbered}
 
