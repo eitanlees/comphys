@@ -349,7 +349,7 @@ fig, ax = plt.subplots()
 ax.plot(x, j0(x))
 ```
 
-All of the root finding algorithems for scalar functions can be accessed via a single method `root_scalar`.
+All of the root finding algorithms for scalar functions can be accessed via a single method `root_scalar`.
 
 Let's use a different method for each root! We need to supply a bracket for where to limit our search
 and a method name.
