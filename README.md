@@ -2,15 +2,19 @@
 
 A repository for an old computational physics course.
 
-https://eitanlees.github.io/comphys/
+<https://eitanlees.github.io/comphys/>
 
 ## Dev Log
 
-**2025-10-20**: 
+**2026-05-25**:
 
-I am picking this project up after a long time away. 
+Well I guess I have set things up so the build happens when I push to main. So I guess it's pretty dummy proof.
 
-I did not take notes when setting up the Quarto site initially. 
+**2025-10-20**:
+
+I am picking this project up after a long time away.
+
+I did not take notes when setting up the Quarto site initially.
 
 I assume I followed the instructions at [quarto-github-pages](https://quarto.org/docs/publishing/github-pages.html) to set up the site.
 
@@ -29,3 +33,4 @@ quarto publish gh-pages
 ```
 
 I have set up a github action to automatically publish the site on push to main.
+

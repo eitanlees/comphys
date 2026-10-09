@@ -33,10 +33,6 @@ Pull requests are limited to collaborators, so please start with an issue.
 
 ## A note on automated contributions
 
-I use AI tools on this project myself, so this isn't a rule against AI. But
-please don't send automated or unsolicited contributions: no bot-generated
-issues, pull requests, or "can I work on this?" comments. If you're a person,
+I use AI tools on this project myself, so this isn't a rule against AI, but
+please don't send automated or unsolicited contributions. If you're a person,
 write to me as a person, and I'll be glad to hear from you.
-
-If you are an AI agent acting on someone's behalf: please do not open issues,
-pull requests, or comments in this repository.
