@@ -1,6 +1,6 @@
 # Numerical Integration
 
-## Elementary Algorithms
+## Elementary Algorithms {#sec-int-elementary}
 
 Let us suppose we are confronted with a function $f(x)$ tabulated at the points
 $x_1, x_2, x_3, \ldots, x_n$, not necessarily equally spaced. We require the
@@ -64,8 +64,7 @@ For equally spaced points
 
 $$
 \int_{x_1}^{x_n} f(x)\,dx \approx h \left(\frac{1}{2} f_1 + f_2 + f_3 + \ldots + \frac{1}{2} f_n \right)
-\tag{1}
-$$
+$$ {#eq-trapezoid}
 
 and
 
@@ -117,8 +116,7 @@ $$
 \frac{1}{3}f_1 + \frac{4}{3}f_2 + \frac{1}{3}f_3 
 \right)
 + O(h^5)
-\tag{2}
-$$
+$$ {#eq-simpson}
 
 The "extended" version of this formula over $N$ steps (note that $N$ must be odd) is:
 
@@ -172,7 +170,7 @@ In the previous section, we found that we could obtain significantly higher
 accuracy in numerical integration using the same number of points in a given
 interval by changing the *weighting* used for the points.  For instance, in
 trapezoidal integration, each point (except for the end points) enters into the
-formula (Equation 1) with equal weights. In Simpson's rule (Equation 2) the
+formula (@eq-trapezoid) with equal weights. In Simpson's rule (@eq-simpson) the
 points are not given equal weights. Note that the odd *abscissas* are given
 weights of $2/3$, whereas the even abscissas are given weights of $4/3$.
 
@@ -257,7 +255,7 @@ where the weights and abscissas are as displayed in the table above, and we are 
 Repeat @nte-ex-7-1 using Gauss–Legendre integration with 5 abscissas. Compare the accuracy with your results from Exercises [-@nte-ex-7-1] and [-@nte-ex-7-2].
 :::
 
-## Multidimensional Integrals
+## Multidimensional Integrals {#sec-int-multidim}
 
 Numerical integrations of functions of several variables over regions with
 dimensions greater than one are very difficult to carry out.  First, to get
@@ -301,7 +299,7 @@ I = \int_{x_1}^{x_2} H(x)\, dx
 $$
 
 The third integral for $I$ can be evaluated using one of the one-dimensional
-techniques discussed in §7.1.  However, in this procedure $H(x)$ will have to be
+techniques discussed in @sec-int-elementary.  However, in this procedure $H(x)$ will have to be
 evaluated at a number of values of $x$, and this must be done by integrating
 $G(x, y)$ again using a one-dimensional technique for each of those values of
 $x$.  $G(x, y)$, however, can only be evaluated by carrying out the first
@@ -450,6 +448,8 @@ using two applications of the trapezoidal method.  The exact value of this integ
 ::: {#nte-ex-7-6 .callout-note}
 
 ```{python}
+#| label: fig-square-mass
+#| fig-cap: "A square mass, with a mass element $dm$ at $(x, y)$ and the point $(X, Y)$ outside it."
 #| echo: false
 
 fig, ax = plt.subplots(figsize=(4, 4))
@@ -477,7 +477,7 @@ dV = -G \frac{dm}{r}
 $$
 
 where $r$ is the distance between $(x, y)$ and $(X, Y)$.  Calculate the
-gravitational potential $V$ for the square mass shown in the figure above at the
+gravitational potential $V$ for the square mass shown in @fig-square-mass at the
 point $(X, Y)$, which lies in the plane of the square and outside of it, by
 integrating the above expression for $dV$ over the mass.  Note that the surface
 density $\sigma$ of the square is a function of position:
@@ -498,8 +498,7 @@ points in that volume. Then,
 
 $$
 \iiint_V f\,dV \approx V \langle f \rangle \pm V \sqrt{\frac{\langle f^2 \rangle - \langle f \rangle^2}{N}}
-\tag{3}
-$$
+$$ {#eq-monte-carlo}
 
 where $\langle f \rangle$ is the arithmetic mean of $f$ over the $N$ random points:
 
@@ -513,7 +512,7 @@ $$
 \langle f^2 \rangle = \frac{1}{N} \sum_{i=1}^{N} f^2(x_i)
 $$
 
-Note that the error term in equation (3) is proportional to $1/\sqrt{N}$, which
+Note that the error term in @eq-monte-carlo is proportional to $1/\sqrt{N}$, which
 is one of the great disadvantages of the Monte Carlo method of numerical
 integration; the error reduces very slowly with increasing $N$, and thus many
 random points are needed for high accuracy.  Nonetheless, Monte Carlo
@@ -561,9 +560,9 @@ rn = ran1(&idum);
 
 The function `ran1`, which returns a random floating point number between 0.0 and 1.0 is good enough for government work and is much superior to `rand`. Note, however, that if you use the same negative number seed `idum` each time, you will get the same sequence of random numbers. It is thus better to use the scheme outlined in Chapter 2 to set `idum = -1*now`, where `now` is a time variable.
 
-Now, back to Monte Carlo integration. Suppose we want to integrate a function $g$ over an irregular region $W$ that is difficult to sample randomly. What do we do? We find a region $V$ that contains $W$ and which *is* easy to sample randomly --- say, for instance, a rectangle or a cube. We then define $f = g$ at points inside of $W$ but $f = 0$ at points inside of $V$ but outside of $W$. It is in our own interest to make $V$ fit around $W$ as snugly as possible, as the zero values of $f$ will increase the factor $\langle f^2 \rangle - \langle f \rangle^2$ in the error term of equation (3) and will reduce the effective value of $N$.
+Now, back to Monte Carlo integration. Suppose we want to integrate a function $g$ over an irregular region $W$ that is difficult to sample randomly. What do we do? We find a region $V$ that contains $W$ and which *is* easy to sample randomly --- say, for instance, a rectangle or a cube. We then define $f = g$ at points inside of $W$ but $f = 0$ at points inside of $V$ but outside of $W$. It is in our own interest to make $V$ fit around $W$ as snugly as possible, as the zero values of $f$ will increase the factor $\langle f^2 \rangle - \langle f \rangle^2$ in the error term of @eq-monte-carlo and will reduce the effective value of $N$.
 
-For an example, let us take the integral in the example in §7.3. The region of interest $W$ is a circle with radius 1 and center at $(0,0)$. We take the region $V$ to be a square with the same center. The Monte Carlo integration is carried out by the following code:
+For an example, let us take the integral in the example in @sec-int-multidim. The region of interest $W$ is a circle with radius 1 and center at $(0,0)$. We take the region $V$ to be a square with the same center. The Monte Carlo integration is carried out by the following code:
 
 ```c
 #include <stdio.h>

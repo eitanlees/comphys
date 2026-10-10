@@ -299,12 +299,12 @@ where wave is the wavelength in Ångströms and T is the temperature in Kelvin.
 
 Use the method of this section to determine the wavelength of the maximum of $B(\lambda)$ for the following temperatures:
 $T = 2000\text{K}, 5000\text{K}, 8000\text{K}, 11000\text{K}, 14000\text{K}$ and use gnuplot to plot these wavelengths against $1/T$ and show that the slope of the line is $2.9 \times 10^7,\text{ÅK}$.
-To learn how to get gnuplot to do this for you, see the "aside" below.
+To learn how to get gnuplot to do this for you, see the aside in @sec-gnuplot-fit.
 *Hint*: keep in mind that $B(\lambda)$ has a *maximum*, so determine the minimum of $-B(\lambda)$.
 Another question to consider — how will you find the initial values of $(a, b, c)$ which bracket the minimum of $-B(\lambda)$? This is an important question — you will need to devise a C function that will come up with these three numbers.
 :::
 
-### An Aside - How to get Gnuplot to fit a line to data
+### An Aside - How to get Gnuplot to fit a line to data {#sec-gnuplot-fit}
 
 Let us suppose that we have some data in the file `data.dat` and we want
 to get gnuplot to fit a regression line to those data. This is how to do it
@@ -506,6 +506,8 @@ In this case, both $\Delta x$ and $\Delta y$ are 1.
 In this exercise, we explore a very useful application of function minimization — optimizing a fit to a model. Consider the following data, which come from an exponentially decaying oscillating system:
 
 ```{python}
+#| label: fig-decay-data
+#| fig-cap: "Data from an exponentially decaying oscillating system (`decay.out`)."
 #| echo: false
  
 import numpy as np
@@ -539,7 +541,7 @@ $$
 f(t) = A e^{-\gamma t} \sin(Bt + C)
 $$
 
-We can consider the parameters $A$, $\gamma$, $B$, and $C$ as variables, and ask our simplex algorithm `amoeba` to roam around in this four-dimensional space seeking the best fit (i.e., the fit with the smallest residual or $\chi^2$) between this model and the data in the above figure.
+We can consider the parameters $A$, $\gamma$, $B$, and $C$ as variables, and ask our simplex algorithm `amoeba` to roam around in this four-dimensional space seeking the best fit (i.e., the fit with the smallest residual or $\chi^2$) between this model and the data in @fig-decay-data.
 
 These data are contained in the file [`data/decay.out`](data/decay.out). The first thing you must do is to read these data into your program. Consider the following code fragment, which can serve as the beginning of your program:
 
@@ -613,10 +615,12 @@ float f(float x[])
 }
 ```
 
-What remains for you to do is to figure out reasonable starting values for $A$, $\gamma$, $B$, and $C$, use them to initialize the components of p, and then to invoke amoeba. The next figure shows a plot of what I got.
+What remains for you to do is to figure out reasonable starting values for $A$, $\gamma$, $B$, and $C$, use them to initialize the components of p, and then to invoke amoeba. @fig-decay-fit shows a plot of what I got.
 
 
 ```{python}
+#| label: fig-decay-fit
+#| fig-cap: "The resulting fit to the data in @fig-decay-data."
 #| echo: false
 
 from scipy.optimize import curve_fit
