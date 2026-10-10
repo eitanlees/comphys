@@ -242,7 +242,7 @@ z *= x;      /* same as z = z * x;   */
 y /= z;      /* same as y = y/z;     */
 ```
 
-A number of predefined mathematical functions can be used in C; some of the more common are listed in the table below.
+A number of predefined mathematical functions can be used in C; some of the more common are listed in @tbl-math-functions.
 
 | Function | Description |
 |----------|-------------|
@@ -388,9 +388,7 @@ ni = scanf("%lf,%lf",&v0,&tf);
 Note that the two formatting codes are separated by a comma. This means that the two variables must be entered at the prompt separated by a comma, for instance `100.0,0.0`. You should alert the user to the need for such a comma or "delimiter" in the prompting message.
 :::
 
-::: {#nte-ex-1-3 .callout-note}
-**Magnetic Dipole**
-
+::: {#nte-ex-1-3 .callout-note title="Magnetic Dipole"}
 The magnetic field of the "pure" dipole in SI units is given as:
 
 ```{python}
