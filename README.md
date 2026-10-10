@@ -28,8 +28,9 @@ Plain `quarto render` also builds the PDF, which needs a TeX install.
 
 Pushing to `main` publishes the site. The GitHub Action in
 `.github/workflows/quarto-publish.yml` renders the book and pushes it to the
-`gh-pages` branch. Pull requests don't get a build, so render locally before
-merging.
+`gh-pages` branch. Pull requests get a build check
+(`.github/workflows/pr-build.yml`) that renders the HTML without publishing,
+so a broken code cell shows up before the merge.
 
 ## Layout
 

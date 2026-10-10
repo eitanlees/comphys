@@ -24,7 +24,7 @@ uv run --no-project --with-requirements requirements.txt --with quarto-cli quart
 
 Plain `quarto render` also builds the PDF, which needs TeX (not installed locally), so the PDF goes unverified.
 
-Pushing to `main` triggers the GitHub Action that builds and deploys to gh-pages. Pull requests get no build, so render locally to verify a change.
+Pushing to `main` triggers the GitHub Action that builds and deploys to gh-pages. Pull requests into `main` get a build check (`pr-build.yml`) that renders the HTML without publishing. It fails on a code-cell error but not on a broken cross-reference (Quarto only warns), so still render locally to verify a change.
 
 ## Workflow
 
