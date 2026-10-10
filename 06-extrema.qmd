@@ -455,7 +455,7 @@ int main()
   return(0);
 }
 
-/* here is our function that we want to miminize */
+/* here is our function that we want to minimize */
 
 float f(float x[])
 {

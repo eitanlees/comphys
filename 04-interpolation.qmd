@@ -177,8 +177,8 @@ derivative is a constant between the tabulated points, and may actually be
 undefined at the tabulated points!
 
 For such applications it may be best to interpolate using a polynomial
-interpolating function or functions. It can be shown that the following poly-
-nomial $P(x)$ of degree $N−1$ will exactly pass through the N tabulated points of
+interpolating function or functions. It can be shown that the following
+polynomial $P(x)$ of degree $N−1$ will exactly pass through the N tabulated points of
 the function $y = f(x)$:
 
 $$

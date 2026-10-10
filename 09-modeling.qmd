@@ -224,7 +224,7 @@ $$
 
 where $\mathbf{a}$ has the entries $a_1, a_2, \ldots a_m$. We may thus determine $\mathbf{a}$ by inverting $\mathbf{A}$.
 
-Of course, we are not finished until we have determined the errors for each of the $a_k$'s. It turns out, in analogy with section 9.2, that the variances for the $a_k$'s are given by the diagonal entries of the inverse matrix $\mathbf{A}^{-1}$, also called the *covariant matrix*. To derive the standard errors of the coefficients $a_k$, we must multiply these variances by the factor
+Of course, we are not finished until we have determined the errors for each of the $a_k$'s. It turns out, in analogy with section 9.2, that the variances for the $a_k$'s are given by the diagonal entries of the inverse matrix $\mathbf{A}^{-1}$, also called the *covariance matrix*. To derive the standard errors of the coefficients $a_k$, we must multiply these variances by the factor
 
 $$
 s^2 = \chi^2/(N - M)
@@ -508,12 +508,12 @@ int main()
   }
 
   /* Here we run mrqmin one more time with alambda = 0.0 to get
-     covariant matrix, in case we want the errors */
+     covariance matrix, in case we want the errors */
   alambda = 0.0;
   mrqmin(x,y,sig,ndata,a,ia,ma,covar,alpha,&chisq,fgauss,&alambda);
 
   /* Print out the results (the a's) along with the errors (the
-     squareroots of the diagonal members of the covariant matrix
+     square roots of the diagonal members of the covariance matrix
      divided by the number of degrees of freedom). */
   for(i=1;i<=MA/2+1;i+=MA/2) fprintf(out,"%f %f\n%f %f\n%f %f\n",
     a[i],sqrt(chisq*covar[i][i]/(float)(ndata-MA)),

@@ -49,7 +49,7 @@ These two types of problems require different approaches. We concentrate first o
 
 ### Difference Equations and Euler's Method
 
-The principle underlying the numerical integration of ordinary differential equations is that an approximate solution may be obtained by replacing the infinitessimal differentials $dy$ and $dx$ by finite differences $\Delta y$ and $\Delta x$. Thus, the differential equation
+The principle underlying the numerical integration of ordinary differential equations is that an approximate solution may be obtained by replacing the infinitesimal differentials $dy$ and $dx$ by finite differences $\Delta y$ and $\Delta x$. Thus, the differential equation
 
 $$
 \frac{dy}{dx} = f(x, y)
