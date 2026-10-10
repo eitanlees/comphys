@@ -3,6 +3,7 @@
 - Review the chapters Claude converted for accuracy.
   - Look over the missing figure sections as well and think about how to make them.
 - Add my sections at the end for python fun.
+- Look for the original `grains.dat` (Ex 2.8) on old computers, backups or course emails. The one in `data/` is a stand-in; see `data/README.md`.
 
 A loose collection of things to do and open questions.
 
