@@ -8,6 +8,8 @@ This is a Quarto book that restores Dr. Richard O. Gray's 2011 computational phy
 
 The original lecture PDFs (`experiments/lectures/lectureN_11.pdf`) are the source of truth for the text. Lecture N maps to chapter `0N-*.qmd`. Preserve Gray's notes; don't rewrite or restyle his text.
 
+Typos in Gray's text (#11) are fixed silently, in prose and in code comments: misspellings, doubled words, `Lets` for `Let's`, and line-break hyphens left over from the PDF. His wording and usage stay (`datafile`, `doneness`), and code itself (identifiers, strings, behaviour) is never changed for spelling. Errors of substance, such as a wrong exercise or equation number or a wrong formula, are not typos: ask the owner before fixing one (Ex 3.2 → 3.1 and ch 6's swapped steps, #10, are examples).
+
 The backlog is the GitHub issue list. Check it before starting work.
 
 ## Build Commands

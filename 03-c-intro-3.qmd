@@ -171,7 +171,7 @@ $$
 p(x) = \sum_{i=1}^{N} \frac{x^{i-1}}{(i-1)!}.
 $$
 
-Also, make the passed variables *external* instead of being passed by value. How do the rates of error-reduction compare between the two functions? You may find that this program may be of value to you in the future - add to to your code library.
+Also, make the passed variables *external* instead of being passed by value. How do the rates of error-reduction compare between the two functions? You may find that this program may be of value to you in the future - add to your code library.
 
 ```c
 #include <stdio.h>
