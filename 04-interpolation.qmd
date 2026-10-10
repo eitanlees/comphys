@@ -482,7 +482,7 @@ ax.plot(x_data, y_data, 'o', color='C1')
 Now you want to connect the dots ... I mean interpolate your data.
 
 NumPy has a method
-([`numpy.interp`](https://numpy.org/doc/2.3/reference/generated/numpy.interp.html){target="_blank"})
+([`numpy.interp`](https://numpy.org/doc/stable/reference/generated/numpy.interp.html){target="_blank"})
 for simple linear interpolation.  The method takes in an array of new `x`'s
 where you want to calculate the new `y`'s. The original `x` and `y` points are also needed.
 
@@ -490,7 +490,7 @@ where you want to calculate the new `y`'s. The original `x` and `y` points are a
 x_interp = np.linspace(x_data.min(), x_data.max(), num=1001)
 y_interp = np.interp(x_interp, x_data, y_data)
 
-fix, ax = plt.subplots()
+fig, ax = plt.subplots()
 ax.plot(x_interp, y_interp)
 ax.plot(x_data, y_data, 'o')
 ```
@@ -511,7 +511,7 @@ f = CubicSpline(x_data, y_data)
 
 y_interp = f(x_interp)
 
-fix, ax = plt.subplots()
+fig, ax = plt.subplots()
 ax.plot(x_interp, y_interp)
 ax.plot(x_data, y_data, 'o')
 ```
@@ -527,7 +527,7 @@ f = PchipInterpolator(x_data, y_data)
 
 y_interp = f(x_interp)
 
-fix, ax = plt.subplots()
+fig, ax = plt.subplots()
 ax.plot(x_interp, y_interp)
 ax.plot(x_data, y_data, 'o')
 ```
@@ -541,10 +541,10 @@ f = make_interp_spline(x_data, y_data, k=5)
 
 y_interp = f(x_interp)
 
-fix, ax = plt.subplots()
+fig, ax = plt.subplots()
 ax.plot(x_interp, y_interp)
 ax.plot(x_data, y_data, 'o')
 ```
 
 
-There are other methods for 2-D interpolation and smoothing as well. Have a look at the SciPy [Interpolation User Guide](https://docs.scipy.org/doc/scipy/tutorial/interpolate.html){targe="_blank"} for more details.
+There are other methods for 2-D interpolation and smoothing as well. Have a look at the SciPy [Interpolation User Guide](https://docs.scipy.org/doc/scipy/tutorial/interpolate.html){target="_blank"} for more details.
