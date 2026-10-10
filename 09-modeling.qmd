@@ -141,7 +141,7 @@ $$
 $$
 
 ::: {.callout-note title="Exercise 9.1"}
-Write a program implementing the above equations to fit a straight line to the data in the datafile `data91.dat`. Your program should estimate the parameters $a$ and $b$ and their standard errors.
+Write a program implementing the above equations to fit a straight line to the data in the datafile [`data91.dat`](data/data91.dat). Your program should estimate the parameters $a$ and $b$ and their standard errors.
 :::
 
 ::: {.callout-note title="Exercise 9.2"}
@@ -233,11 +233,11 @@ $$
 where $M$ is the number of coefficients, and then take the square root. The number $N - M$ is the number of degrees of freedom.
 
 ::: {.callout-note title="Exercise 9.4"}
-The datafile `data94.dat` contains $x, y$ data which can be fit with a polynomial. Write a program which will fit these data to a polynomial of degree $M - 1$, where $M - 1$ is a user input. The program should output the $M$ coefficients and their errors. Determine the best value of the degree of the polynomial for this dataset by trial and error. Hint: the best polynomial will have a small value for $\chi^2$, but not necessarily the smallest value. If increasing the degree of the polynomial only marginally improves the value for $\chi^2$, it may not represent a better fit. You also need to look at the standard errors of the coefficients. If the absolute value of a coefficient is no greater than 3 times its error, it is not statistically significant, i.e. it is not statistically different from zero.
+The datafile [`data94.dat`](data/data94.dat) contains $x, y$ data which can be fit with a polynomial. Write a program which will fit these data to a polynomial of degree $M - 1$, where $M - 1$ is a user input. The program should output the $M$ coefficients and their errors. Determine the best value of the degree of the polynomial for this dataset by trial and error. Hint: the best polynomial will have a small value for $\chi^2$, but not necessarily the smallest value. If increasing the degree of the polynomial only marginally improves the value for $\chi^2$, it may not represent a better fit. You also need to look at the standard errors of the coefficients. If the absolute value of a coefficient is no greater than 3 times its error, it is not statistically significant, i.e. it is not statistically different from zero.
 :::
 
 ::: {.callout-note title="Exercise 9.5"}
-The datafile `data95.dat` contains $x, y$ data which can be fit with a harmonic sine series of the form:
+The datafile [`data95.dat`](data/data95.dat) contains $x, y$ data which can be fit with a harmonic sine series of the form:
 
 $$
 y = a_1 + \sum_{n=2}^{4} a_n \sin[(n-1)\pi x]
@@ -611,5 +611,5 @@ plt.show()
 ``` 
 
 ::: {.callout-note title="Exercise 9.6"}
-Using the data in the file `decay.out` (see chapter 6), write a program which uses the Levenberg-Marquardt method to fit the four parameters $A$, $\gamma$, $B$ and $C$. Compare the values you get with the Simplex and Powell methods.
+Using the data in the file [`decay.out`](data/decay.out) (see chapter 6), write a program which uses the Levenberg-Marquardt method to fit the four parameters $A$, $\gamma$, $B$ and $C$. Compare the values you get with the Simplex and Powell methods.
 :::
