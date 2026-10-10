@@ -817,7 +817,7 @@ Repeat Exercise 6.9 using Powell’s method.
 
 ## Optimization in Python
 
-Optimization is a vast subject. SciPy has got you covered with the [optimize](https://docs.scipy.org/doc/scipy/reference/optimize.html){target="_blank"} subpackages,
+Optimization is a vast subject. SciPy has got you covered with the [optimize](https://docs.scipy.org/doc/scipy/reference/optimize.html){target="_blank"} subpackage,
 which we previously met in @sec-roots for all of our root finding needs.
 
 For scalar functions the `minimize_scalar` method is used. As an example we will return to our favorite wiggle
@@ -851,7 +851,7 @@ plt.plot(x, j0(x))
 plt.plot(result.x, result.fun, 'o')
 ```
 
-Note this is a local minium. Passing a bracket we can find multiple local minima
+Note this is a local minimum. Passing a bracket we can find multiple local minima
 ```{python}
 results = []
 bracket = [[2,4], [8, 10], [14, 16]]
@@ -882,8 +882,8 @@ difficult for methods to navigate the shallow curved valley.
 #| label: fig-rosen
 #| fig-cap: "The Rosenbrock function"
 #| fig-subcap: 
-#|   - "The funtion forms a shallow horseshoe valley"
-#|   - "The minimum of the fucntion is at $(x, y) = (1, 1)$"
+#|   - "The function forms a shallow horseshoe valley"
+#|   - "The minimum of the function is at $(x, y) = (1, 1)$"
 #| layout-ncol: 2
 
 from scipy.optimize import rosen
@@ -931,7 +931,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-The Rosenbrock function as a minimum at $f(x,y)=f(1,1)=0$ shown in @fig-rosen-2. 
+The Rosenbrock function has a minimum at $f(x,y)=f(1,1)=0$ shown in @fig-rosen-2. 
 
 The Rosenbrock function is so commonly used in optimization that SciPy provides an method `rosen`.
 
@@ -943,7 +943,7 @@ print(rosen([-15, 25]))
 print(rosen([1,1]))
 ```
 
-Let's say we start at a point $(-1.5, 2.5)$ and we want to minimize the function. For multivariet minimization, SciPy provides the `minimize` method. 
+Let's say we start at a point $(-1.5, 2.5)$ and we want to minimize the function. For multivariate minimization, SciPy provides the `minimize` method. 
 
 ```{python}
 from scipy.optimize import minimize
@@ -952,8 +952,8 @@ result = minimize(rosen, x0)
 result
 ```
 
-Again as with the root finding methods, the results contain more than just the minimum. In this case we also get the number of function evaluates and an estimate 
-of the jacobian and hessian. The defauly method is `'BFGS'` but you can pass
+Again as with the root finding methods, the results contain more than just the minimum. In this case we also get the number of function evaluations and an estimate 
+of the jacobian and hessian. The default method is `'BFGS'` but you can pass
 which method you want to use such as `Nelder-Mead`
 
 ```{python}
@@ -969,7 +969,7 @@ minimize(rosen, x0, method='Powell')
 ```
 
 and notice how poorly it performs on this function. Navigating around the 
-valley resulted in many more function evaluations.  If can be instructive to view both methods side by side and see what path they take. 
+valley resulted in many more function evaluations.  It can be instructive to view both methods side by side and see what path they take. 
 
 
 ```{python}
