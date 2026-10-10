@@ -91,15 +91,15 @@ Notice how we have initialized the values for the vector `wave` in this example.
 
 All three examples should give identical output. In this application, the *for loop* example is probably unnecessarily complicated, but this method of initializing a vector can be quite useful, especially if the values of the vector are not readily computed. For instance, let us suppose we wanted to evaluate the Planck function at the wavelengths: 515.0, 912.0, 3123.0, 6615.0 .... In such a case we would have been forced to use a *for loop* because these values cannot be computed with an increment statement such as `wave += 500`. In addition, *for loops* are used when we want to control exactly the number of times the loop is executed.
 
-::: {.callout-note title="Exercise 2.1"}
+::: {#nte-ex-2-1 .callout-note}
 Write a program containing a *while loop* which will output the velocity of a ball thrown upwards with an initial velocity $v_0$ (which should be input to the program) moving under the influence of gravity. The program should output the velocity of the ball for times $t = 0$ to $t = 100$ seconds with an interval of 5 seconds.
 :::
 
-::: {.callout-note title="Exercise 2.2"}
-Accomplish the task for Exercise 2.1 using a *for loop*.
+::: {#nte-ex-2-2 .callout-note}
+Accomplish the task for @nte-ex-2-1 using a *for loop*.
 :::
 
-::: {.callout-note title="Exercise 2.3"}
+::: {#nte-ex-2-3 .callout-note}
 A particle moves through space with the parametric equations
 
 $$
@@ -115,8 +115,8 @@ $$
 Write a program that will compute and output the $(x, y)$ coordinates of the particle between $t = 0$ and $t = 5.0$ sec at steps of 0.5 sec. Use a *while loop* to do this.
 :::
 
-::: {.callout-note title="Exercise 2.4"}
-Accomplish the task for Exercise 2.3 using a *for loop*.
+::: {#nte-ex-2-4 .callout-note}
+Accomplish the task for @nte-ex-2-3 using a *for loop*.
 :::
 
 Read: *The C Programming Language* [@kernighan88]: Chapter 3 (sections 3.5 -- 3.7)
@@ -181,15 +181,15 @@ Boolean expressions can be combined using Boolean algebra. For instance, Boolean
 | `B` | True |
 | `!B` | False |
 
-::: {.callout-note title="Exercise 2.5"}
+::: {#nte-ex-2-5 .callout-note}
 Up until now, the variable `ni` in the expression `ni = scanf(...` has simply been thrown away. We can use it, however, to verify that the user has entered the correct number of variables. Write a program which prompts the user for numerical values for two variables, say $v_0$ and $t_f$. Use a conditional test on `ni` to check to see if two variables have, indeed, been entered, and if not, then to print an error message.
 :::
 
-::: {.callout-note title="Exercise 2.6"}
+::: {#nte-ex-2-6 .callout-note}
 Write a program that incorporates a certain key number which is unknown to the user. The program should prompt the user to input a guess for this key number, and then print to the screen whether the guess is less than, equal to, or greater than the key. The program should incorporate a loop so that the user can keep guessing until the correct number is found.
 :::
 
-::: {.callout-note title="Exercise 2.7"}
+::: {#nte-ex-2-7 .callout-note}
 Random numbers can be generated between 0.0 and 1.0 using the function `ran1` from the file `comphys.c`. The random number generator needs to be initialized, and this code fragment shows you how to do it:
 
 ```c
@@ -225,7 +225,7 @@ int main()
 Write a program using this random number generator that will sort the random numbers `x` that you generate into 4 bins, one bin with $0 \le x < 0.25$, the next with $0.25 \le x < 0.50$, etc. Generate 1000 random numbers, and have the program count the number in each bin.
 :::
 
-::: {.callout-note title="Exercise 2.8"}
+::: {#nte-ex-2-8 .callout-note}
 In many applications, whether they are directly related to physics or not, one needs to sort data based on some criterion. This need arises quite often and, if not approached correctly, could consume a considerable amount of CPU time. There are many sorting applications out there, all of which rely on conditional statements to sort the data. A highly efficient and commonly used sorting routine is "quicksort.c".
 
 The quicksort routine uses recursion to divide a given array into smaller and smaller partitions, sorting as it goes. Quicksort and its subroutine, `partition.c`, are provided for you within the `comphys.c` library in two forms: `qsint`, which applies quicksort to integers, and `qsfloat`, which applies quicksort to floating point values:
@@ -354,7 +354,7 @@ and then, after compiling your program, running it with the command `./ex24 < gr
 
 :::
 
-::: {.callout-note title="Exercise 2.9"}
+::: {#nte-ex-2-9 .callout-note}
 A certain physical quantity $S$ exhibits the property of *bifurcation* when a critical value of $\epsilon$ is reached. Below $\epsilon = 4.5553$, $S$ is described by the equation:
 
 $$
@@ -422,8 +422,8 @@ How does this work? The parameters to the `main` function `int argc, char *argv[
 gnuplot> plot "planck.out" using 1:2 with lines
 ```
 
-::: {.callout-note title="Exercise 2.10"}
-Use piping to redirect the output from the program you wrote for Exercise 2.9 into a file `bifurcation.dat`. Then use gnuplot to plot the output. To see the behavior of the function more clearly, increase the number of points generated to 1000.
+::: {#nte-ex-2-10 .callout-note}
+Use piping to redirect the output from the program you wrote for @nte-ex-2-9 into a file `bifurcation.dat`. Then use gnuplot to plot the output. To see the behavior of the function more clearly, increase the number of points generated to 1000.
 :::
 
 Read: *The C Programming Language* [@kernighan88]: Section 5.10

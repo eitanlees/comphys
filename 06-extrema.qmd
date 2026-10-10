@@ -131,9 +131,7 @@ We use the following algorithm:
 
 ---
 
-::: callout-note
-#### Exercise 6.1
-
+::: {#nte-ex-6-1 .callout-note}
 Using the above algorithm, find the minimum of the polynomial  
 
 $$
@@ -145,9 +143,7 @@ using the beginning bracket $(11, 15, 20)$. Print out intermediate results so th
 
 ---
 
-::: callout-note
-#### Exercise 6.2
-
+::: {#nte-ex-6-2 .callout-note}
 Legendre polynomials appear in the solutions to Laplace's equation in electrostatics, particularly for systems with spherical symmetries. For example, the general solution for the potential in 3-space, arrived at via separation of variables, takes the form:
 
 $$
@@ -173,9 +169,7 @@ using the initial bracket $(0.0, 0.5, 1.0)$. Print out intermediate results so t
 
 ---
 
-::: callout-note
-#### Exercise 6.3
-
+::: {#nte-ex-6-3 .callout-note}
 Recall that the Bessel function $J_0(x)$ is included in `comphys.c` as:
 
 ```c
@@ -256,28 +250,22 @@ plot_bracket(tangent=True)
 
 ---
 
-::: callout-note
-#### Exercise 6.4
-
-Modify your program for **Exercise 6.1** to include derivative information.  
+::: {#nte-ex-6-4 .callout-note}
+Modify your program for **@nte-ex-6-1** to include derivative information.  
 Does the modified program take fewer steps to converge on the minimum?  
 Does it do a better job at finding the minimum? How do you know?
 :::
 
 ---
 
-::: callout-note
-#### Exercise 6.5
-
-Re-do **Exercise 6.2** using derivative information.
+::: {#nte-ex-6-5 .callout-note}
+Re-do **@nte-ex-6-2** using derivative information.
 :::
 
 ---
 
-::: callout-note
-#### Exercise 6.6
-
-Re-do **Exercise 6.3** using derivative information. Recall that:
+::: {#nte-ex-6-6 .callout-note}
+Re-do **@nte-ex-6-3** using derivative information. Recall that:
 
 $$
 \frac{dJ_0(x)}{dx} = -J_1(x)
@@ -286,9 +274,7 @@ $$
 
 ---
 
-::: callout-note
-#### Exercise 6.7 — The Derivation of Wien's Law
-
+::: {#nte-ex-6-7 .callout-note title="The Derivation of Wien's Law"}
 Wien's law is a property of the blackbody spectrum and can be written as:
 
 $$
@@ -515,7 +501,7 @@ plt.show()
 
 In this case, both $\Delta x$ and $\Delta y$ are 1.
 
-::: {.callout-note title="Exercise 6.8"}
+::: {#nte-ex-6-8 .callout-note}
 
 In this exercise, we explore a very useful application of function minimization — optimizing a fit to a model. Consider the following data, which come from an exponentially decaying oscillating system:
 
@@ -683,7 +669,7 @@ plt.show()
 
 :::
 
-::: {.callout-note title="Exercise 6.9"}
+::: {#nte-ex-6-9 .callout-note}
 
 The restricted 3-body problem of classical mechanics leads to a non-dimensionalized potential energy surface given by the equation:
 
@@ -805,14 +791,12 @@ float f(float x[])
 }
 ```
 
-::: {.callout-note}
-#### Exercise 6.10
-Repeat Exercise 6.8 using Powell's method.
+::: {#nte-ex-6-10 .callout-note}
+Repeat @nte-ex-6-8 using Powell's method.
 :::
 
-::: {.callout-note}
-#### Exercise 6.11
-Repeat Exercise 6.9 using Powell's method.
+::: {#nte-ex-6-11 .callout-note}
+Repeat @nte-ex-6-9 using Powell's method.
 :::
 
 ## Optimization in Python

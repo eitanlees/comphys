@@ -20,6 +20,12 @@ book:
 
 bibliography: references.bib
 
+# Exercises are callouts with #nte- ids, numbered per chapter; label them
+# "Exercise" in the box and in @nte- references. Plain notes stay "Note".
+language:
+  crossref-nte-title: Exercise
+  crossref-nte-prefix: Exercise
+
 format:
   html:
     theme:

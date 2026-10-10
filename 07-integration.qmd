@@ -76,7 +76,7 @@ $$
 
 for unevenly spaced points.
 
-::: {.callout-note title="Exercise 7.1"}
+::: {#nte-ex-7-1 .callout-note}
 Use the trapezoidal rule to evaluate the integral
 
 $$
@@ -130,11 +130,11 @@ f_1 + 4f_2 + 2f_3 + 4f_4 + \ldots + 2f_{N-2} + 4f_{N-1} + f_N
 + O\left(\frac{1}{N^4}\right)
 $$
 
-::: {.callout-note title="Exercise 7.2"}
+::: {#nte-ex-7-2 .callout-note}
 
-Calculate the integral of Exercise 7.1 with Simpson's rule using 9 points in the
+Calculate the integral of @nte-ex-7-1 with Simpson's rule using 9 points in the
 interval $(1,2)$, and then repeat the exercise with 19 points.  Compare with the
-results from Exercise 7.1 for 10 and 20 points respectively.
+results from @nte-ex-7-1 for 10 and 20 points respectively.
 
 :::
 
@@ -149,10 +149,10 @@ we will not go into, that can extract virtually any desired precision from the
 trapezoidal and Simpson's rules. Thus, it is hardly ever necessary to utilize
 higher-order formulae.
 
-::: {.callout-note title="Exercise 7.3"}
+::: {#nte-ex-7-3 .callout-note}
 
 To explore one of these "advanced techniques", go back to the program you wrote
-for Exercise 7.1 and rewrite it to calculate the value of the integral with $N =
+for @nte-ex-7-1 and rewrite it to calculate the value of the integral with $N =
 30$ and $N = 80$ points.  Setting $x = 1/N^2$ and $y =$ the value of the
 integral for each value of $N$ defines two points. The program should find the
 equation of the line between these two points.  The y-intercept of this
@@ -253,8 +253,8 @@ $$
 
 where the weights and abscissas are as displayed in the table above, and we are assuming that $W(x) = 1$.
 
-::: {.callout-note title="Exercise 7.4"}
-Repeat Exercise 7.1 using Gauss–Legendre integration with 5 abscissas. Compare the accuracy with your results from Exercises 7.1 and 7.2.
+::: {#nte-ex-7-4 .callout-note}
+Repeat @nte-ex-7-1 using Gauss–Legendre integration with 5 abscissas. Compare the accuracy with your results from Exercises [-@nte-ex-7-1] and [-@nte-ex-7-2].
 :::
 
 ## Multidimensional Integrals
@@ -436,7 +436,7 @@ double trap(double a, double b, double (*func)(double), int N)
 }
 ```
 
-::: {.callout-note title="Exercise 7.5"}
+::: {#nte-ex-7-5 .callout-note}
 Evaluate the integral
 
 $$
@@ -447,7 +447,7 @@ using two applications of the trapezoidal method.  The exact value of this integ
 :::
 
 
-::: {.callout-note title="Exercise 7.6"}
+::: {#nte-ex-7-6 .callout-note}
 
 ```{python}
 #| echo: false
@@ -667,11 +667,11 @@ Notice that increasing $N$ by a factor of 10 decreased the error by a factor of 
 
 The moral of the story is --- run your Monte Carlo program many times as the individual results are scattered around the true value.
 
-::: {.callout-note title="Exercise 7.7"}
-Use Monte Carlo integration to evaluate the integral in Exercise 7.5. The program should prompt the user for N, the number of random points used in the integration.
+::: {#nte-ex-7-7 .callout-note}
+Use Monte Carlo integration to evaluate the integral in @nte-ex-7-5. The program should prompt the user for N, the number of random points used in the integration.
 :::
 
-::: {.callout-note title="Exercise 7.8"}
+::: {#nte-ex-7-8 .callout-note}
 Using Monte Carlo integration, find the center of mass of a 2-D right triangle with base of length 1 and height of length 2. With the right angle positioned at $(0,0)$, the density varies as $\rho = y \sin x^2 + 2$. Recall that the center of mass of a planar object is given by
 
 $$
@@ -689,11 +689,11 @@ M = \iint \rho\, dS
 $$
 :::
 
-::: {.callout-note title="Exercise 7.9"}
-Repeat the problem of Exercise 7.6 using Monte Carlo integration.
+::: {#nte-ex-7-9 .callout-note}
+Repeat the problem of @nte-ex-7-6 using Monte Carlo integration.
 :::
 
-::: {.callout-note title="Exercise 7.10"}
+::: {#nte-ex-7-10 .callout-note}
 **The Ising Model:** Monte Carlo methods may be used in applications other than integration. Consider the following from atomic physics. An Ising chain is a 1-D array made of $N$ particles with spin. The spin ($s$) of an individual particle can be either up (+1) or down (-1), and the total energy of the chain is given by
 
 $$

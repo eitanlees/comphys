@@ -32,7 +32,7 @@ $$
 \frac{dy}{dt} = z, \quad \frac{dz}{dt} = \epsilon(1 - y^2)z - ay.
 $$
 
-::: {.callout-note title="Exercise 8.1"}
+::: {#nte-ex-8-1 .callout-note}
 Express the differential equations for the simple pendulum, Emden's equation and the white dwarf equation as systems of two first-order differential equations.
 :::
 
@@ -137,7 +137,7 @@ int main()
 
 The result is that when $x = 1$, $y = 4.301422$, a fairly good approximation of the "exact" result, $y = 4.304658$.
 
-::: {.callout-note title="Exercise 8.2"}
+::: {#nte-ex-8-2 .callout-note}
 Integrate the differential equation
 
 $$
@@ -212,8 +212,8 @@ int main()
 
 This code gives the result $y(1) = 4.304658$, considerably better than before, but without very much more effort!
 
-::: {.callout-note title="Exercise 8.3"}
-Integrate the differential equation of Exercise 8.2 using the Runge Kutta method. Do you get a better result?
+::: {#nte-ex-8-3 .callout-note}
+Integrate the differential equation of @nte-ex-8-2 using the Runge Kutta method. Do you get a better result?
 :::
 
 It turns out that it is possible to come up with higher order Runge Kutta schemes. However, in practice, almost everyone uses the fourth-order Runge Kutta method. The reason for this is that, coupled with an *adaptive stepsize routine*, the fourth-order Runge Kutta method will give almost any accuracy desired.
@@ -237,8 +237,8 @@ $$
 
 and then use this new step size to redo the integration step starting at $x$.
 
-::: {.callout-note title="Exercise 8.4"}
-Integrate the differential equation of Exercises 8.2 & 8.3 using adaptive stepsize control with the Runge Kutta method. Begin with $\Delta x = 0.1$ and $\epsilon_0 = 1.0 \times 10^{-6}$. Print out the intermediate results so that you can see what your algorithm is doing. Remember that the integration must stop at $x = 1.0$. Experiment with different values of $\epsilon_0$ to see how close you can get to the "exact" solution.
+::: {#nte-ex-8-4 .callout-note}
+Integrate the differential equation of Exercises [-@nte-ex-8-2] & [-@nte-ex-8-3] using adaptive stepsize control with the Runge Kutta method. Begin with $\Delta x = 0.1$ and $\epsilon_0 = 1.0 \times 10^{-6}$. Print out the intermediate results so that you can see what your algorithm is doing. Remember that the integration must stop at $x = 1.0$. Experiment with different values of $\epsilon_0$ to see how close you can get to the "exact" solution.
 :::
 
 ### The Integration of Systems of Differential Equations
@@ -334,7 +334,7 @@ x = 0.9 y = 1.583660 z = -0.730560
 x = 1.0 y = 1.508149 z = -0.780208
 ```
 
-::: {.callout-note title="Exercise 8.5"}
+::: {#nte-ex-8-5 .callout-note}
 Integrate the equation for the simple pendulum
 
 $$
@@ -523,11 +523,11 @@ double yderiv(double x)
 
 If this all looks like too much trouble, you are probably right. I almost always stick with the Runge Kutta routine for numerical integration of differential equations. However, note that this method uses only two function evaluations per step, whereas the Runge Kutta technique uses four. As a matter of fact, one can toss out the second function evaluation in the Adams-Bashforth-Moulton routine with only a small sacrifice in accuracy. This means that the Adams-Bashforth-Moulton routine can be four times faster than the Runge Kutta routine. This can be very important if the function evaluation is computationally expensive.
 
-::: {.callout-note title="Exercise 8.6"}
-Integrate the differential equation of Exercise 8.2 using the Adams-Bashforth-Moulton technique.
+::: {#nte-ex-8-6 .callout-note}
+Integrate the differential equation of @nte-ex-8-2 using the Adams-Bashforth-Moulton technique.
 :::
 
-::: {.callout-note title="Exercise 8.7"}
+::: {#nte-ex-8-7 .callout-note}
 Integrate the second-order differential equation (Emden's equation)
 
 $$
@@ -684,7 +684,7 @@ ax.set_ylim(1.4, 2.2)
 plt.show()
 ```
 
-::: {.callout-note title="Exercise 8.8"}
+::: {#nte-ex-8-8 .callout-note}
 Find the solution of the differential equation
 
 $$
