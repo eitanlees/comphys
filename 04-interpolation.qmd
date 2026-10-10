@@ -481,7 +481,7 @@ ax.plot(x_data, y_data, 'o', color='C1')
 
 Now you want to connect the dots ... I mean interpolate your data.
 
-Numpy has a method
+NumPy has a method
 ([`numpy.interp`](https://numpy.org/doc/2.3/reference/generated/numpy.interp.html){target="_blank"})
 for simple linear interpolation.  The method takes in an array of new `x`'s
 where you want to calculate the new `y`'s. The original `x` and `y` points are also needed.
@@ -498,7 +498,7 @@ ax.plot(x_data, y_data, 'o')
 If you want a fancier smooth line SciPy has got you covered!  The
 [`interpolate`](https://docs.scipy.org/doc/scipy/reference/interpolate.html){target="_blank"}
 subpackage contains many methods to suit your needs.  These methods follow a
-different pattern than the Numpy approach.  When using the SciPy `interpolate`
+different pattern than the NumPy approach.  When using the SciPy `interpolate`
 methods you provide the original data points and are returned a function you can
 call to interpolate new values.
 
@@ -532,7 +532,7 @@ ax.plot(x_interp, y_interp)
 ax.plot(x_data, y_data, 'o')
 ```
 
-These cubic methods are typically fine for most application. There is also a generalized method for making interpolating splines of any degree but use with caution. You may introduce unexpected wiggles!
+These cubic methods are typically fine for most applications. There is also a generalized method for making interpolating splines of any degree but use with caution. You may introduce unexpected wiggles!
 
 ```{python}
 from scipy.interpolate import make_interp_spline
