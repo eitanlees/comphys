@@ -396,39 +396,39 @@ s^2 = \chi^2/(N - 2)
 <p><span class="math display">\[
 \text{S.E.}(b) = s\sigma_b
 \]</span></p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.1">
+<div id="nte-ex-9-1" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 9.1
+Exercise&nbsp;9.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Write a program implementing the above equations to fit a straight line to the data in the datafile <a href="data/data91.dat"><code>data91.dat</code></a>. Your program should estimate the parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and their standard errors.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.2">
+<div id="nte-ex-9-2" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 9.2
+Exercise&nbsp;9.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Write a function which will multiply an <span class="math inline">\(N \times M\)</span> matrix with a vector of length <span class="math inline">\(M\)</span> to give a vector of length <span class="math inline">\(N\)</span>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.3">
+<div id="nte-ex-9-3" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 9.3
+Exercise&nbsp;9.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -485,26 +485,26 @@ b_k = \sum_{i=1}^{N} \frac{y_i X_k(x_i)}{\sigma_i^2}
 s^2 = \chi^2/(N - M)
 \]</span></p>
 <p>where <span class="math inline">\(M\)</span> is the number of coefficients, and then take the square root. The number <span class="math inline">\(N - M\)</span> is the number of degrees of freedom.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.4">
+<div id="nte-ex-9-4" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 9.4
+Exercise&nbsp;9.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>The datafile <a href="data/data94.dat"><code>data94.dat</code></a> contains <span class="math inline">\(x, y\)</span> data which can be fit with a polynomial. Write a program which will fit these data to a polynomial of degree <span class="math inline">\(M - 1\)</span>, where <span class="math inline">\(M - 1\)</span> is a user input. The program should output the <span class="math inline">\(M\)</span> coefficients and their errors. Determine the best value of the degree of the polynomial for this dataset by trial and error. Hint: the best polynomial will have a small value for <span class="math inline">\(\chi^2\)</span>, but not necessarily the smallest value. If increasing the degree of the polynomial only marginally improves the value for <span class="math inline">\(\chi^2\)</span>, it may not represent a better fit. You also need to look at the standard errors of the coefficients. If the absolute value of a coefficient is no greater than 3 times its error, it is not statistically significant, i.e.&nbsp;it is not statistically different from zero.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.5">
+<div id="nte-ex-9-5" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 9.5
+Exercise&nbsp;9.5
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -512,12 +512,17 @@ s^2 = \chi^2/(N - M)
 <p><span class="math display">\[
 y = a_1 + \sum_{n=2}^{4} a_n \sin[(n-1)\pi x]
 \]</span></p>
-<p>Determine the <span class="math inline">\(a_n\)</span>’s and their errors for this dataset.</p>
-<div id="7c71808a" class="cell" data-execution_count="1">
+<p>Determine the <span class="math inline">\(a_n\)</span>’s and their errors for this dataset. See <a href="#fig-data95" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>.</p>
+<div id="cell-fig-data95" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="09-modeling_files/figure-html/cell-2-output-1.png" width="605" height="435" class="figure-img"></p>
+<div id="fig-data95" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data95-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-modeling_files/figure-html/fig-data95-output-1.png" width="605" height="435" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data95-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Data and resulting fit for <a href="#nte-ex-9-5" class="quarto-xref">Exercise&nbsp;<span>9.5</span></a>.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -571,13 +576,18 @@ c \equiv f(\mathbf{P}) \quad \mathbf{b} \equiv -\nabla f|_\mathbf{P} \quad [\mat
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">(*</span>funcs<span class="op">)(</span><span class="dt">float</span><span class="op">,</span> <span class="dt">float</span> <span class="op">[],</span> <span class="dt">float</span> <span class="op">*,</span> <span class="dt">float</span> <span class="op">[],</span> <span class="dt">int</span><span class="op">),</span> <span class="dt">float</span> <span class="op">*</span>alambda<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and comes with the directions: “Levenberg-Marquardt method, attempting to reduce the value <span class="math inline">\(\chi^2\)</span> of a fit between a set of data points <code>x[1..ndata]</code>, <code>y[1..ndata]</code> with individual standard deviations <code>sig[1..ndata]</code> and a nonlinear function dependent on <code>ma</code> coefficients <code>a[1..ma]</code>. The input array <code>ia[1..ma]</code> indicates by nonzero entries those components of <code>a</code> that should be fitted for, and by zero entries those components that should be held fixed at their input values. The program returns current best-fit values for the parameters <code>a[1..ma]</code> and <span class="math inline">\(\chi^2\)</span> = <code>chisq</code>. The arrays <code>covar[1..ma][1..ma]</code>, <code>alpha[1..ma][1..ma]</code> are used as working space during most iterations. Supply a routine <code>funcs(x,a,yfit,dyda,ma)</code> that evaluates the fitting function <code>yfit</code>, and its derivatives <code>dyda[1..ma]</code> with respect to the fitting parameters <code>a</code> at <code>x</code>. On the first call provide an initial guess for the parameters <code>a</code>, and set <code>alambda &lt; 0</code> for initialization (which then sets <code>alambda = .001</code>). If a step succeeds <code>chisq</code> becomes smaller and <code>alambda</code> decreases by a factor of 10. If a step fails <code>alambda</code> grows by a factor of 10. You must call this routine repeatedly until convergence is achieved. Then, make one final call with <code>alambda = 0</code>, so that <code>covar[1..ma][1..ma]</code> returns the covariance matrix, and <code>alpha</code> the curvature matrix. (Parameters held fixed will return zero covariances).”</p>
 <p>The constant <code>alambda</code> in the above discussion refers to the constant in the method of steepest descent.</p>
-<p>The best way to explain how to use <code>mrqmin</code> is with an example. The following figure shows a histogram of data. The underlying theory is that the distribution of points in this diagram is a double Gaussian. We would like to fit these data to a function that looks like:</p>
+<p>The best way to explain how to use <code>mrqmin</code> is with an example. <a href="#fig-double-gaussian" class="quarto-xref">Figure&nbsp;<span>9.2</span></a> shows a histogram of data. The underlying theory is that the distribution of points in this diagram is a double Gaussian. We would like to fit these data to a function that looks like:</p>
 <!-- TODO: Recreate Figure 2 showing histogram data to be fit with double Gaussian -->
-<div id="ca25b702" class="cell" data-execution_count="2">
+<div id="cell-fig-double-gaussian" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="09-modeling_files/figure-html/cell-3-output-1.png" width="663" height="470" class="figure-img"></p>
+<div id="fig-double-gaussian" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-double-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-modeling_files/figure-html/fig-double-gaussian-output-1.png" width="663" height="470" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-double-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: We want to fit these data with a double Gaussian.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -705,22 +715,27 @@ f(x; a_1, \ldots, a_6) = a_1 \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \r
 <span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">;</span></span>
 <span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="d3551ce8" class="cell" data-execution_count="3">
+<div id="cell-fig-double-gaussian-fit" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="09-modeling_files/figure-html/cell-4-output-1.png" width="663" height="470" class="figure-img"></p>
+<div id="fig-double-gaussian-fit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-double-gaussian-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-modeling_files/figure-html/fig-double-gaussian-fit-output-1.png" width="663" height="470" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-double-gaussian-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: Here is the resulting fit.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.6">
+<div id="nte-ex-9-6" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 9.6
+Exercise&nbsp;9.6
 </div>
 </div>
 <div class="callout-body-container callout-body">

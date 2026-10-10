@@ -303,7 +303,7 @@ window.Quarto = {
 
 <section id="functions" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="functions"><span class="header-section-number">3.1</span> Functions</h2>
-<p>We have already learned in class that a C-program is made up of a number of functions. Every C-program has at least one function – the <code>main</code> function. C-programs can also make use of built-in functions such as math functions and input/output functions, and we have seen examples of how to use functions that are included in <code>comphys.c</code> (see exercise 2.7). In this lecture, we are going to learn how to write our own functions to handle certain calculations or perform certain operations. As an example of how to introduce a user-written function into our program, let us modify our Planck function example from Lecture 2.</p>
+<p>We have already learned in class that a C-program is made up of a number of functions. Every C-program has at least one function – the <code>main</code> function. C-programs can also make use of built-in functions such as math functions and input/output functions, and we have seen examples of how to use functions that are included in <code>comphys.c</code> (see <a href="02-c-intro-2.html#nte-ex-2-7" class="quarto-xref">exercise&nbsp;<span>2.7</span></a>). In this lecture, we are going to learn how to write our own functions to handle certain calculations or perform certain operations. As an example of how to introduce a user-written function into our program, let us modify our Planck function example from Lecture 2.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -386,52 +386,52 @@ window.Quarto = {
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>p1<span class="op">);</span></span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note the changes in the declaration of <code>planck</code> and how <code>planck</code> is referenced in the main program.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 3.1">
+<div id="nte-ex-3-1" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 3.1
+Exercise&nbsp;3.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Write a program that will pass a variable <code>double T = 100.0</code> by reference to a function (declare it <code>void doit(double *T)</code>) which will then multiply <code>T</code> by 2.5 and pass it back to <code>main</code>. Print the variable <code>T</code> out in <code>main</code> to verify that it has indeed been changed to 250.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 3.2">
+<div id="nte-ex-3-2" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 3.2
+Exercise&nbsp;3.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rewrite your program in Exercise 3.3 and pass <code>T</code> by <em>value</em>. Show that even though <code>T</code> is multiplied by 2.5 in the <code>doit</code> function, its value remains the same in the <code>main</code> function.</p>
+<p>Rewrite your program in <a href="#nte-ex-3-1" class="quarto-xref">Exercise&nbsp;<span>3.1</span></a> and pass <code>T</code> by <em>value</em>. Show that even though <code>T</code> is multiplied by 2.5 in the <code>doit</code> function, its value remains the same in the <code>main</code> function.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 3.3">
+<div id="nte-ex-3-3" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 3.3
+Exercise&nbsp;3.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rewrite your program from Exercise 3.1, but now declare <code>T</code> as an external variable. Verify that after calling <code>doit</code> the value of <code>T</code> in <code>main</code> is 250.0.</p>
+<p>Rewrite your program from <a href="#nte-ex-3-1" class="quarto-xref">Exercise&nbsp;<span>3.1</span></a>, but now declare <code>T</code> as an external variable. Verify that after calling <code>doit</code> the value of <code>T</code> in <code>main</code> is 250.0.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 3.4">
+<div id="nte-ex-3-4" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 3.4
+Exercise&nbsp;3.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -622,13 +622,13 @@ p(x) = \sum_{i=1}^{N} \frac{x^{i-1}}{(i-1)!}.
 <span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>  p1 <span class="op">=</span> p<span class="op">/(</span>pow<span class="op">(</span>wave<span class="op">,</span><span class="fl">5.0</span><span class="op">)*(</span>exp<span class="op">(</span><span class="fl">1.43879e+08</span><span class="op">/(</span>wave<span class="op">*</span>T<span class="op">))</span> <span class="op">-</span> <span class="fl">1.0</span><span class="op">));</span></span>
 <span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>p1<span class="op">);</span></span>
 <span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 3.5">
+<div id="nte-ex-3-5" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 3.5
+Exercise&nbsp;3.5
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -694,7 +694,7 @@ y[2][0],y[2][1],y[2][2],y[2][3],y[2][4]</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> y<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">2</span><span class="op">},</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>               <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">},</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>               <span class="op">{</span> <span class="dv">99</span><span class="op">,</span><span class="dv">456</span><span class="op">,</span> <span class="dv">23</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">5</span><span class="op">}};</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Unfortunately, it is not so easy to initialize a vector or matrix which has been defined using the functions <code>vector</code> or <code>matrix</code>. One way of doing so is to stuff the vector or matrix with data read in from a file (see Exercise 3.6).</p>
+<p>Unfortunately, it is not so easy to initialize a vector or matrix which has been defined using the functions <code>vector</code> or <code>matrix</code>. One way of doing so is to stuff the vector or matrix with data read in from a file (see <a href="#nte-ex-3-6" class="quarto-xref">Exercise&nbsp;<span>3.6</span></a>).</p>
 <p>One does not have to use <code>vector</code> to create a unit offset vector. For instance, let us suppose we have declared and initialized a vector <code>c</code> in the following way:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> c<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="fl">1.865</span><span class="op">,</span><span class="fl">3.449</span><span class="op">,</span><span class="fl">1.23e+04</span><span class="op">,</span><span class="fl">0.0045</span><span class="op">};</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which clearly goes from <code>c[0]</code> to <code>c[3]</code>. Let us suppose we want to define a vector that has the same entries, but is unit offset. This is easy to arrange, and can be done as follows</p>
@@ -704,17 +704,17 @@ y[2][0],y[2][1],y[2][2],y[2][3],y[2][4]</code></pre>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> c<span class="op">-</span><span class="dv">1</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The vector <code>C</code> will now go from <code>C[1]</code> to <code>C[4]</code> with the same entries as <code>c</code>, i.e., <code>C[1] = 1.865</code>, <code>C[2] = 3.449</code>, etc.</p>
 <p>One can in principle do the same thing for matrices, but the implementation of the offset is quite a bit more complex.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 3.6">
+<div id="nte-ex-3-6" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 3.6
+Exercise&nbsp;3.6
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Modify your program from Exercise 3.5 to read the values from the file <code>inputwave.dat</code> into the vector <code>wave</code> which has been allocated space using the function <code>dvector</code>. Then modify the <em>while loop</em> to use these values in the computation of the Planck function.</p>
+<p>Modify your program from <a href="#nte-ex-3-5" class="quarto-xref">Exercise&nbsp;<span>3.5</span></a> to read the values from the file <code>inputwave.dat</code> into the vector <code>wave</code> which has been allocated space using the function <code>dvector</code>. Then modify the <em>while loop</em> to use these values in the computation of the Planck function.</p>
 </div>
 </div>
 <p>Read: <em>The C Programming Language</em> <span class="citation" data-cites="kernighan88">(<a href="references.html#ref-kernighan88" role="doc-biblioref">Kernighan and Ritchie 1988</a>)</span>: Chapter 5</p>

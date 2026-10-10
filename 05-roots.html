@@ -293,13 +293,13 @@ f(x) = \frac{1}{x - c}
 <p>Let us assume that our function is fairly free of pathologies and that we know that there is a root in the interval <span class="math inline">\((a, b)\)</span> and that we want to find it more exactly.</p>
 <p>The simplest way to proceed is using the method of <em>bisection</em>. This method is straightforward. If we know that a root is in <span class="math inline">\((a, b)\)</span> because <span class="math inline">\(f(a)\)</span> has a different sign from <span class="math inline">\(f(b)\)</span>, then evaluate the function <span class="math inline">\(f\)</span> at the midpoint of the interval, <span class="math inline">\((a + b)/2\)</span>, and examine its sign. Replace whichever limit (e.g. <span class="math inline">\(a\)</span> or <span class="math inline">\(b\)</span>) that has the same sign. Repeat the process until the interval is so small that we know the location of the root to the desired accuracy.</p>
 <p>The “desired” accuracy must be within limits. As we have discussed before in class and lab, since computers use a fixed number of binary digits to represent floating-point numbers, there is a limit to the accuracy with which computers can represent numbers. To be precise, the smallest floating-point number which, when added to the floating-point number <span class="math inline">\(1.0\)</span>, produces a floating-point number different from <span class="math inline">\(1.0\)</span>, is termed the <em>machine accuracy</em>, <span class="math inline">\(\epsilon_m\)</span>. Using single precision, most machines have <span class="math inline">\(\epsilon_m \approx 1 \times 10^{-8}\)</span>. Using double precision, <span class="math inline">\(\epsilon_m \approx 1 \times 10^{-16}\)</span>. It is always a good idea to back off from these numbers, and thus setting <span class="math inline">\(\epsilon_m\)</span> to <span class="math inline">\(10^{-6}\)</span> and <span class="math inline">\(10^{-14}\)</span> respectively are practical limits. Sometimes even those limits are too optimistic. Let us suppose that our <span class="math inline">\((n - 1)^{\text{th}}\)</span> and <span class="math inline">\(n^{\text{th}}\)</span> evaluations of the midpoint are <span class="math inline">\(x_{n-1}\)</span> and <span class="math inline">\(x_n\)</span>, and that the root was initially in the interval <span class="math inline">\((a, b)\)</span>. We would then be justified in stopping our search if <span class="math inline">\(|x_n - x_{n-1}| &lt; \epsilon_m |b - a|\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.1">
+<div id="nte-ex-5-1" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.1
+Exercise&nbsp;5.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -308,34 +308,34 @@ f(x) = \frac{1}{x - c}
 </div>
 <section id="plotting-functions-in-gnuplot" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="plotting-functions-in-gnuplot">Plotting Functions in <code>gnuplot</code></h3>
-<p>When finding roots, it is a good idea to plot the function to get an idea of the position of the roots. This can be done in <code>gnuplot</code>. To plot the function of Exercise 5.1, enter the following commands:</p>
+<p>When finding roots, it is a good idea to plot the function to get an idea of the position of the roots. This can be done in <code>gnuplot</code>. To plot the function of <a href="#nte-ex-5-1" class="quarto-xref">Exercise&nbsp;<span>5.1</span></a>, enter the following commands:</p>
 <pre class="text"><code>gnuplot&gt; f(x) = 5*x**2 + 9*x - 80
 gnuplot&gt; plot f(x)
 gnuplot&gt; g(x) = 0
 gnuplot&gt; replot g(x)</code></pre>
 <p>Note that exponentiation in <code>gnuplot</code> is accomplished with “<code>**</code>”. Notice in the plot that <span class="math inline">\(f(x)\)</span> has a root at about -5 and another between 3 and 4.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.2">
+<div id="nte-ex-5-2" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.2
+Exercise&nbsp;5.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Bessel functions <span class="math inline">\(J_0(x)\)</span>, <span class="math inline">\(J_1(x)\)</span>, etc. often turn up in mathematical physics, especially in the context of optics and diffraction. The file <code>comphys.c</code> has a canned version of the Bessel function <span class="math inline">\(J_0(x)\)</span>. The function declaration (contained in the file <code>comphys.h</code>) for this function is</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> bessj0<span class="op">(</span><span class="dt">float</span> x<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Modify your program from Exercise 5.1 to find the first two positive roots of <span class="math inline">\(J_0(x)\)</span>.</p>
+<p>Modify your program from <a href="#nte-ex-5-1" class="quarto-xref">Exercise&nbsp;<span>5.1</span></a> to find the first two positive roots of <span class="math inline">\(J_0(x)\)</span>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.3">
+<div id="nte-ex-5-3" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.3
+Exercise&nbsp;5.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -346,13 +346,13 @@ gnuplot&gt; replot g(x)</code></pre>
 <p>Use this polynomial to find the temperature <span class="math inline">\(T\)</span> at which <span class="math inline">\(\eta = 20.1\,\mu\text{Pa}\cdot\text{s}\)</span>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.4">
+<div id="nte-ex-5-4" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.4
+Exercise&nbsp;5.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -380,62 +380,67 @@ x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}
 <p>From this, we can derive the Newton–Raphson formula for the <span class="math inline">\(n^{\text{th}}\)</span> estimate of the root: <span class="math display">\[
 x_n = x_{n-1} - \frac{f(x_{n-1})}{f'(x_{n-1})}
 \]</span></p>
-<div id="209f316a" class="cell" data-execution_count="1">
+<div id="cell-fig-newton" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="05-roots_files/figure-html/cell-2-output-1.png" width="755" height="879" class="figure-img"></p>
+<div id="fig-newton" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-newton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-roots_files/figure-html/fig-newton-output-1.png" width="755" height="879" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-newton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: One Newton–Raphson step: the tangent at <span class="math inline">\(x_0\)</span> crosses zero at <span class="math inline">\(x_1\)</span>, closer to the root <span class="math inline">\(x_r\)</span>.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.5">
+<div id="nte-ex-5-5" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.5
+Exercise&nbsp;5.5
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Write a program to find the root for the polynomial of Exercise 5.1 using the Newton–Raphson method. Begin with an estimate <span class="math inline">\(x_0 = 4\)</span>. See what happens if you use a different starting point. Explore both positive and negative values for the starting point.</p>
+<p>Write a program to find the root for the polynomial of <a href="#nte-ex-5-1" class="quarto-xref">Exercise&nbsp;<span>5.1</span></a> using the Newton–Raphson method. Begin with an estimate <span class="math inline">\(x_0 = 4\)</span>. See what happens if you use a different starting point. Explore both positive and negative values for the starting point.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.6">
+<div id="nte-ex-5-6" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.6
+Exercise&nbsp;5.6
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Write a program to solve the problem of Exercise 5.3 using the Newton–Raphson method. Begin with an estimate of <span class="math inline">\(200\,\text{K}\)</span>.</p>
+<p>Write a program to solve the problem of <a href="#nte-ex-5-3" class="quarto-xref">Exercise&nbsp;<span>5.3</span></a> using the Newton–Raphson method. Begin with an estimate of <span class="math inline">\(200\,\text{K}\)</span>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.7">
+<div id="nte-ex-5-7" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.7
+Exercise&nbsp;5.7
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Write a program to solve the problem of Exercise 5.4 using the Newton–Raphson method.</p>
+<p>Write a program to solve the problem of <a href="#nte-ex-5-4" class="quarto-xref">Exercise&nbsp;<span>5.4</span></a> using the Newton–Raphson method.</p>
 </div>
 </div>
 <p>An obvious danger to the Newton-Raphson method is that if there is a minimum or a maximum between the root and your starting point, the method will either not converge to the desired root at all, but to another one, or wander out to ±∞ at an ever accelerating pace. In addition, if you happen by bad luck to choose your beginning point at a maximum or minimum point, your program will never converge, but will blow up! Hence, as always, you should have a pretty good idea of the nature of your function before you attempt to find and “polish” roots.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.8">
+<div id="nte-ex-5-8" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.8
+Exercise&nbsp;5.8
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -449,47 +454,47 @@ x_n = x_{n-1} - \frac{f(x_{n-1})}{f'(x_{n-1})}
 <p>which is contained in <code>comphys.h</code>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 5.9 An Iterative Problem">
+<div id="nte-ex-5-9" class="callout callout-style-default callout-note callout-titled" title="An Iterative Problem">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 5.9 An Iterative Problem
+Exercise&nbsp;5.9: An Iterative Problem
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>In ballistics, it is common to solve the equations of motion of a particle shot at an angle, <span class="math inline">\(\theta\)</span>, above a horizontal surface with an initial velocity <span class="math inline">\(v_0\)</span>. The effects of air resistance play an important role that is often neglected in introductory or intermediate coursework. If the force of air resistance can be modeled as:</p>
-<p><span class="math display">\[
-F_x = -k m \dot{x} \tag{1}
-\]</span></p>
-<p><span class="math display">\[
-F_y = -k m \dot{y} \tag{2}
-\]</span></p>
+<p><span id="eq-drag-x"><span class="math display">\[
+F_x = -k m \dot{x}
+\tag{5.1}\]</span></span></p>
+<p><span id="eq-drag-y"><span class="math display">\[
+F_y = -k m \dot{y}
+\tag{5.2}\]</span></span></p>
 <p>then the <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span> solutions are:</p>
-<p><span class="math display">\[
-x(t) = \frac{v_0 \cos \theta}{k} \left( 1 - e^{-k t} \right) \tag{3}
-\]</span></p>
-<p><span class="math display">\[
-y(t) = - \frac{gt}{k} + \frac{k v_0 \sin \theta + g}{k^2} \left( 1 - e^{-k t} \right)  \tag{4}
-\]</span></p>
+<p><span id="eq-proj-x"><span class="math display">\[
+x(t) = \frac{v_0 \cos \theta}{k} \left( 1 - e^{-k t} \right)
+\tag{5.3}\]</span></span></p>
+<p><span id="eq-proj-y"><span class="math display">\[
+y(t) = - \frac{gt}{k} + \frac{k v_0 \sin \theta + g}{k^2} \left( 1 - e^{-k t} \right)
+\tag{5.4}\]</span></span></p>
 <p>The time of flight of the projectile (the time elapsed before the projectile lands) is given as:</p>
-<p><span class="math display">\[
-T = \frac{v_0 \sin \theta + g}{gk} \left( 1 - e^{-k T} \right) \tag{5}
-\]</span></p>
-<p>Notice that <span class="math inline">\(T\)</span> appears on both sides of equation (5). This is known as a “transcendental equation” which can be solved numerically using iteration. Note that this equation collapses to the simple expression for <span class="math inline">\(T\)</span> when resistance is neglected (<span class="math inline">\(k = 0\)</span>):</p>
-<p><span class="math display">\[
-T(k=0) = \frac{2 v_0 \sin \theta}{g} \tag{6}
-\]</span></p>
+<p><span id="eq-flight-time"><span class="math display">\[
+T = \frac{v_0 \sin \theta + g}{gk} \left( 1 - e^{-k T} \right)
+\tag{5.5}\]</span></span></p>
+<p>Notice that <span class="math inline">\(T\)</span> appears on both sides of <a href="#eq-flight-time" class="quarto-xref">Equation&nbsp;<span>5.5</span></a>. This is known as a “transcendental equation” which can be solved numerically using iteration. Note that this equation collapses to the simple expression for <span class="math inline">\(T\)</span> when resistance is neglected (<span class="math inline">\(k = 0\)</span>):</p>
+<p><span id="eq-flight-time-k0"><span class="math display">\[
+T(k=0) = \frac{2 v_0 \sin \theta}{g}
+\tag{5.6}\]</span></span></p>
 <p>The range of motion (the distance traveled by the projectile before landing) is:</p>
-<p><span class="math display">\[
-R = x(t = T) \tag{7}
-\]</span></p>
+<p><span id="eq-range"><span class="math display">\[
+R = x(t = T)
+\tag{5.7}\]</span></span></p>
 <p>In the exercises below, use <span class="math inline">\(\theta = 60^\circ\)</span>, <span class="math inline">\(v_0 = 600 \, \text{m/s}\)</span>, and <span class="math inline">\(|g| = 9.8 \, \text{m/s}^2\)</span>.</p>
 <ol type="a">
-<li><p>Solve for <span class="math inline">\(T\)</span> (equation 5) numerically using iteration. In the first iteration, use the non-resistive expression for <span class="math inline">\(T\)</span> (equation 6). Iterate until the solution converges to within a user-defined tolerance (error) – e.g., <span class="math inline">\(\Delta T\)</span> over successive iterations is less than the tolerance. Use a value of <span class="math inline">\(k = 0.005\)</span> for this part only.</p></li>
+<li><p>Solve for <span class="math inline">\(T\)</span> (<a href="#eq-flight-time" class="quarto-xref">Equation&nbsp;<span>5.5</span></a>) numerically using iteration. In the first iteration, use the non-resistive expression for <span class="math inline">\(T\)</span> (<a href="#eq-flight-time-k0" class="quarto-xref">Equation&nbsp;<span>5.6</span></a>). Iterate until the solution converges to within a user-defined tolerance (error) – e.g., <span class="math inline">\(\Delta T\)</span> over successive iterations is less than the tolerance. Use a value of <span class="math inline">\(k = 0.005\)</span> for this part only.</p></li>
 <li><p>Find the value of <span class="math inline">\(k\)</span> that allows the projectile to travel 1500 meters (<span class="math inline">\(R = 1500\,\text{m}\)</span>).</p></li>
-<li><p>[<strong>GRAD STUDENTS ONLY</strong>] Plot <span class="math inline">\(y\)</span> vs.&nbsp;<span class="math inline">\(x\)</span> using gnuplot for <span class="math inline">\(k\)</span> values of 0.0, 0.005, 0.01, 0.02, 0.04, and 0.08. Also, show analytically how to get equation (6) from equation (5) (<em>Hint: Use perturbation methods – i.e., expand <span class="math inline">\(1 - e^{-kT}\)</span> in a power series expansion, and keep only the first few terms</em>).</p></li>
+<li><p>[<strong>GRAD STUDENTS ONLY</strong>] Plot <span class="math inline">\(y\)</span> vs.&nbsp;<span class="math inline">\(x\)</span> using gnuplot for <span class="math inline">\(k\)</span> values of 0.0, 0.005, 0.01, 0.02, 0.04, and 0.08. Also, show analytically how to get <a href="#eq-flight-time-k0" class="quarto-xref">Equation&nbsp;<span>5.6</span></a> from <a href="#eq-flight-time" class="quarto-xref">Equation&nbsp;<span>5.5</span></a> (<em>Hint: Use perturbation methods – i.e., expand <span class="math inline">\(1 - e^{-kT}\)</span> in a power series expansion, and keep only the first few terms</em>).</p></li>
 </ol>
 </div>
 </div>
@@ -498,7 +503,7 @@ R = x(t = T) \tag{7}
 <h2 data-number="5.3" class="anchored" data-anchor-id="root-finding-in-python"><span class="header-section-number">5.3</span> Root Finding in Python</h2>
 <p>In SciPy all of the root finding methods are in the <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html" target="_blank"><code>optimize</code></a> subpackage.</p>
 <p>To show off how it is done consider this suspiciously familiar function</p>
-<div id="91e298ca" class="cell" data-execution_count="2">
+<div id="ebd18d72" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -521,7 +526,7 @@ R = x(t = T) \tag{7}
 </div>
 <p>All of the root finding algorithms for scalar functions can be accessed via a single method <code>root_scalar</code>.</p>
 <p>Let’s use a different method for each root! We need to supply a bracket for where to limit our search and a method name.</p>
-<div id="2120304f" class="cell" data-execution_count="3">
+<div id="4b196997" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> root_scalar</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>method <span class="op">=</span> [<span class="st">'bisect'</span> ,<span class="st">'brentq'</span> ,<span class="st">'brenth'</span> ,<span class="st">'ridder'</span> ,<span class="st">'toms748'</span>]</span>
@@ -545,7 +550,7 @@ R = x(t = T) \tag{7}
 </div>
 </div>
 <p>A call to <code>root_scalar</code> returns a <code>RootResults</code> object which contains more information than only the root value.</p>
-<div id="9b88c87f" class="cell" data-execution_count="4">
+<div id="39cfcf32" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>      converged: True

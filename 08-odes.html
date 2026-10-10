@@ -310,13 +310,13 @@ window.Quarto = {
 <p><span class="math display">\[
 \frac{dy}{dt} = z, \quad \frac{dz}{dt} = \epsilon(1 - y^2)z - ay.
 \]</span></p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 8.1">
+<div id="nte-ex-8-1" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 8.1
+Exercise&nbsp;8.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -401,13 +401,13 @@ y_{i+1} &amp;= y_i + \frac{1}{2}[f(x_i, y_i) + f(x_{i+1}, y^1_{i+1})]\Delta x
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result is that when <span class="math inline">\(x = 1\)</span>, <span class="math inline">\(y = 4.301422\)</span>, a fairly good approximation of the “exact” result, <span class="math inline">\(y = 4.304658\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 8.2">
+<div id="nte-ex-8-2" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 8.2
+Exercise&nbsp;8.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -472,17 +472,17 @@ y_{n+1} &amp;= y_n + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This code gives the result <span class="math inline">\(y(1) = 4.304658\)</span>, considerably better than before, but without very much more effort!</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 8.3">
+<div id="nte-ex-8-3" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 8.3
+Exercise&nbsp;8.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Integrate the differential equation of Exercise 8.2 using the Runge Kutta method. Do you get a better result?</p>
+<p>Integrate the differential equation of <a href="#nte-ex-8-2" class="quarto-xref">Exercise&nbsp;<span>8.2</span></a> using the Runge Kutta method. Do you get a better result?</p>
 </div>
 </div>
 <p>It turns out that it is possible to come up with higher order Runge Kutta schemes. However, in practice, almost everyone uses the fourth-order Runge Kutta method. The reason for this is that, coupled with an <em>adaptive stepsize routine</em>, the fourth-order Runge Kutta method will give almost any accuracy desired.</p>
@@ -501,17 +501,17 @@ y(x + 2\Delta x) &amp;\approx y_{(2)} + 2(\Delta x)^5\phi
 \Delta x_{\text{new}} = \Delta x_{\text{old}} \left|\frac{\epsilon_0}{\epsilon}\right|^{1/5}
 \]</span></p>
 <p>and then use this new step size to redo the integration step starting at <span class="math inline">\(x\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 8.4">
+<div id="nte-ex-8-4" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 8.4
+Exercise&nbsp;8.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Integrate the differential equation of Exercises 8.2 &amp; 8.3 using adaptive stepsize control with the Runge Kutta method. Begin with <span class="math inline">\(\Delta x = 0.1\)</span> and <span class="math inline">\(\epsilon_0 = 1.0 \times 10^{-6}\)</span>. Print out the intermediate results so that you can see what your algorithm is doing. Remember that the integration must stop at <span class="math inline">\(x = 1.0\)</span>. Experiment with different values of <span class="math inline">\(\epsilon_0\)</span> to see how close you can get to the “exact” solution.</p>
+<p>Integrate the differential equation of Exercises <a href="#nte-ex-8-2" class="quarto-xref"><span>8.2</span></a> &amp; <a href="#nte-ex-8-3" class="quarto-xref"><span>8.3</span></a> using adaptive stepsize control with the Runge Kutta method. Begin with <span class="math inline">\(\Delta x = 0.1\)</span> and <span class="math inline">\(\epsilon_0 = 1.0 \times 10^{-6}\)</span>. Print out the intermediate results so that you can see what your algorithm is doing. Remember that the integration must stop at <span class="math inline">\(x = 1.0\)</span>. Experiment with different values of <span class="math inline">\(\epsilon_0\)</span> to see how close you can get to the “exact” solution.</p>
 </div>
 </div>
 </section>
@@ -592,13 +592,13 @@ x = 0.7 y = 1.720322 z = -0.636360
 x = 0.8 y = 1.654338 z = -0.683230
 x = 0.9 y = 1.583660 z = -0.730560
 x = 1.0 y = 1.508149 z = -0.780208</code></pre>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 8.5">
+<div id="nte-ex-8-5" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 8.5
+Exercise&nbsp;8.5
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -751,26 +751,26 @@ y'(x) = ex + \frac{1}{3}ex^3 + \ldots
 <span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>e<span class="op">*</span>x <span class="op">+</span> e<span class="op">*</span>pow<span class="op">(</span>x<span class="op">,</span><span class="fl">3.0</span><span class="op">)/</span><span class="fl">3.0</span><span class="op">);</span></span>
 <span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If this all looks like too much trouble, you are probably right. I almost always stick with the Runge Kutta routine for numerical integration of differential equations. However, note that this method uses only two function evaluations per step, whereas the Runge Kutta technique uses four. As a matter of fact, one can toss out the second function evaluation in the Adams-Bashforth-Moulton routine with only a small sacrifice in accuracy. This means that the Adams-Bashforth-Moulton routine can be four times faster than the Runge Kutta routine. This can be very important if the function evaluation is computationally expensive.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 8.6">
+<div id="nte-ex-8-6" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 8.6
+Exercise&nbsp;8.6
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Integrate the differential equation of Exercise 8.2 using the Adams-Bashforth-Moulton technique.</p>
+<p>Integrate the differential equation of <a href="#nte-ex-8-2" class="quarto-xref">Exercise&nbsp;<span>8.2</span></a> using the Adams-Bashforth-Moulton technique.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 8.7">
+<div id="nte-ex-8-7" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 8.7
+Exercise&nbsp;8.7
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -873,7 +873,7 @@ y = 1 - \frac{x^2}{3!} + n\frac{x^4}{5!} + (5n - 8n^2)\frac{x^6}{3 \cdot 7!} + \
 <span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>y1<span class="op">-</span>y11<span class="op">);</span></span>
 <span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="7b408330" class="cell" data-execution_count="1">
+<div id="d022e45d" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -882,13 +882,13 @@ y = 1 - \frac{x^2}{3!} + n\frac{x^4}{5!} + (5n - 8n^2)\frac{x^6}{3 \cdot 7!} + \
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 8.8">
+<div id="nte-ex-8-8" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 8.8
+Exercise&nbsp;8.8
 </div>
 </div>
 <div class="callout-body-container callout-body">

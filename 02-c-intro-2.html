@@ -368,39 +368,39 @@ window.Quarto = {
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notice how we have initialized the values for the vector <code>wave</code> in this example. The <em>for loop</em> begins with the <code>for(i=0;i&lt;24;i++)</code>. This <code>for</code> statement says “initialize <code>i</code> to 0 and for each passage through the loop, increment <code>i</code> by 1 (<code>i++</code>). Keep cycling through the loop while <code>i &lt; 24</code>. When <code>i = 24</code> exit the loop.” Notice inside the loop that the different values in the <code>wave</code> vector are accessed with <code>wave[i]</code> as <code>i</code> is different for each passage through the loop.</p>
 <p>All three examples should give identical output. In this application, the <em>for loop</em> example is probably unnecessarily complicated, but this method of initializing a vector can be quite useful, especially if the values of the vector are not readily computed. For instance, let us suppose we wanted to evaluate the Planck function at the wavelengths: 515.0, 912.0, 3123.0, 6615.0 …. In such a case we would have been forced to use a <em>for loop</em> because these values cannot be computed with an increment statement such as <code>wave += 500</code>. In addition, <em>for loops</em> are used when we want to control exactly the number of times the loop is executed.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.1">
+<div id="nte-ex-2-1" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.1
+Exercise&nbsp;2.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Write a program containing a <em>while loop</em> which will output the velocity of a ball thrown upwards with an initial velocity <span class="math inline">\(v_0\)</span> (which should be input to the program) moving under the influence of gravity. The program should output the velocity of the ball for times <span class="math inline">\(t = 0\)</span> to <span class="math inline">\(t = 100\)</span> seconds with an interval of 5 seconds.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.2">
+<div id="nte-ex-2-2" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.2
+Exercise&nbsp;2.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Accomplish the task for Exercise 2.1 using a <em>for loop</em>.</p>
+<p>Accomplish the task for <a href="#nte-ex-2-1" class="quarto-xref">Exercise&nbsp;<span>2.1</span></a> using a <em>for loop</em>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.3">
+<div id="nte-ex-2-3" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.3
+Exercise&nbsp;2.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -415,17 +415,17 @@ y = 0.02t^3
 <p>Write a program that will compute and output the <span class="math inline">\((x, y)\)</span> coordinates of the particle between <span class="math inline">\(t = 0\)</span> and <span class="math inline">\(t = 5.0\)</span> sec at steps of 0.5 sec.&nbsp;Use a <em>while loop</em> to do this.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.4">
+<div id="nte-ex-2-4" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.4
+Exercise&nbsp;2.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Accomplish the task for Exercise 2.3 using a <em>for loop</em>.</p>
+<p>Accomplish the task for <a href="#nte-ex-2-3" class="quarto-xref">Exercise&nbsp;<span>2.3</span></a> using a <em>for loop</em>.</p>
 </div>
 </div>
 <p>Read: <em>The C Programming Language</em> <span class="citation" data-cites="kernighan88">(<a href="references.html#ref-kernighan88" role="doc-biblioref">Kernighan and Ritchie 1988</a>)</span>: Chapter 3 (sections 3.5 – 3.7)</p>
@@ -533,39 +533,39 @@ Table&nbsp;2.1: Comparison Expressions
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.5">
+<div id="nte-ex-2-5" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.5
+Exercise&nbsp;2.5
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Up until now, the variable <code>ni</code> in the expression <code>ni = scanf(...</code> has simply been thrown away. We can use it, however, to verify that the user has entered the correct number of variables. Write a program which prompts the user for numerical values for two variables, say <span class="math inline">\(v_0\)</span> and <span class="math inline">\(t_f\)</span>. Use a conditional test on <code>ni</code> to check to see if two variables have, indeed, been entered, and if not, then to print an error message.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.6">
+<div id="nte-ex-2-6" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.6
+Exercise&nbsp;2.6
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Write a program that incorporates a certain key number which is unknown to the user. The program should prompt the user to input a guess for this key number, and then print to the screen whether the guess is less than, equal to, or greater than the key. The program should incorporate a loop so that the user can keep guessing until the correct number is found.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.7">
+<div id="nte-ex-2-7" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.7
+Exercise&nbsp;2.7
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -600,13 +600,13 @@ Table&nbsp;2.1: Comparison Expressions
 <p>Write a program using this random number generator that will sort the random numbers <code>x</code> that you generate into 4 bins, one bin with <span class="math inline">\(0 \le x &lt; 0.25\)</span>, the next with <span class="math inline">\(0.25 \le x &lt; 0.50\)</span>, etc. Generate 1000 random numbers, and have the program count the number in each bin.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.8">
+<div id="nte-ex-2-8" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.8
+Exercise&nbsp;2.8
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -704,13 +704,13 @@ SD = \sqrt{\frac{1}{N} \sum \left( gs(i) - avegs \right)^2}
 <hr>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.9">
+<div id="nte-ex-2-9" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.9
+Exercise&nbsp;2.9
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -763,17 +763,17 @@ S = 12.3925 + 4.9311(\epsilon - 4.5553) - 1.02(\epsilon - 4.5553)^2
 <span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>How does this work? The parameters to the <code>main</code> function <code>int argc, char *argv[]</code> allow the program to read input from the command line. If the program sees no input on the command line (for instance, if the command line looks simply like <code>./planck</code>), then <code>argc</code> is set to 1. If there is one input item on the command line (for instance, <code>./planck 7500</code>), then <code>argc</code> is set to 2, etc. So, the above program reads the number of input items on the command line. If <code>argc == 2</code>, then the program reads the temperature <code>T</code> from <code>argv[1]</code> (<code>argv[0]</code> is, by default, always set to the name of the program, in this case <code>planck</code>). If, however, <code>argc != 2</code>, the program prompts the user for the temperature. Try it! Then use gnuplot to plot the Planck function using the output file <code>planck.out</code>, using the gnuplot command:</p>
 <pre><code>gnuplot&gt; plot "planck.out" using 1:2 with lines</code></pre>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 2.10">
+<div id="nte-ex-2-10" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 2.10
+Exercise&nbsp;2.10
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use piping to redirect the output from the program you wrote for Exercise 2.9 into a file <code>bifurcation.dat</code>. Then use gnuplot to plot the output. To see the behavior of the function more clearly, increase the number of points generated to 1000.</p>
+<p>Use piping to redirect the output from the program you wrote for <a href="#nte-ex-2-9" class="quarto-xref">Exercise&nbsp;<span>2.9</span></a> into a file <code>bifurcation.dat</code>. Then use gnuplot to plot the output. To see the behavior of the function more clearly, increase the number of points generated to 1000.</p>
 </div>
 </div>
 <p>Read: <em>The C Programming Language</em> <span class="citation" data-cites="kernighan88">(<a href="references.html#ref-kernighan88" role="doc-biblioref">Kernighan and Ritchie 1988</a>)</span>: Section 5.10</p>

@@ -272,9 +272,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#elementary-algorithms" id="toc-elementary-algorithms" class="nav-link active" data-scroll-target="#elementary-algorithms"><span class="header-section-number">7.1</span> Elementary Algorithms</a></li>
+  <li><a href="#sec-int-elementary" id="toc-sec-int-elementary" class="nav-link active" data-scroll-target="#sec-int-elementary"><span class="header-section-number">7.1</span> Elementary Algorithms</a></li>
   <li><a href="#gaussian-integration" id="toc-gaussian-integration" class="nav-link" data-scroll-target="#gaussian-integration"><span class="header-section-number">7.2</span> Gaussian Integration</a></li>
-  <li><a href="#multidimensional-integrals" id="toc-multidimensional-integrals" class="nav-link" data-scroll-target="#multidimensional-integrals"><span class="header-section-number">7.3</span> Multidimensional Integrals</a>
+  <li><a href="#sec-int-multidim" id="toc-sec-int-multidim" class="nav-link" data-scroll-target="#sec-int-multidim"><span class="header-section-number">7.3</span> Multidimensional Integrals</a>
   <ul class="collapse">
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   </ul></li>
@@ -304,14 +304,14 @@ window.Quarto = {
 </header>
 
 
-<section id="elementary-algorithms" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="elementary-algorithms"><span class="header-section-number">7.1</span> Elementary Algorithms</h2>
+<section id="sec-int-elementary" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="sec-int-elementary"><span class="header-section-number">7.1</span> Elementary Algorithms</h2>
 <p>Let us suppose we are confronted with a function <span class="math inline">\(f(x)\)</span> tabulated at the points <span class="math inline">\(x_1, x_2, x_3, \ldots, x_n\)</span>, not necessarily equally spaced. We require the integral of <span class="math inline">\(f(x)\)</span> from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_n\)</span>. How do we proceed? The simplest algorithm we can use, valid both for equally and unequally spaced points, is the <em>trapezoidal rule</em>. The trapezoidal rule assumes that the function is linear between the tabulated points. With this assumption, it can be seen that the integral from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_2\)</span> is given by</p>
 <p><span class="math display">\[
 \int_{x_1}^{x_2} f(x)\,dx \approx \frac{h}{2}(f_1 + f_2)
 \]</span></p>
 <p>where <span class="math inline">\(h = x_2 - x_1\)</span>.</p>
-<div id="a902cd50" class="cell" data-execution_count="1">
+<div id="308bf78d" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -322,23 +322,22 @@ window.Quarto = {
 </div>
 <p>This equation can be extended to <span class="math inline">\(n\)</span> points.</p>
 <p>For equally spaced points</p>
-<p><span class="math display">\[
+<p><span id="eq-trapezoid"><span class="math display">\[
 \int_{x_1}^{x_n} f(x)\,dx \approx h \left(\frac{1}{2} f_1 + f_2 + f_3 + \ldots + \frac{1}{2} f_n \right)
-\tag{1}
-\]</span></p>
+\tag{7.1}\]</span></span></p>
 <p>and</p>
 <p><span class="math display">\[
 \int_{x_1}^{x_n} f(x)\,dx \approx
 \frac{1}{2}\bigl( (x_2 - x_1)(f_1 + f_2) + (x_3 - x_2)(f_2 + f_3) + \ldots + (x_n - x_{n-1})(f_{n-1} + f_n) \bigr)
 \]</span></p>
 <p>for unevenly spaced points.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.1">
+<div id="nte-ex-7-1" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.1
+Exercise&nbsp;7.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -351,14 +350,13 @@ window.Quarto = {
 </div>
 <p>For equally spaced points, the trapezoidal rule has an error <span class="math inline">\(O(h^3)\)</span>, which means that the error for each interval in the rule is proportional to the cube of the spacing. This means, of course, that if the interval size is reduced, the error decreases. In terms of the total number of points (<span class="math inline">\(N\)</span>) used, the total error for the trapezoidal rule can be expressed as <span class="math inline">\(O(1/N^2)\)</span> — i.e., if we double the number of points, the error goes down by a factor of 4. Eventually, however, we run into the law of diminishing returns — either we hit the limit of machine accuracy, or the cumulative error involved in using many tiny intervals begins to build and becomes unacceptably high. In addition, if we use very small intervals, we pay dearly in computer time for the many function evaluations. If the function is complex and thus expensive to compute, this can become prohibitive.</p>
 <p>Despite these disadvantages, the trapezoidal rule is adequate for most applications, and it is the only choice if your function is tabulated at unequally spaced points. For those applications which require more accuracy than the trapezoidal rule permits, or which are attempting to integrate very complex functions, “higher order” integration schemes are available. The most popular is <em>Simpson’s rule</em> which is based on parabolic interpolation. The formula for Simpson’s rule, a three-point formula, is:</p>
-<p><span class="math display">\[
+<p><span id="eq-simpson"><span class="math display">\[
 \int_{x_1}^{x_3} f(x)\,dx \approx \frac{h}{3}
 \left(
 \frac{1}{3}f_1 + \frac{4}{3}f_2 + \frac{1}{3}f_3
 \right)
 + O(h^5)
-\tag{2}
-\]</span></p>
+\tag{7.2}\]</span></span></p>
 <p>The “extended” version of this formula over <span class="math inline">\(N\)</span> steps (note that <span class="math inline">\(N\)</span> must be odd) is:</p>
 <p><span class="math display">\[
 \int_{x_1}^{x_N} f(x)\,dx \approx \frac{h}{3}
@@ -367,39 +365,39 @@ f_1 + 4f_2 + 2f_3 + 4f_4 + \ldots + 2f_{N-2} + 4f_{N-1} + f_N
 \big)
 + O\left(\frac{1}{N^4}\right)
 \]</span></p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.2">
+<div id="nte-ex-7-2" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.2
+Exercise&nbsp;7.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Calculate the integral of Exercise 7.1 with Simpson’s rule using 9 points in the interval <span class="math inline">\((1,2)\)</span>, and then repeat the exercise with 19 points. Compare with the results from Exercise 7.1 for 10 and 20 points respectively.</p>
+<p>Calculate the integral of <a href="#nte-ex-7-1" class="quarto-xref">Exercise&nbsp;<span>7.1</span></a> with Simpson’s rule using 9 points in the interval <span class="math inline">\((1,2)\)</span>, and then repeat the exercise with 19 points. Compare with the results from <a href="#nte-ex-7-1" class="quarto-xref">Exercise&nbsp;<span>7.1</span></a> for 10 and 20 points respectively.</p>
 </div>
 </div>
 <p>Note that if you have a tabulated function with an <em>even</em> number of points, you can still use Simpson’s rule. Simply evaluate the integral over the first interval using the trapezoidal rule and then use Simpson’s rule for the remaining odd number of points.</p>
 <p>Even higher-order formulae can be used to carry out numerical integration, but in practice, these are hardly ever used. There are advanced techniques, which we will not go into, that can extract virtually any desired precision from the trapezoidal and Simpson’s rules. Thus, it is hardly ever necessary to utilize higher-order formulae.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.3">
+<div id="nte-ex-7-3" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.3
+Exercise&nbsp;7.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To explore one of these “advanced techniques”, go back to the program you wrote for Exercise 7.1 and rewrite it to calculate the value of the integral with <span class="math inline">\(N =
+<p>To explore one of these “advanced techniques”, go back to the program you wrote for <a href="#nte-ex-7-1" class="quarto-xref">Exercise&nbsp;<span>7.1</span></a> and rewrite it to calculate the value of the integral with <span class="math inline">\(N =
 30\)</span> and <span class="math inline">\(N = 80\)</span> points. Setting <span class="math inline">\(x = 1/N^2\)</span> and <span class="math inline">\(y =\)</span> the value of the integral for each value of <span class="math inline">\(N\)</span> defines two points. The program should find the equation of the line between these two points. The y-intercept of this equation should be a very accurate approximation to the integral. Why? Since <span class="math inline">\(x = 1/N^2\)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the y-intercept (where <span class="math inline">\(x = 0\)</span>) corresponds to <span class="math inline">\(N = \infty\)</span>. The program should print out the value of the integral and its deviation from the “exact” value 1.440422 for <span class="math inline">\(N = 30\)</span>, <span class="math inline">\(80\)</span>, and “<span class="math inline">\(\infty\)</span>” points.</p>
 </div>
 </div>
 </section>
 <section id="gaussian-integration" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="gaussian-integration"><span class="header-section-number">7.2</span> Gaussian Integration</h2>
-<p>In the previous section, we found that we could obtain significantly higher accuracy in numerical integration using the same number of points in a given interval by changing the <em>weighting</em> used for the points. For instance, in trapezoidal integration, each point (except for the end points) enters into the formula (Equation 1) with equal weights. In Simpson’s rule (Equation 2) the points are not given equal weights. Note that the odd <em>abscissas</em> are given weights of <span class="math inline">\(2/3\)</span>, whereas the even abscissas are given weights of <span class="math inline">\(4/3\)</span>.</p>
+<p>In the previous section, we found that we could obtain significantly higher accuracy in numerical integration using the same number of points in a given interval by changing the <em>weighting</em> used for the points. For instance, in trapezoidal integration, each point (except for the end points) enters into the formula (<a href="#eq-trapezoid" class="quarto-xref">Equation&nbsp;<span>7.1</span></a>) with equal weights. In Simpson’s rule (<a href="#eq-simpson" class="quarto-xref">Equation&nbsp;<span>7.2</span></a>) the points are not given equal weights. Note that the odd <em>abscissas</em> are given weights of <span class="math inline">\(2/3\)</span>, whereas the even abscissas are given weights of <span class="math inline">\(4/3\)</span>.</p>
 <p>It turns out that if we relax the restriction that the abscissas should be evenly spaced in the interval, we can then choose abscissas and corresponding weights that yield very high accuracies. This is the basis of <em>Gaussian integration</em>. We do not have the time to go into this method in great detail, but it is important that you are at least acquainted with this method of integration, as it is commonly and widely used.</p>
 <p>Gaussian integration is based on integrals of the form</p>
 <p><span class="math display">\[
@@ -486,22 +484,22 @@ dt = \frac{b - a}{2} dx
 \int_a^b f(t)\, dt \approx \frac{b - a}{2} \sum_{i=1}^{N} w_i\, f\!\left( \frac{a + b}{2} + \frac{b - a}{2} x_i \right)
 \]</span></p>
 <p>where the weights and abscissas are as displayed in the table above, and we are assuming that <span class="math inline">\(W(x) = 1\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.4">
+<div id="nte-ex-7-4" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.4
+Exercise&nbsp;7.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Repeat Exercise 7.1 using Gauss–Legendre integration with 5 abscissas. Compare the accuracy with your results from Exercises 7.1 and 7.2.</p>
+<p>Repeat <a href="#nte-ex-7-1" class="quarto-xref">Exercise&nbsp;<span>7.1</span></a> using Gauss–Legendre integration with 5 abscissas. Compare the accuracy with your results from Exercises <a href="#nte-ex-7-1" class="quarto-xref"><span>7.1</span></a> and <a href="#nte-ex-7-2" class="quarto-xref"><span>7.2</span></a>.</p>
 </div>
 </div>
 </section>
-<section id="multidimensional-integrals" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="multidimensional-integrals"><span class="header-section-number">7.3</span> Multidimensional Integrals</h2>
+<section id="sec-int-multidim" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-int-multidim"><span class="header-section-number">7.3</span> Multidimensional Integrals</h2>
 <p>Numerical integrations of functions of several variables over regions with dimensions greater than one are very difficult to carry out. First, to get sufficient precision, the numerical integration may involve literally tens of thousands of function evaluations. Second, if the boundary of the integration region is complex, this can greatly complicate the procedure. Thus, if possible, before resorting to multidimensional techniques, try to reduce the dimension of your integral. Sometimes this may be done by exploiting the symmetries of the integrand. For instance, if you are integrating a spherically symmetric function over a spherical region, switch to spherical coordinates. The integral will reduce to a one-dimensional integral! If this does not work, and the function is otherwise fairly well behaved (for instance, is not strongly peaked in a certain region), and you don’t require great accuracy, explore <em>Monte Carlo</em> techniques (see <a href="#sec-mc-int" class="quarto-xref"><span>Section 7.4</span></a>). Otherwise, a multidimensional integral can be attacked using one-dimensional techniques in the following way:</p>
 <p>Let us suppose we have the following integral:</p>
 <p><span class="math display">\[
@@ -521,7 +519,7 @@ H(x) = \int_{y_1(x)}^{y_2(x)} G(x, y)\, dy
 <p><span class="math display">\[
 I = \int_{x_1}^{x_2} H(x)\, dx
 \]</span></p>
-<p>The third integral for <span class="math inline">\(I\)</span> can be evaluated using one of the one-dimensional techniques discussed in §7.1. However, in this procedure <span class="math inline">\(H(x)\)</span> will have to be evaluated at a number of values of <span class="math inline">\(x\)</span>, and this must be done by integrating <span class="math inline">\(G(x, y)\)</span> again using a one-dimensional technique for each of those values of <span class="math inline">\(x\)</span>. <span class="math inline">\(G(x, y)\)</span>, however, can only be evaluated by carrying out the first integral for each value of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> encountered in the evaluation of the second and third integrals. Thus, while the third integral is evaluated only once, the second integral is evaluated many times and the third integral many, many times leading to a great number of function evaluations.</p>
+<p>The third integral for <span class="math inline">\(I\)</span> can be evaluated using one of the one-dimensional techniques discussed in <a href="#sec-int-elementary" class="quarto-xref"><span>Section 7.1</span></a>. However, in this procedure <span class="math inline">\(H(x)\)</span> will have to be evaluated at a number of values of <span class="math inline">\(x\)</span>, and this must be done by integrating <span class="math inline">\(G(x, y)\)</span> again using a one-dimensional technique for each of those values of <span class="math inline">\(x\)</span>. <span class="math inline">\(G(x, y)\)</span>, however, can only be evaluated by carrying out the first integral for each value of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> encountered in the evaluation of the second and third integrals. Thus, while the third integral is evaluated only once, the second integral is evaluated many times and the third integral many, many times leading to a great number of function evaluations.</p>
 <section id="example" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example">Example</h3>
 <p>Evaluate the integral</p>
@@ -640,13 +638,13 @@ I = \int_{x_1}^{x_2} H(x)\, dx
 <span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>  integral <span class="op">*=</span> h<span class="op">;</span></span>
 <span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span>integral<span class="op">);</span></span>
 <span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.5">
+<div id="nte-ex-7-5" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.5
+Exercise&nbsp;7.5
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -657,21 +655,26 @@ I = \int_{x_1}^{x_2} H(x)\, dx
 <p>using two applications of the trapezoidal method. The exact value of this integral is <span class="math inline">\(4/3\)</span>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.6">
+<div id="nte-ex-7-6" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.6
+Exercise&nbsp;7.6
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="6f5935ac" class="cell" data-execution_count="2">
+<div id="cell-fig-square-mass" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="07-integration_files/figure-html/cell-3-output-1.png" width="319" height="315" class="figure-img"></p>
+<div id="fig-square-mass" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-square-mass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-integration_files/figure-html/fig-square-mass-output-1.png" width="319" height="315" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-square-mass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: A square mass, with a mass element <span class="math inline">\(dm\)</span> at <span class="math inline">\((x, y)\)</span> and the point <span class="math inline">\((X, Y)\)</span> outside it.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -680,7 +683,7 @@ I = \int_{x_1}^{x_2} H(x)\, dx
 <p><span class="math display">\[
 dV = -G \frac{dm}{r}
 \]</span></p>
-<p>where <span class="math inline">\(r\)</span> is the distance between <span class="math inline">\((x, y)\)</span> and <span class="math inline">\((X, Y)\)</span>. Calculate the gravitational potential <span class="math inline">\(V\)</span> for the square mass shown in the figure above at the point <span class="math inline">\((X, Y)\)</span>, which lies in the plane of the square and outside of it, by integrating the above expression for <span class="math inline">\(dV\)</span> over the mass. Note that the surface density <span class="math inline">\(\sigma\)</span> of the square is a function of position: <span class="math inline">\(\sigma = (x^2 + y^2)\ \text{kg/m}^2\)</span> and that <span class="math inline">\(dm = \sigma\, dx\, dy\)</span> The square has dimensions <span class="math inline">\(2\,\text{m} \times 2\,\text{m}\)</span> and is centered on the origin. Prompt the user for the <span class="math inline">\((X, Y)\)</span> coordinates, and reprompt if <span class="math inline">\((X, Y)\)</span> lies inside the square.</p>
+<p>where <span class="math inline">\(r\)</span> is the distance between <span class="math inline">\((x, y)\)</span> and <span class="math inline">\((X, Y)\)</span>. Calculate the gravitational potential <span class="math inline">\(V\)</span> for the square mass shown in <a href="#fig-square-mass" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> at the point <span class="math inline">\((X, Y)\)</span>, which lies in the plane of the square and outside of it, by integrating the above expression for <span class="math inline">\(dV\)</span> over the mass. Note that the surface density <span class="math inline">\(\sigma\)</span> of the square is a function of position: <span class="math inline">\(\sigma = (x^2 + y^2)\ \text{kg/m}^2\)</span> and that <span class="math inline">\(dm = \sigma\, dx\, dy\)</span> The square has dimensions <span class="math inline">\(2\,\text{m} \times 2\,\text{m}\)</span> and is centered on the origin. Prompt the user for the <span class="math inline">\((X, Y)\)</span> coordinates, and reprompt if <span class="math inline">\((X, Y)\)</span> lies inside the square.</p>
 </div>
 </div>
 </section>
@@ -688,10 +691,9 @@ dV = -G \frac{dm}{r}
 <section id="sec-mc-int" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="sec-mc-int"><span class="header-section-number">7.4</span> Monte Carlo Integration</h2>
 <p>This technique of numerical integration is named after the famous casino in Monte Carlo not because it is risky or chancy, but because it uses random numbers to carry out an integration. How does this work? Suppose we have an integral of a function <span class="math inline">\(f\)</span> over a given volume <span class="math inline">\(V\)</span>, and we choose <span class="math inline">\(N\)</span> random points in that volume. Then,</p>
-<p><span class="math display">\[
+<p><span id="eq-monte-carlo"><span class="math display">\[
 \iiint_V f\,dV \approx V \langle f \rangle \pm V \sqrt{\frac{\langle f^2 \rangle - \langle f \rangle^2}{N}}
-\tag{3}
-\]</span></p>
+\tag{7.3}\]</span></span></p>
 <p>where <span class="math inline">\(\langle f \rangle\)</span> is the arithmetic mean of <span class="math inline">\(f\)</span> over the <span class="math inline">\(N\)</span> random points:</p>
 <p><span class="math display">\[
 \langle f \rangle = \frac{1}{N} \sum_{i=1}^{N} f(x_i)
@@ -700,7 +702,7 @@ dV = -G \frac{dm}{r}
 <p><span class="math display">\[
 \langle f^2 \rangle = \frac{1}{N} \sum_{i=1}^{N} f^2(x_i)
 \]</span></p>
-<p>Note that the error term in equation (3) is proportional to <span class="math inline">\(1/\sqrt{N}\)</span>, which is one of the great disadvantages of the Monte Carlo method of numerical integration; the error reduces very slowly with increasing <span class="math inline">\(N\)</span>, and thus many random points are needed for high accuracy. Nonetheless, Monte Carlo integration is sometimes <em>“the only way to go”</em>, especially if the region of integration is complicated.</p>
+<p>Note that the error term in <a href="#eq-monte-carlo" class="quarto-xref">Equation&nbsp;<span>7.3</span></a> is proportional to <span class="math inline">\(1/\sqrt{N}\)</span>, which is one of the great disadvantages of the Monte Carlo method of numerical integration; the error reduces very slowly with increasing <span class="math inline">\(N\)</span>, and thus many random points are needed for high accuracy. Nonetheless, Monte Carlo integration is sometimes <em>“the only way to go”</em>, especially if the region of integration is complicated.</p>
 <p>Before we proceed any further with Monte Carlo integration, we should discuss in a bit more detail the generation of random numbers by a computer. All “C” compilers come with a pair of library routines.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> srand<span class="op">(</span><span class="dt">unsigned</span> seed<span class="op">);</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> rand<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -715,8 +717,8 @@ dV = -G \frac{dm}{r}
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">/* Use ran1 */</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>rn <span class="op">=</span> ran1<span class="op">(&amp;</span>idum<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The function <code>ran1</code>, which returns a random floating point number between 0.0 and 1.0 is good enough for government work and is much superior to <code>rand</code>. Note, however, that if you use the same negative number seed <code>idum</code> each time, you will get the same sequence of random numbers. It is thus better to use the scheme outlined in Chapter 2 to set <code>idum = -1*now</code>, where <code>now</code> is a time variable.</p>
-<p>Now, back to Monte Carlo integration. Suppose we want to integrate a function <span class="math inline">\(g\)</span> over an irregular region <span class="math inline">\(W\)</span> that is difficult to sample randomly. What do we do? We find a region <span class="math inline">\(V\)</span> that contains <span class="math inline">\(W\)</span> and which <em>is</em> easy to sample randomly — say, for instance, a rectangle or a cube. We then define <span class="math inline">\(f = g\)</span> at points inside of <span class="math inline">\(W\)</span> but <span class="math inline">\(f = 0\)</span> at points inside of <span class="math inline">\(V\)</span> but outside of <span class="math inline">\(W\)</span>. It is in our own interest to make <span class="math inline">\(V\)</span> fit around <span class="math inline">\(W\)</span> as snugly as possible, as the zero values of <span class="math inline">\(f\)</span> will increase the factor <span class="math inline">\(\langle f^2 \rangle - \langle f \rangle^2\)</span> in the error term of equation (3) and will reduce the effective value of <span class="math inline">\(N\)</span>.</p>
-<p>For an example, let us take the integral in the example in §7.3. The region of interest <span class="math inline">\(W\)</span> is a circle with radius 1 and center at <span class="math inline">\((0,0)\)</span>. We take the region <span class="math inline">\(V\)</span> to be a square with the same center. The Monte Carlo integration is carried out by the following code:</p>
+<p>Now, back to Monte Carlo integration. Suppose we want to integrate a function <span class="math inline">\(g\)</span> over an irregular region <span class="math inline">\(W\)</span> that is difficult to sample randomly. What do we do? We find a region <span class="math inline">\(V\)</span> that contains <span class="math inline">\(W\)</span> and which <em>is</em> easy to sample randomly — say, for instance, a rectangle or a cube. We then define <span class="math inline">\(f = g\)</span> at points inside of <span class="math inline">\(W\)</span> but <span class="math inline">\(f = 0\)</span> at points inside of <span class="math inline">\(V\)</span> but outside of <span class="math inline">\(W\)</span>. It is in our own interest to make <span class="math inline">\(V\)</span> fit around <span class="math inline">\(W\)</span> as snugly as possible, as the zero values of <span class="math inline">\(f\)</span> will increase the factor <span class="math inline">\(\langle f^2 \rangle - \langle f \rangle^2\)</span> in the error term of <a href="#eq-monte-carlo" class="quarto-xref">Equation&nbsp;<span>7.3</span></a> and will reduce the effective value of <span class="math inline">\(N\)</span>.</p>
+<p>For an example, let us take the integral in the example in <a href="#sec-int-multidim" class="quarto-xref"><span>Section 7.3</span></a>. The region of interest <span class="math inline">\(W\)</span> is a circle with radius 1 and center at <span class="math inline">\((0,0)\)</span>. We take the region <span class="math inline">\(V\)</span> to be a square with the same center. The Monte Carlo integration is carried out by the following code:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;time.h&gt;</span></span>
@@ -774,7 +776,7 @@ dV = -G \frac{dm}{r}
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result of the first 10 runs of this program (your numbers will be different) with <span class="math inline">\(N = 100\)</span> are: 1.825, 1.640, 1.414, 1.700, 1.532, 1.571, 1.413, 1.600, 1.519, 1.745 each with a calculated error of about <span class="math inline">\(\pm 0.130\)</span>. The mean of these determinations is <span class="math inline">\(1.596 \pm 0.043\)</span> (where the error is the standard error of the mean). If we increase <span class="math inline">\(N\)</span> to 1000, we get the following run: 1.593, 1.574, 1.614, 1.589, 1.545, 1.531, 1.592, 1.570, 1.627, 1.579 each with a calculated error of about <span class="math inline">\(\pm 0.042\)</span>. The mean of these determinations is <span class="math inline">\(1.581 \pm 0.009\)</span>.</p>
-<div id="d4db9239" class="cell" data-execution_count="3">
+<div id="700f134d" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -785,26 +787,26 @@ dV = -G \frac{dm}{r}
 </div>
 <p>Notice that increasing <span class="math inline">\(N\)</span> by a factor of 10 decreased the error by a factor of only about 3. A single run with <span class="math inline">\(N = 100000\)</span> gives <span class="math inline">\(1.575 \pm 0.004\)</span>. Recall that the exact value of this integral is <span class="math inline">\(\pi/2 = 1.571\)</span>.</p>
 <p>The moral of the story is — run your Monte Carlo program many times as the individual results are scattered around the true value.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.7">
+<div id="nte-ex-7-7" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.7
+Exercise&nbsp;7.7
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use Monte Carlo integration to evaluate the integral in Exercise 7.5. The program should prompt the user for N, the number of random points used in the integration.</p>
+<p>Use Monte Carlo integration to evaluate the integral in <a href="#nte-ex-7-5" class="quarto-xref">Exercise&nbsp;<span>7.5</span></a>. The program should prompt the user for N, the number of random points used in the integration.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.8">
+<div id="nte-ex-7-8" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.8
+Exercise&nbsp;7.8
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -821,26 +823,26 @@ M = \iint \rho\, dS
 \]</span></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.9">
+<div id="nte-ex-7-9" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.9
+Exercise&nbsp;7.9
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Repeat the problem of Exercise 7.6 using Monte Carlo integration.</p>
+<p>Repeat the problem of <a href="#nte-ex-7-6" class="quarto-xref">Exercise&nbsp;<span>7.6</span></a> using Monte Carlo integration.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Exercise 7.10">
+<div id="nte-ex-7-10" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise 7.10
+Exercise&nbsp;7.10
 </div>
 </div>
 <div class="callout-body-container callout-body">
