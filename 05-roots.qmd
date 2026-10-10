@@ -21,8 +21,7 @@ use the Newton-Raphson method (or similar methods) to zero in on the root.
 
 The first thing that we need to know in root-finding is an approximate location
 of the root we are interested in. How can we determine this? The easiest way is
-to use a plotting program, such as `gnuplot`, `EXCEL`, etc., to
-plot the function. Another way is to calculate the function at a number of
+to use a plotting program, such as `gnuplot`, `EXCEL`, etc. to plot the function. Another way is to calculate the function at a number of
 points. Then, unless the function is pathological in some way, we can say that a
 root exists in the interval $(a, b)$ if $f(a)$ and $f(b)$ have opposite signs.
 An exception to this is a function with a singularity in this interval. Suppose
@@ -48,11 +47,10 @@ small that we know the location of the root to the desired accuracy.
 
 The "desired" accuracy must be within limits. As we have discussed before in
 class and lab, since computers use a fixed number of binary digits to represent
-floating-point numbers, there is a limit to the accuracy with which computers
-can represent numbers. To be precise, the smallest floating-point number which,
-when added to the floating-point number $1.0$, produces a floating-point number
-different from $1.0$, is termed the *machine accuracy*, $\epsilon_m$.  Using
-single precision, most machines have $\epsilon_m \approx 1 \times 10^{-8}$. 
+floating point numbers, there is a limit to the accuracy to which computers
+can represent numbers. To be precise, the smallest floating point number which,
+when added to the floating-point number $1.0$ produces a floating point number
+different from $1.0$, is termed the *machine accuracy*, $\epsilon_m$.  Using floating point, most machines have $\epsilon_m \approx 1 \times 10^{-8}$. 
 Using double precision, $\epsilon_m \approx 1 \times 10^{-16}$. It is always a
 good idea to back off from these numbers, and thus setting $\epsilon_m$ to
 $10^{-6}$ and $10^{-14}$ respectively are practical limits. Sometimes even those
@@ -71,7 +69,7 @@ root analytically.
 
 ### Plotting Functions in `gnuplot` {.unnumbered}
 
-When finding roots, it is a good idea to plot the function to get an idea of the position of the roots. This can be done in `gnuplot`. To plot the function of @nte-ex-5-1, enter the following commands:
+When finding roots, it is a good idea to plot the function to get an idea of the position of the roots. This can be done in `gnuplot`. To plot the function of @nte-ex-5-1, get into `gnuplot`, and enter the following:
 
 ```text
 gnuplot> f(x) = 5*x**2 + 9*x - 80
@@ -119,12 +117,11 @@ $$
 N = \frac{N_0}{2} \left( e^{-t/\tau_1} + e^{-t/\tau_2} \right)
 $$
 
-Find, by the method of bisection, the time at which $N = N_0 / 2$, i.e., the
+find by the method of bisection the time at which $N = N_0 / 2$, i.e. the
 half-life of the state. Let $\tau_1 = 5.697$ and $\tau_2 = 9.446$.  The program
 should first display (with `gnuplot`) the function (use $N_0 = 100.0$) and then
 prompt the user for an initial bracket. Hints: `gnuplot` does not recognize the
-variable `t`, so use `x` instead. You may wish to add the command `set xrange
-[0:15]` just before the `plot f(x)` command to give the plot a nice scaling. Use
+variable `t`, so use `x`. In addition, you may wish to add the command `set xrange[0:15]` just before the `plot f(x)` command to give the plot a nice scaling. Use
 `exp(x)` for $e^x$ in `gnuplot`.
 
 :::
@@ -135,7 +132,7 @@ variable `t`, so use `x` instead. You may wish to add the command `set xrange
 If we can calculate the first derivative of our function, then we can use a
 speedier (although somewhat more dangerous) method called the Newton-Raphson method.
 
-Let us suppose that we have a function as illustrated below, which has a root at $x = x_r$, and that we have a rough estimate for that root of $x = x_0$. Let us evaluate the derivative of this function at $x_0$, $f'(x_0)$. This derivative will be the slope of the tangent line to the function at the point $(x_0, f(x_0))$, and you can see that where it crosses the $x$-axis, $x_1$, is a much better estimate to the root of the function than $x_0$. 
+Let us suppose that we have a function as illustrated in @fig-newton, which has a root at $x = x_r$, and that we have a rough estimate for that root of $x = x_0$. Let us evaluate the derivative of this function at $x_0$, $f'(x_0)$. This derivative will be the slope of the tangent line to the function at the point $(x_0, f(x_0))$, and you can see that where it crosses the $x$-axis, $x_1$, is a much better estimate to the root of the function than $x_0$. 
 
 The process can be repeated to give an even better estimate, and so on. The equation of the first tangent line is (the student should verify):
 
@@ -144,13 +141,13 @@ $$
 y = f'(x_0)(x - x_0) + f(x_0)
 $$
 
-If we set $y = 0$ to find the root of this line, we get
+if we set $y = 0$ to find the root of this line, we get
 
 $$
 x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}
 $$
 
-From this, we can derive the Newton--Raphson formula for the $n^{\text{th}}$ estimate of the root:
+from which we can derive the Newton--Raphson formula for the $n^{\text{th}}$ estimate to the root:
 $$
 x_n = x_{n-1} - \frac{f(x_{n-1})}{f'(x_{n-1})}
 $$
@@ -261,7 +258,7 @@ to calculate the first two roots of $J_0(x)$.
 The code for $J_1(x)$ is in the file `comphys.c`, and the function definition is
 
 ```c
-float bessj1(float x);
+float bessj1(float x)
 ```
 
 which is contained in `comphys.h`.
@@ -320,14 +317,14 @@ In the exercises below, use $\theta = 60^\circ$, $v_0 = 600 \, \text{m/s}$, and 
 
 a. Solve for $T$ (@eq-flight-time) numerically using iteration. In the first iteration,
 use the non-resistive expression for $T$ (@eq-flight-time-k0). Iterate until the solution
-converges to within a user-defined tolerance (error) – e.g., $\Delta T$ over successive
+converges to within a user-defined tolerance (error) – e.g. $\Delta T$ over successive
 iterations is less than the tolerance. Use a value of $k = 0.005$ for this part only.
 
 b. Find the value of $k$ that allows the projectile to travel 1500 meters ($R = 1500\,\text{m}$).
 
 c. [**GRAD STUDENTS ONLY**] Plot $y$ vs. $x$ using gnuplot for $k$ values
-of 0.0, 0.005, 0.01, 0.02, 0.04, and 0.08. Also, show analytically how to get
-@eq-flight-time-k0 from @eq-flight-time (*Hint: Use perturbation methods – i.e., expand $1 - e^{-kT}$ in a power series expansion, and keep only the first few terms*).
+of 0.0, 0.005, 0.01, 0.02, 0.04 and 0.08. Also, show analytically how to get
+@eq-flight-time-k0 from @eq-flight-time (*Hint: Use perturbation methods – i.e. expand $1 - e^{-kT}$ in a power series expansion, and keep only the first few terms*).
 :::
 
 ## Root Finding in Python
