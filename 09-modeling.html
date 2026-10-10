@@ -406,7 +406,7 @@ s^2 = \chi^2/(N - 2)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Write a program implementing the above equations to fit a straight line to the data in the datafile <code>data91.dat</code>. Your program should estimate the parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and their standard errors.</p>
+<p>Write a program implementing the above equations to fit a straight line to the data in the datafile <a href="data/data91.dat"><code>data91.dat</code></a>. Your program should estimate the parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and their standard errors.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.2">
@@ -495,7 +495,7 @@ s^2 = \chi^2/(N - M)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The datafile <code>data94.dat</code> contains <span class="math inline">\(x, y\)</span> data which can be fit with a polynomial. Write a program which will fit these data to a polynomial of degree <span class="math inline">\(M - 1\)</span>, where <span class="math inline">\(M - 1\)</span> is a user input. The program should output the <span class="math inline">\(M\)</span> coefficients and their errors. Determine the best value of the degree of the polynomial for this dataset by trial and error. Hint: the best polynomial will have a small value for <span class="math inline">\(\chi^2\)</span>, but not necessarily the smallest value. If increasing the degree of the polynomial only marginally improves the value for <span class="math inline">\(\chi^2\)</span>, it may not represent a better fit. You also need to look at the standard errors of the coefficients. If the absolute value of a coefficient is no greater than 3 times its error, it is not statistically significant, i.e.&nbsp;it is not statistically different from zero.</p>
+<p>The datafile <a href="data/data94.dat"><code>data94.dat</code></a> contains <span class="math inline">\(x, y\)</span> data which can be fit with a polynomial. Write a program which will fit these data to a polynomial of degree <span class="math inline">\(M - 1\)</span>, where <span class="math inline">\(M - 1\)</span> is a user input. The program should output the <span class="math inline">\(M\)</span> coefficients and their errors. Determine the best value of the degree of the polynomial for this dataset by trial and error. Hint: the best polynomial will have a small value for <span class="math inline">\(\chi^2\)</span>, but not necessarily the smallest value. If increasing the degree of the polynomial only marginally improves the value for <span class="math inline">\(\chi^2\)</span>, it may not represent a better fit. You also need to look at the standard errors of the coefficients. If the absolute value of a coefficient is no greater than 3 times its error, it is not statistically significant, i.e.&nbsp;it is not statistically different from zero.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Exercise 9.5">
@@ -508,12 +508,12 @@ s^2 = \chi^2/(N - M)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The datafile <code>data95.dat</code> contains <span class="math inline">\(x, y\)</span> data which can be fit with a harmonic sine series of the form:</p>
+<p>The datafile <a href="data/data95.dat"><code>data95.dat</code></a> contains <span class="math inline">\(x, y\)</span> data which can be fit with a harmonic sine series of the form:</p>
 <p><span class="math display">\[
 y = a_1 + \sum_{n=2}^{4} a_n \sin[(n-1)\pi x]
 \]</span></p>
 <p>Determine the <span class="math inline">\(a_n\)</span>’s and their errors for this dataset.</p>
-<div id="d396eb26" class="cell" data-execution_count="1">
+<div id="7c71808a" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -573,7 +573,7 @@ c \equiv f(\mathbf{P}) \quad \mathbf{b} \equiv -\nabla f|_\mathbf{P} \quad [\mat
 <p>The constant <code>alambda</code> in the above discussion refers to the constant in the method of steepest descent.</p>
 <p>The best way to explain how to use <code>mrqmin</code> is with an example. The following figure shows a histogram of data. The underlying theory is that the distribution of points in this diagram is a double Gaussian. We would like to fit these data to a function that looks like:</p>
 <!-- TODO: Recreate Figure 2 showing histogram data to be fit with double Gaussian -->
-<div id="c4822bab" class="cell" data-execution_count="2">
+<div id="ca25b702" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -705,7 +705,7 @@ f(x; a_1, \ldots, a_6) = a_1 \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \r
 <span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">;</span></span>
 <span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="a45e91f6" class="cell" data-execution_count="3">
+<div id="d3551ce8" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -724,7 +724,7 @@ f(x; a_1, \ldots, a_6) = a_1 \exp\left[ -\left( \frac{x - a_2}{a_3} \right)^2 \r
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Using the data in the file <code>decay.out</code> (see chapter 6), write a program which uses the Levenberg-Marquardt method to fit the four parameters <span class="math inline">\(A\)</span>, <span class="math inline">\(\gamma\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>. Compare the values you get with the Simplex and Powell methods.</p>
+<p>Using the data in the file <a href="data/decay.out"><code>decay.out</code></a> (see chapter 6), write a program which uses the Levenberg-Marquardt method to fit the four parameters <span class="math inline">\(A\)</span>, <span class="math inline">\(\gamma\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>. Compare the values you get with the Simplex and Powell methods.</p>
 </div>
 </div>
 
