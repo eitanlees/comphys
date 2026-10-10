@@ -912,8 +912,7 @@ y = np.linspace(-1, 3, 400)
 X, Y = np.meshgrid(x, y)
 
 # Evaluate the Rosenbrock function on the grid
-Z = np.array([rosen([x, y]) for x, y in zip(X.ravel(), Y.ravel())])
-Z = Z.reshape(X.shape)
+Z = rosen([X, Y])
 
 # Create the contour plot
 fig, ax = plt.subplots(figsize=(4, 4))
@@ -1004,7 +1003,7 @@ def plot_rosenbrock_path(path, method, xlim=(-2, 2), ylim=(-1, 3)):
     X, Y = np.meshgrid(x, y)
 
     # Evaluate Rosenbrock
-    Z = np.array([rosen([x, y]) for x, y in zip(X.ravel(), Y.ravel())]).reshape(X.shape)
+    Z = rosen([X, Y])
 
     # Create the plot
     fig, ax = plt.subplots(figsize=(4, 4))
