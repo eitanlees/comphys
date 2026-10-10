@@ -312,7 +312,9 @@ int partint( int a[], int l, int r) {
 
 As an example of the use of quicksort, in earth surface physics, one often needs to determine the grain size distribution of grains in a given population. This is usually done to model the boundary layer behavior between a bed of grains and a fluid that is moving relative to that bed. The grain sizes beneath a bed, known as "granular surface roughness", will determine the drag experienced by the fluid as it passes overhead. Large grains induce turbulence, draining energy from the flow and slowing it down. Very small grains (or a smooth surface) may allow laminar flow, speeding it up.
 
-In the following assignment, you will sort 50 grains whose size [in mm] is provided in the file `grains.dat`. You must sort the grains in two ways:
+In the following assignment, you will sort 50 grains whose size [in mm] is provided in the file [`grains.dat`](data/grains.dat).[^grains] You must sort the grains in two ways:
+
+[^grains]: The original `grains.dat` from the 2011 course could not be found. The file linked here is a stand-in made for this book: 50 grain sizes between 1.0 and 2.0 mm, a few of them on a bin boundary, so your sorted list, bin counts and statistics won't match those from the original class.
 
 1. Write to screen the list of 50 grains sorted by size from smallest to largest.
 

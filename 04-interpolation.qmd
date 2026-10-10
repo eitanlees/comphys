@@ -149,7 +149,7 @@ user for a wavelength and then print to screen the corresponding value of $n$.
 
 ::: {.callout-note title="Exercise 4.3"}
 
-The file `data/boiling.dat` contains data in two columns for the boiling point
+The file [`data/boiling.dat`](data/boiling.dat) contains data in two columns for the boiling point
 of water at different atmospheric pressures. The first column is the pressure in
 millibars, the second is the corresponding boiling point temperature in degrees
 Celsius. Write a C-function that initializes two vectors, `P` and `T` with the

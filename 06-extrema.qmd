@@ -555,7 +555,7 @@ $$
 
 We can consider the parameters $A$, $\gamma$, $B$, and $C$ as variables, and ask our simplex algorithm `amoeba` to roam around in this four-dimensional space seeking the best fit (i.e., the fit with the smallest residual or $\chi^2$) between this model and the data in the above figure.
 
-These data are contained in the file `data/decay.out`. The first thing you must do is to read these data into your program. Consider the following code fragment, which can serve as the beginning of your program:
+These data are contained in the file [`data/decay.out`](data/decay.out). The first thing you must do is to read these data into your program. Consider the following code fragment, which can serve as the beginning of your program:
 
 ```c
 #include <stdio.h>
