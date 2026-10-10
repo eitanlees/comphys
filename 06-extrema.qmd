@@ -2,8 +2,7 @@
 
 
 The determination of the minima or the maxima of functions, including 1-D and
-multi-dimensional functions, is an important problem not only in physics but
-throughout quantitative science.  For instance, in physics and astronomy, many
+multi-dimensional functions is an important problem not only in physics but all through quantitative science.  For instance, in physics and astronomy, many
 quantities come to a maximum at an intermediate value of a certain parameter. In
 the spectra of stars, the hydrogen lines come to their maximum strength at a
 temperature of about $10{,}000\,\text{K}$. Stars with temperatures both lower
@@ -13,8 +12,8 @@ orbits in classical mechanics leads to the concept of an *effective potential*.
 Depending upon the nature of the central force and the angular momentum of the
 particle, the effective potential can have a minimum at a certain radius. A
 stable circular orbit is then possible at that radius. Around black holes, this
-effective potential has not only a minimum but also a maximum. At the minimum,
-stable circular orbits are possible. Inside of the maximum, the particle is
+effective potential has not only a minimum but a maximum. At the minimum,
+stable circular orbits are possible. Inside of the maximum the particle is
 irretrievably drawn into the black hole. Knowledge of the location of this
 maximum is of obvious importance if you are orbiting around a black hole!
 
@@ -25,15 +24,12 @@ experimental or observational results?""
 
 That this is a problem related to minimization becomes clear when one considers
 a function $f(x_1, x_2, x_3, \ldots)$  which is equal to the sum of the squared
-differences between the theoretical model and the experimental results. The
-variables $x_1, x_2, x_3, \ldots$ are the model parameters, and we can consider
-them to define an $n$-dimensional space. The function $f$ then takes on a value
+differences between the theoretical model and the experimental results. The $x_1, x_2, x_3, \ldots$ are the model parameters, and we can consider them to be variables which define an $n$-dimensional space. The function $f$ then takes on a value
 at each point in this $n$-dimensional space, and the problem reduces to finding
 the global minimum of $f$.
 
 Finding the maximum of a function is equivalent to finding a minimum, because if
-$f(x)$ has a maximum at $x_m$, then $-f(x)$ has a minimum at the same point
-$x_m$. Thus, in what follows, we will consider algorithms to determine the
+$f(x)$ has a maximum at $x_m$, then $-f(x)$ has a minimum at $x_m$. Thus in what follows, we will consider algorithms to determine the
 *minimum* of a function only.
 
 Let us first begin with 1-D functions, and then move on to multi-dimensional
@@ -41,8 +37,8 @@ functions.
 
 ## The Minimization of 1-D Functions {#sec-min-1D}
 
-Analogous to @sec-roots, in which we considered how to find the root of a 1-D
-function, we can divide the problem into functions for which we can
+Analogous to @sec-roots in which we considered how to find the root of a 1-D
+function, we can divide the problem up into functions for which we can
 determine the first derivative and those for which we cannot. Let us first
 consider the case for which we cannot determine the derivative, or are too lazy
 to do so.
@@ -54,10 +50,9 @@ In @sec-bisection we used the method of bisection to zero in on the root of a
 mean by "bracketing" a minimum.  A minimum can be bracketed only by a triplet of
 points $a < b < c$ such that $f(b)$ is less than both $f(a)$ and $f(c)$. Only
 then do we know that the function has a minimum in the interval $(a, c)$ (see
-@fig-parab-min).  To zero in on the minimum, we choose a new point $x$, which is
-either between $a$ and $b$, or between $b$ and $c$. Let us suppose $x$ is
+@fig-parab-min).  To zero in on the minimum, we choose a new point, $x$, which is either between $a$ and $b$ or between $b$ and $c$. Let us suppose $x$ is
 between $b$ and $c$. We evaluate $f(x)$.  If $f(b) < f(x)$, then we replace $c$
-with $x$.  If, however, $f(b) > f(x)$, then the new bracketing triplet is $(b, x, c)$.  
+with $x$.  If, however, $f(b) > f(x)$ then the new bracketing triplet is $(b, x, c)$.  
 We continue until we know the position of the minimum to a precision
 consistent with both our needs and the machine precision.
 
@@ -115,19 +110,19 @@ def plot_bracket(tangent=False):
 plot_bracket()
 ```
 
-How do we choose $x$? There are a number of ways to choose $x$, but a straightforward way is to take $x$ halfway through the larger of the two intervals $(a, b)$ and $(b, c)$.
+How do we choose $x$? There are a number of ways to choose $x$, but a straightforward way is to take $x$ halfway through the largest of the two intervals $(a, b)$ and $(b, c)$.
 
 We use the following algorithm:
 
-- **If** the interval $(a, b)$ is larger than $(b, c)$:  
+- The interval $(a, b)$ is larger than $(b, c)$:  
   Take $x = (a + b)/2$ and find $f(x)$.  
   - If $f(b) < f(x)$, the new interval is $(x, b, c)$.  
   - If $f(b) > f(x)$, the new interval is $(a, x, b)$.
 
-- **If** the interval $(b, c)$ is larger than $(a, b)$:  
+- The interval $(b, c)$ is larger than $(a, b)$:  
   Take $x = (b + c)/2$ and find $f(x)$.  
-  - If $f(b) < f(x)$, the new interval is $(a, b, x)$.  
-  - If $f(b) > f(x)$, the new interval is $(b, x, c)$.
+  - If $f(b) < f(x)$, then the interval is $(a, b, x)$.  
+  - If $f(b) > f(x)$ then the interval is $(b, x, c)$.
 
 ---
 
@@ -144,13 +139,13 @@ using the beginning bracket $(11, 15, 20)$. Print out intermediate results so th
 ---
 
 ::: {#nte-ex-6-2 .callout-note}
-Legendre polynomials appear in the solutions to Laplace's equation in electrostatics, particularly for systems with spherical symmetries. For example, the general solution for the potential in 3-space, arrived at via separation of variables, takes the form:
+Legendre polynomials appear in the solutions to Laplace's equations in electrostatics, particularly for systems with spherical symmetries. For example, the general solution for the potential in 3-space, arrived via separation of variables, takes the form:
 
 $$
 V(r, \theta) = \sum_{n=0}^{\infty} \left( A_n r^n + \frac{B_n}{r^{n+1}} \right) P_n(\cos \theta)
 $$
 
-where the coefficients $A_n$ and $B_n$ are determined by boundary conditions, and $r$ and $\theta$ are the radial distance and polar angle, respectively, in spherical coordinates.  
+where the coefficients $A_n$ and $B_n$ are determined by boundary conditions, and $r$ and $\theta$ are the radial distance and the polar angle, respectively, in spherical coordinates.  
 
 $P_n$ is the Legendre polynomial for the $n$th harmonic, defined via the Rodrigues Formula as:
 
@@ -170,17 +165,11 @@ using the initial bracket $(0.0, 0.5, 1.0)$. Print out intermediate results so t
 ---
 
 ::: {#nte-ex-6-3 .callout-note}
-Recall that the Bessel function $J_0(x)$ is included in `comphys.c` as:
-
-```c
-float bessj0(float x)
-```
-
-Write a program that first invokes gnuplot to plot $J_0(x)$ between $x = 0$ and
+Recall that the Bessel function $J_0(x)$ is included in `comphys.c` (`float bessj0(float x)`). Write a program that first invokes gnuplot to plot $J_0(x)$ between $x = 0$ and
 $x = 15$, and then prompts the user to enter a triplet (`a, b, c`) to bracket
 one of the displayed minima of $J_0(x)$. The program should then use bracketing
 and bisection to find the $x$ value of that minimum to a tolerance of $1 \times
-10^{-5}$. Hint: You can get gnuplot to plot $J_0(x)$ with the command:
+10^{-5}$. Hint: You can get gnuplot to plot out $J_0(x)$ with the command:
 
 ```text
 gnuplot> plot besj0(x)
@@ -193,34 +182,33 @@ In the previous section, we cornered the minimum of our function by successively
 reducing the size of the bracketing interval until we knew the location of the
 minimum to the desired precision. We did this by arbitrarily selecting a new
 evaluation point in the center of the *largest* interval, $(a, b)$ or $(b, c)$.
-Now, this is inefficient, as the minimum may not be in the largest interval, and
+Now this is inefficient, as the minimum may not be in the largest interval, and
 so our algorithm actually wasted nearly 50% of its steps. If we can calculate
 the derivative of the function, we can use this information to determine which
 interval the minimum is actually in and thus avoid wasting steps.  Furthermore,
-if we retain the derivatives of the function at all bracketing points $a$, $b$,
-and $c$, then we can utilize linear *extrapolation* to predict where the
-derivative of the function goes to zero — i.e., the location of the minimum.
-This scheme should zero in on the minimum with far fewer steps than the previous
+if we retain the derivatives of the function at all bracketing points $a$, $b$ and $c$, then we can utilize linear *extrapolation* to predict where the
+derivative of the function goes to zero — i.e. the location of the minimum.
+This scheme should zero in on the minimum with much fewer steps than the previous
 algorithm.
 
 This is how we proceed:
 
-1. Evaluate the function and its derivative at each of the bracketing points $a$, $b$, and $c$.
+1. Evaluate the function and its derivative at each of the bracketing points $a$, $b$ and $c$.
 
 2. Examine $f'(b)$:
    - If $f'(b) > 0$, the minimum is in the interval $(a, b)$.  
    - If $f'(b) < 0$, the minimum is in $(b, c)$.  See @fig-parab-min-div.
 
 3. If $f'(b) < 0$, use $f'(a)$ and $f'(b)$ to extrapolate the derivative to 0.  
-   The straight line that passes through the points $(a, f'(a))$ and $(b, f'(b))$ is given by:
+   The straight line that passes through the points $(a, f'(a))$ and $(b, f'(b))$ is
    $$
    y' = f'(a) + \frac{f'(b) - f'(a)}{b - a} (x - a)
    $$
-   (The student should verify this). This can be used to extrapolate to $y' = 0$ by setting $y' = 0$ and solving for $x$, yielding:
+   (the student should verify this). This can be used to extrapolate to $y' = 0$ by setting $y' = 0$ and solving for $x$, yielding:
    $$
    x = a - \frac{f'(a)(b - a)}{f'(b) - f'(a)}
    $$
-   We then calculate $f(x)$ and $f'(x)$, and the new interval is $(b, x, c)$.
+   we then calculate $f(x)$ and $f'(x)$, and the new interval is $(b, x, c)$.
 
 4. If $f'(b) > 0$, use $f'(b)$ and $f'(c)$ to extrapolate the derivative to 0.  
    The straight line that passes through the points $(b, f'(b))$ and $(c, f'(c))$ is:
@@ -229,7 +217,7 @@ This is how we proceed:
    y' = f'(b) + \frac{f'(c) - f'(b)}{c - b} (x - b)
    $$
 
-   (The student should verify this.)  
+   (the student should verify this).  
 
    This can be used to extrapolate to $y' = 0$ by setting $y' = 0$ and solving for $x$, yielding:
 
@@ -237,7 +225,7 @@ This is how we proceed:
    x = b - \frac{f'(b)(c - b)}{f'(c) - f'(b)}
    $$
 
-   We then calculate $f(x)$ and $f'(x)$, and the new interval is $(a, x, b)$.
+   we then calculate $f(x)$ and $f'(x)$, and the new interval is $(a, x, b)$.
 
 5. Go back to step (2) and continue until the minimum is isolated to the desired accuracy.
 
@@ -275,7 +263,7 @@ $$
 ---
 
 ::: {#nte-ex-6-7 .callout-note title="The Derivation of Wien's Law"}
-Wien's law is a property of the blackbody spectrum and can be written as:
+Wien's law is a property of the blackbody spectrum and can be written
 
 $$
 \lambda_{\text{max}}(\text{Å}) = \frac{2.9 \times 10^{7}\ \text{ÅK}}{T(\text{K})}
@@ -283,7 +271,7 @@ $$
 
 meaning that the wavelength of the maximum of the blackbody (Planck) spectrum is inversely proportional to the temperature.
 
-The flux emitted by a blackbody (in units of erg s⁻¹ cm⁻² Å⁻¹) is given by:
+The flux emitted by a blackbody (in units of erg/s/cm$^2$/Å) is given by:
 
 $$
 B(\lambda) = \frac{1.19106 \times 10^{27}}{\lambda^5 \left( e^{1.43879 \times 10^{8} / (\lambda T)} - 1 \right)}
@@ -292,10 +280,10 @@ $$
 This function is coded in the C function `planck` found in **comphys.c**. The function definition is:
 
 ```c
-float planck(float wave, float T);
+float planck(float wave,float T);
 ```
 
-where wave is the wavelength in Ångströms and T is the temperature in Kelvin.
+where wave is the wavelength in Ångstroms and T is the temperature in Kelvin.
 
 Use the method of this section to determine the wavelength of the maximum of $B(\lambda)$ for the following temperatures:
 $T = 2000\text{K}, 5000\text{K}, 8000\text{K}, 11000\text{K}, 14000\text{K}$ and use gnuplot to plot these wavelengths against $1/T$ and show that the slope of the line is $2.9 \times 10^7,\text{ÅK}$.
@@ -360,7 +348,7 @@ the needs of the problem.  These $N + 1$ points define the initial simplex.
 
 The downhill simplex method now takes a number of steps in the "downhill"
 direction in an attempt to find the minimum of the function.  Most of these
-steps are in the form of reflections, in which the "highest" vertex of the
+steps are in the form of reflections in which the "highest" vertex of the
 simplex (i.e. the vertex at which the function evaluates to the highest value)
 is reflected through the opposite face of the simplex to a lower point.  Other
 steps (see @fig-simplex) involve reflection and expansion, or contraction.  The
@@ -373,13 +361,13 @@ it.
 
 The C function `amoeba` — from *Numerical Recipes* [@press92, sec. 10.4] — implements the
 downhill simplex method.  Since this algorithm may be a bit difficult for you to
-code yourself, we have given you this routine in `comphys.c`, and you will
+code yourself, we have given you this routine in `comphys.c` and you will
 explore a number of applications of this routine.
 
 The function definition for amoeba (contained in `comphys.h`) is:
 
 ```c
-void amoeba(float **p, float y[], int ndim, float ftol,
+void amoeba(float **p,float y[], int ndim, float ftol,
             float (*funk)(float []), int *nfunk)
 ```
 
@@ -390,8 +378,7 @@ a vector in `ndim` dimensions, by the downhill simplex method of Nelder and
 Mead.  The matrix `p[1..ndim+1][1..ndim]` is input.  Its `ndim + 1` rows are
 `ndim`-dimensional vectors which are the vertices of the starting simplex.  Also
 input is the vector `y[1..ndim+1]`, whose components must be preinitialized to
-the values of `funk` evaluated at the `ndim + 1` vertices (rows) of `p`;  and
-`ftol`, the fractional convergence tolerance to be achieved in the function
+the values of `funk` evaluated at the `ndim + 1` vertices (rows) of `p`; and `ftol` the fractional convergence tolerance to be achieved in the function
 value.  On output, `p` and `y` will have been reset to `ndim + 1` new points all
 within `ftol` of a minimum function value, and `nfunk` gives the number of
 function evaluations taken.
@@ -541,7 +528,7 @@ $$
 f(t) = A e^{-\gamma t} \sin(Bt + C)
 $$
 
-We can consider the parameters $A$, $\gamma$, $B$, and $C$ as variables, and ask our simplex algorithm `amoeba` to roam around in this four-dimensional space seeking the best fit (i.e., the fit with the smallest residual or $\chi^2$) between this model and the data in @fig-decay-data.
+We can consider the parameters $A$, $\gamma$, $B$ and $C$ as variables, and ask our simplex algorithm `amoeba` to roam around in this four dimensional space seeking the best fit (i.e. the fit with the smallest residual or $\chi^2$) between this model and the data in @fig-decay-data.
 
 These data are contained in the file [`data/decay.out`](data/decay.out). The first thing you must do is to read these data into your program. Consider the following code fragment, which can serve as the beginning of your program:
 
@@ -574,13 +561,9 @@ int main()
   while(fscanf(in,"%f %f",&t[k],&yi[k]) != EOF) k++;
 
   fclose(in);
-
-  // ...
-
-}
 ```
 
-What this code fragment does is to define two external vectors, `*t` and `*yi`, and then allocate space for them in the lines:
+What this code fragment does is to define two external vectors, `*t` and `*yi` and then allocate space for them in the lines:
 
 ```cpp
 t = vector(0,200);
@@ -615,7 +598,7 @@ float f(float x[])
 }
 ```
 
-What remains for you to do is to figure out reasonable starting values for $A$, $\gamma$, $B$, and $C$, use them to initialize the components of p, and then to invoke amoeba. @fig-decay-fit shows a plot of what I got.
+What remains for you to do is to figure out reasonable starting values for $A$, $\gamma$, $B$ and $C$, use them to initialize the components of p and then to invoke amoeba. @fig-decay-fit shows a plot of what I got.
 
 
 ```{python}
@@ -686,11 +669,10 @@ V(x, y) = \left\{
 $$
 
 where $0 < \xi_1 < 1$ and $\xi_2 = \xi_1 - 1$.  It turns out that this potential
-surface has 5 extrema, three minima ($L_1$, $L_2$, and $L_3$), which all lie
-along the x-axis, and two maxima ($L_4$ and $L_5$).  For small values of
+surface has 5 extrema, three minima ($L_1$, $L_2$, and $L_3$) which all lie along the x-axis and two maxima ($L_4$ and $L_5$).  For small values of
 $\xi_1$, $L_4$ will be in the second quadrant and approximately located at a
 point 1 unit away from the origin along a line inclined $60^\circ$ to the $-x$
-axis. As $\xi_1$ increases, $L_4$ moves closer to the y-axis and lies on the
+axis. As $\xi_1$ increases, $L_4$ moves closer to the y-axis, and lies on the
 y-axis for $\xi_1 = 0.5$. $L_5$ is located similarly in the third quadrant.
 Write a program that will prompt the user for $\xi_1$, check that $\xi_1 \le
 0.50$, and then find the coordinates of $L_4$ using the simplex method.
@@ -709,7 +691,7 @@ worthwhile to investigate other methods.
 
 One straightforward way to minimize a multidimensional function is to use the
 methods of @sec-min-1D to minimize first along one direction, then along the
-next and so on until you spiral into the minimum — i.e., if $y = f(x_1, x_2,
+next and so on until you spiral into the minimum — i.e. if $y = f(x_1, x_2,
 x_3, \ldots)$, hold $x_2, x_3, \ldots$ constant and minimize $f$ along $x_1$,
 then hold $x_1, x_3, \ldots$ constant and minimize along $x_2$, and so on,
 cycling through the directions until you know the minimum to the desired
@@ -722,8 +704,7 @@ valley to get to the minimum.
 
 The key is to abandon the coordinate directions $x_1, x_2, x_3, \ldots$ and
 instead use a new basis set of "conjugate directions", with the idea that the
-first of these directions will be along the direction of maximum descent — i.e.,
-along the direction of that long narrow valley. The algorithm moves as far as it
+first of these directions will be along the direction of maximum descent — i.e. along the direction of that long narrow valley. The algorithm moves as far as it
 can along this direction; it then abandons that direction and finds the next
 direction of maximum descent, and so on, until the actual function minimum is
 found.  This is the basis of Powell's method, which is implemented in the
