@@ -11,18 +11,22 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how that works.
 
 ## Building
 
-The Python packages are in `requirements.txt`. With [uv](https://docs.astral.sh/uv/),
-one command brings in those and Quarto itself, without adding anything to the repo:
+Python, the packages and Quarto itself are pinned in `uv.lock`. With
+[uv](https://docs.astral.sh/uv/) installed, one command builds the book:
 
 ```bash
-uv run --no-project --with-requirements requirements.txt --with quarto-cli quarto render --to html
+uv run quarto render --to html
 ```
 
 That renders the web version into `_book/`. Every chapter's code re-runs, so it
-takes a minute or two. Swap `render --to html` for `preview 04-interpolation.qmd`
-to get a live preview of one chapter that re-renders on save.
+takes a minute or two. `uv run quarto preview 04-interpolation.qmd` gives a
+live preview of one chapter that re-renders on save.
 
-Plain `quarto render` also builds the PDF, which needs a TeX install.
+Plain `uv run quarto render` also builds the PDF, which needs TeX
+(`uv run quarto install tinytex`).
+
+To update the packages, run `uv lock --upgrade` in its own pull request, so any
+change in the figures or printed numbers shows up in review.
 
 ## Publishing
 

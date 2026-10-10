@@ -1,0 +1,15 @@
+[project]
+name = "comphys"
+version = "0.1.0"
+description = "Dr. Richard O. Gray's 2011 computational physics lectures, as a Quarto book"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "jupyter",
+    "quarto-cli",
+]
+
+[tool.uv]
+package = false

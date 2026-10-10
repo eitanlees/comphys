@@ -12,19 +12,21 @@ The backlog is the GitHub issue list. Check it before starting work.
 
 ## Build Commands
 
-There is no global `quarto` or Python environment. Run Quarto through uv, which installs `requirements.txt` plus Quarto into its cache and adds nothing to the repo:
+Python, the packages and Quarto itself are pinned in `pyproject.toml` + `uv.lock` (Python version in `.python-version`). Run everything through `uv run`; there is no global `quarto` and no `requirements.txt`:
 
 ```bash
 # Render the web version into _book/ (every chapter re-runs; a minute or two)
-uv run --no-project --with-requirements requirements.txt --with quarto-cli quarto render --to html
+uv run quarto render --to html
 
 # Live preview of one chapter
-uv run --no-project --with-requirements requirements.txt --with quarto-cli quarto preview 04-interpolation.qmd --to html
+uv run quarto preview 04-interpolation.qmd --to html
 ```
 
-Plain `quarto render` also builds the PDF, which needs TeX (not installed locally), so the PDF goes unverified.
+Add a package with `uv add <name>`. Upgrade with `uv lock --upgrade` in its own PR, so changed figures or numbers show up in review. Don't `ipykernel install --user`; Quarto finds the venv's kernel on its own.
 
-Pushing to `main` triggers the GitHub Action that builds and deploys to gh-pages. Pull requests into `main` get a build check (`pr-build.yml`) that renders the HTML without publishing. It fails on a code-cell error but not on a broken cross-reference (Quarto only warns), so still render locally to verify a change.
+Plain `uv run quarto render` also builds the PDF, which needs TeX (not installed locally), so the PDF goes unverified.
+
+Both workflows install from the lock with `uv sync --locked`, which fails if `uv.lock` is out of date with `pyproject.toml`. Pushing to `main` triggers the GitHub Action that builds and deploys to gh-pages. Pull requests into `main` get a build check (`pr-build.yml`) that renders the HTML without publishing. It fails on a code-cell error but not on a broken cross-reference (Quarto only warns), so still render locally to verify a change.
 
 ## Workflow
 
