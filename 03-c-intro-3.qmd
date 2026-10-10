@@ -400,7 +400,7 @@ So far we have employed gnuplot as a stand alone program, but it is possible to 
   return(0);
 ```
 
-## More on Vectors and Arrays
+## More on Vectors and Arrays {#sec-vectors-arrays}
 
 When we introduced the concept of variable (part I), we mentioned that arrays of variables could be declared easily, using statements like:
 
