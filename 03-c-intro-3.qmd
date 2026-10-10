@@ -123,7 +123,7 @@ Write a program that will pass a variable `double T = 100.0` by reference to a f
 :::
 
 ::: {#nte-ex-3-2 .callout-note}
-Rewrite your program in @nte-ex-3-3 and pass `T` by *value*. Show that even though `T` is multiplied by 2.5 in the `doit` function, its value remains the same in the `main` function.
+Rewrite your program in @nte-ex-3-1 and pass `T` by *value*. Show that even though `T` is multiplied by 2.5 in the `doit` function, its value remains the same in the `main` function.
 :::
 
 ::: {#nte-ex-3-3 .callout-note}
