@@ -24,7 +24,7 @@ It should be noted that in the above discussion we have tacitly assumed that all
 
 Let us begin our discussion of the modeling of data with a review of using least squares to fit data to a straight line, and use that as a springboard to a discussion on fitting data to nonlinear functions.
 
-## Least Squares Fitting of Data to a Straight Line
+## Least Squares Fitting of Data to a Straight Line {#sec-least-squares-line}
 
 Let us suppose that the y-value for each data point $(x_i, y_i)$ has its own, known, standard deviation, $\sigma_i$. Then the expression that we wish to minimize becomes:
 
@@ -178,7 +178,7 @@ $$
 $$
 :::
 
-## General Linear Least Squares
+## General Linear Least Squares {#sec-general-least-squares}
 
 To generalize our discussion in the last section, let us go back to @eq-model and suppose that our model function $f$ may be written as a linear combination of a set of $m$ linearly independent functions[^2] $X_i(x)$ such that
 
@@ -198,7 +198,7 @@ $$
 
 The problem of finding the set of $a_k$'s such that they minimize the above expression for $\chi^2$ is called the problem of *general linear least squares*, not because the $X_k(x)$'s are linear (they generally are not!), but because the $a_k$'s appear in @eq-general-model in a linear way.
 
-We proceed to solve the problem of general linear least squares in a way analogous to section 9.2. We minimize $\chi^2$ individually with respect to each of the $a_k$'s, yielding the following equations:
+We proceed to solve the problem of general linear least squares in a way analogous to @sec-least-squares-line. We minimize $\chi^2$ individually with respect to each of the $a_k$'s, yielding the following equations:
 
 $$
 0 = \sum_{i}^{N} \frac{1}{\sigma_i^2} \left[ y_i - \sum_{j=1}^{m} a_j X_j(x_i) \right] X_k(x_i) \quad k = 1, \ldots, m
@@ -224,7 +224,7 @@ $$
 
 where $\mathbf{a}$ has the entries $a_1, a_2, \ldots a_m$. We may thus determine $\mathbf{a}$ by inverting $\mathbf{A}$.
 
-Of course, we are not finished until we have determined the errors for each of the $a_k$'s. It turns out, in analogy with section 9.2, that the variances for the $a_k$'s are given by the diagonal entries of the inverse matrix $\mathbf{A}^{-1}$, also called the *covariance matrix*. To derive the standard errors of the coefficients $a_k$, we must multiply these variances by the factor
+Of course, we are not finished until we have determined the errors for each of the $a_k$'s. It turns out, in analogy with @sec-least-squares-line, that the variances for the $a_k$'s are given by the diagonal entries of the inverse matrix $\mathbf{A}^{-1}$, also called the *covariance matrix*. To derive the standard errors of the coefficients $a_k$, we must multiply these variances by the factor
 
 $$
 s^2 = \chi^2/(N - M)
@@ -330,7 +330,7 @@ $$
 \mathbf{A} \cdot \mathbf{x} = \mathbf{b}
 $$
 
-Now, shift your mind back to the problem of Least Squares. Let us suppose that we have a function which depends on parameters $a_1, a_2, \ldots a_m$ in a non-linear way. Unfortunately, we cannot proceed in precisely the way we did in section 9.3, but we can still write down the same expression for $\chi^2$ which we wish to minimize, that is,
+Now, shift your mind back to the problem of Least Squares. Let us suppose that we have a function which depends on parameters $a_1, a_2, \ldots a_m$ in a non-linear way. Unfortunately, we cannot proceed in precisely the way we did in @sec-general-least-squares, but we can still write down the same expression for $\chi^2$ which we wish to minimize, that is,
 
 $$
 \chi^2 = \sum_{i=1}^{N} \left( \frac{y_i - f(x_i; a_1, a_2, \ldots, a_m)}{\sigma_i} \right)^2
