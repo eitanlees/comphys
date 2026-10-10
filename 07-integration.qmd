@@ -58,9 +58,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-This equation can be extended to $n$ points.
-
-For equally spaced points
+This equation can be extended to $n$ points for equally spaced points
 
 $$
 \int_{x_1}^{x_n} f(x)\,dx \approx h \left(\frac{1}{2} f_1 + f_2 + f_3 + \ldots + \frac{1}{2} f_n \right)
@@ -89,12 +87,11 @@ better than 100 points?
 
 :::
 
-For equally spaced points, the trapezoidal rule has an error $O(h^3)$, which
+For equally spaced points the trapezoidal rule has an error $O(h^3)$, which
 means that the error for each interval in the rule is proportional to the cube
 of the spacing.  This means, of course, that if the interval size is reduced,
 the error decreases. In terms of the total number of points ($N$) used, the
-total error for the trapezoidal rule can be expressed as $O(1/N^2)$ — i.e., if
-we double the number of points, the error goes down by a factor of 4.
+total error for the trapezoidal rule can be expressed as $O(1/N^2)$ — i.e. if we double the number of points, the error goes down by a factor of 4.
 Eventually, however, we run into the law of diminishing returns — either we hit
 the limit of machine accuracy, or the cumulative error involved in using many
 tiny intervals begins to build and becomes unacceptably high.  In addition, if
@@ -111,9 +108,7 @@ popular is *Simpson's rule* which is based on parabolic interpolation. The
 formula for Simpson's rule, a three-point formula, is:
 
 $$
-\int_{x_1}^{x_3} f(x)\,dx \approx \frac{h}{3}
-\left(
-\frac{1}{3}f_1 + \frac{4}{3}f_2 + \frac{1}{3}f_3 
+\int_{x_1}^{x_3} f(x)\,dx \approx h \left( \frac{1}{3}f_1 + \frac{4}{3}f_2 + \frac{1}{3}f_3 
 \right)
 + O(h^5)
 $$ {#eq-simpson}
@@ -141,10 +136,7 @@ can still use Simpson's rule.  Simply evaluate the integral over the first
 interval using the trapezoidal rule and then use Simpson's rule for the
 remaining odd number of points.
 
-Even higher-order formulae can be used to carry out numerical integration, but
-in practice, these are hardly ever used.  There are advanced techniques, which
-we will not go into, that can extract virtually any desired precision from the
-trapezoidal and Simpson's rules. Thus, it is hardly ever necessary to utilize
+Even higher-order formulae can be used to carry out numerical integration, but, in practice, these are hardly ever used.  There are advanced techniques, which we will not go into, which can extract virtually any desired precision from the trapezoidal rule and Simpson's rule, and thus it is hardly ever necessary to utilize
 higher-order formulae.
 
 ::: {#nte-ex-7-3 .callout-note}
@@ -169,8 +161,7 @@ program should print out the value of the integral and its deviation from the
 In the previous section, we found that we could obtain significantly higher
 accuracy in numerical integration using the same number of points in a given
 interval by changing the *weighting* used for the points.  For instance, in
-trapezoidal integration, each point (except for the end points) enters into the
-formula (@eq-trapezoid) with equal weights. In Simpson's rule (@eq-simpson) the
+trapezoidal integration, each point, except for the end points, enters into the formula (@eq-trapezoid) with equal weights. In Simpson's rule (@eq-simpson) the
 points are not given equal weights. Note that the odd *abscissas* are given
 weights of $2/3$, whereas the even abscissas are given weights of $4/3$.
 
@@ -197,19 +188,11 @@ The weights ($w_i$) and the abscissas ($x_i$) can be chosen, for a given $W(x)$,
 to make the approximation *exact* if $f(x)$ is a polynomial.  If $f(x)$ can be
 "well approximated" by a polynomial, then the integration formula above yields
 very high accuracy.  Different $W(x)$'s, of course, lead to different choices
-for the abscissas and weights.  
-
-For example:
-
-- $W(x) = 1$ leads to **Gauss–Legendre** integration  
-- $W(x) = (1 - x^2)^{-1/2}$ leads to **Gauss–Chebyshev** integration  
-
-We will concentrate here on the simplest and most useful case, **Gauss–Legendre integration**.
+for the abscissas and weights. $W(x) = 1$, for instance, leads to "Gauss–Legendre" integration, $W(x) = (1 - x^2)^{-1/2}$ leads to Gauss–Chebyshev integration, etc. We will concentrate here on the simplest and the most useful case, Gauss–Legendre integration.
 
 For a given number of abscissas, it is possible to compute the $x_i$'s and the
 $w_i$'s for Gauss–Legendre integration. We won't go into how this is actually
-done; details can be found in *Numerical Recipes* [@press92, sec. 4.5].  Below is a table listing the
-abscissas and weights for several values of $N$. These abscissas are based on
+done; details can be found in *Numerical Recipes* [@press92, sec. 4.5].  Below, find a table listing the abscissas and weights for a number of different values of $N$. These abscissas are based on
 the interval $[-1, 1]$:
 
 | **N** | **$x_i$**  | **$w_i$**  |
@@ -224,7 +207,7 @@ the interval $[-1, 1]$:
 |       | ±0.90618   | 0.236927   |
 
 If your integration is not over the limits $[-1, 1]$, then the abscissas must be
-transformed accordingly.  For an interval $[a, b]$, the new abscissas $t_i$ are
+transformed accordingly.  For instance, if the interval is $[a, b]$ instead of $[-1, 1]$, then the new abscissas $t_i$ are
 given by:
 
 $$
@@ -318,7 +301,7 @@ $$
 $$
 
 using two applications of the trapezoidal method.
-*Note: This integral can be reduced to a single integral in polar coordinates.  The exact value of this integral is* $\pi / 2 = 1.570796$. Here is some code that will do the job:
+*Note - this integral can be reduced to a single integral in polar coordinates.  The exact value of this integral is* $\pi / 2 = 1.570796$. Here is some code that will do the job:
 
 ```c
 /*
@@ -470,7 +453,7 @@ plt.show()
 ```
 
 
-The gravitational potential at a point $(X, Y)$ due to an infinitesimal mass element $dm$ at position $(x, y)$ is given by
+The gravitational potential at a point $(X, Y)$ due to an infinitesimal mass ($dm$) at position $(x, y)$ is given by
 
 $$
 dV = -G \frac{dm}{r}
@@ -478,11 +461,10 @@ $$
 
 where $r$ is the distance between $(x, y)$ and $(X, Y)$.  Calculate the
 gravitational potential $V$ for the square mass shown in @fig-square-mass at the
-point $(X, Y)$, which lies in the plane of the square and outside of it, by
+point $(X, Y)$, which is in the plane of the square and lies outside of the square, by
 integrating the above expression for $dV$ over the mass.  Note that the surface
 density $\sigma$ of the square is a function of position:
-$\sigma = (x^2 + y^2)\ \text{kg/m}^2$ and that $dm = \sigma\, dx\, dy$ 
-The square has dimensions $2\,\text{m} \times 2\,\text{m}$ and is centered on
+$\sigma = (x^2 + y^2)\ \text{kg/m}^2$, and that $dm = \sigma\, dx\, dy$. The square has dimensions $2\,\text{m} \times 2\,\text{m}$ and is centered on
 the origin.  Prompt the user for the $(X, Y)$ coordinates, and reprompt if 
 $(X, Y)$ lies inside the square.
 
@@ -546,7 +528,7 @@ government work. It does not give truly random sequences, and this can be fatal
 for Monte Carlo integrations. It is much better to use the function 
 `float ran1(long *idum)` (see *Numerical Recipes* for details [@press92, sec. 7.1]). This function is
 available in `comphys.c` and defined in `comphys.h` and, as we saw in Chapter 2,
-should be initialized by setting `idum` to a negative number, thus:
+should be initialized by setting `idum` to a negative number thus:
 
 ```c
 long idum;
@@ -562,7 +544,7 @@ The function `ran1`, which returns a random floating point number between 0.0 an
 
 Now, back to Monte Carlo integration. Suppose we want to integrate a function $g$ over an irregular region $W$ that is difficult to sample randomly. What do we do? We find a region $V$ that contains $W$ and which *is* easy to sample randomly --- say, for instance, a rectangle or a cube. We then define $f = g$ at points inside of $W$ but $f = 0$ at points inside of $V$ but outside of $W$. It is in our own interest to make $V$ fit around $W$ as snugly as possible, as the zero values of $f$ will increase the factor $\langle f^2 \rangle - \langle f \rangle^2$ in the error term of @eq-monte-carlo and will reduce the effective value of $N$.
 
-For an example, let us take the integral in the example in @sec-int-multidim. The region of interest $W$ is a circle with radius 1 and center at $(0,0)$. We take the region $V$ to be a square with the same center. The Monte Carlo integration is carried out by the following code:
+For an example, let us take the integral in the example in @sec-int-multidim. The region of interest $W$ is a circle with radius 1 and center at $(0,0)$. We take the region $V$ to be a square with the same center (see @fig-mc-points – 100 random points are also plotted in region $V$). The Monte Carlo integration is carried out by the following code:
 
 ```c
 #include <stdio.h>
@@ -627,6 +609,8 @@ The result of the first 10 runs of this program (your numbers will be different)
 
 ```{python}
 #| echo: false
+#| label: fig-mc-points
+#| fig-cap: "The circle $W$ inside the square $V$, with 100 random points."
 
 import numpy as np 
 data = np.loadtxt("data/MC.csv", delimiter=",")
