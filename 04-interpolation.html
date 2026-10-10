@@ -316,7 +316,7 @@ Table&nbsp;4.1: Refractive Index for BK7 Glass
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: right;"><span class="math inline">\(\lambda (Å)\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\lambda (\text{Å})\)</span></th>
 <th style="text-align: right;"><span class="math inline">\(n\)</span></th>
 </tr>
 </thead>
@@ -376,7 +376,7 @@ Table&nbsp;4.1: Refractive Index for BK7 Glass
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: right;"><span class="math inline">\(\lambda (Å)\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\lambda (\text{Å})\)</span></th>
 <th style="text-align: right;"><span class="math inline">\(n\)</span></th>
 </tr>
 </thead>
@@ -436,7 +436,7 @@ Table&nbsp;4.1: Refractive Index for BK7 Glass
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: right;"><span class="math inline">\(\lambda (Å)\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\lambda (\text{Å})\)</span></th>
 <th style="text-align: right;"><span class="math inline">\(n\)</span></th>
 </tr>
 </thead>
@@ -492,7 +492,7 @@ Table&nbsp;4.1: Refractive Index for BK7 Glass
 </div>
 </figure>
 </div>
-<p>Let us suppose that we wish to find the index of refraction at a wavelength of <span class="math inline">\(5000Å\)</span>. Unfortunately, that wavelength is not found in the table, and so we must estimate it from the values in the table. We must make some assumption about how <span class="math inline">\(n\)</span> varies between the tabular values. Presumably it varies in a smooth sort of way and does not take wild excursions between the tabulated values. The simplest and quite often an entirely adequate assumption to make is that the actual function varies linearly between the tabulated values. This is the basis of <strong>linear interpolation</strong>.</p>
+<p>Let us suppose that we wish to find the index of refraction at a wavelength of <span class="math inline">\(5000\text{Å}\)</span>. Unfortunately, that wavelength is not found in the table, and so we must estimate it from the values in the table. We must make some assumption about how <span class="math inline">\(n\)</span> varies between the tabular values. Presumably it varies in a smooth sort of way and does not take wild excursions between the tabulated values. The simplest and quite often an entirely adequate assumption to make is that the actual function varies linearly between the tabulated values. This is the basis of <strong>linear interpolation</strong>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Exercise 4.1">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -503,7 +503,7 @@ Table&nbsp;4.1: Refractive Index for BK7 Glass
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Determine, by hand, the value of the index of refraction of BK7 at <span class="math inline">\(5000Å\)</span> using linear interpolation.</p>
+<p>Determine, by hand, the value of the index of refraction of BK7 at <span class="math inline">\(5000\text{Å}\)</span> using linear interpolation.</p>
 </div>
 </div>
 <p>How do we carry out linear interpolation on the computer? Let us suppose that the function is tabulated at <span class="math inline">\(N\)</span> points and takes on the values <span class="math inline">\(y_1,y_2,y_3 ...
@@ -545,7 +545,7 @@ B = \frac{x-x_j}{x_{j+1}-x_j}
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Write a C-function that will linearly interpolate the tabular data for the index of refraction of BK-7 and return a value for <span class="math inline">\(n\)</span> for wavelengths between <span class="math inline">\(3511Å\)</span> and <span class="math inline">\(23254Å\)</span>. Write a driver program that will use this function to prompt the user for a wavelength and then print to screen the corresponding value of <span class="math inline">\(n\)</span>.</p>
+<p>Write a C-function that will linearly interpolate the tabular data for the index of refraction of BK-7 and return a value for <span class="math inline">\(n\)</span> for wavelengths between <span class="math inline">\(3511\text{Å}\)</span> and <span class="math inline">\(23254\text{Å}\)</span>. Write a driver program that will use this function to prompt the user for a wavelength and then print to screen the corresponding value of <span class="math inline">\(n\)</span>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Exercise 4.3">
@@ -638,7 +638,7 @@ L(x) =\;&amp;
 <section id="interpolation-in-2-dimensions" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="interpolation-in-2-dimensions"><span class="header-section-number">4.3</span> Interpolation in 2 dimensions</h2>
 <p>Some problems require interpolation in a two-dimensional grid of data. Let us suppose, for instance, that <span class="math inline">\(y = y(x_1, x_2)\)</span> where <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are the two independent variables. The functional value <span class="math inline">\(y\)</span> is tabulated on a Cartesian grid, and so the first thing the programmer must do is to bracket the desired point <span class="math inline">\((x_1, x_2)\)</span> in this grid (see figure below):</p>
-<div id="bd7b2721" class="cell" data-execution_count="1">
+<div id="910580c4" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -994,7 +994,7 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 <section id="interpolation-in-python" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="interpolation-in-python"><span class="header-section-number">4.4</span> Interpolation in Python</h2>
 <p>Let’s say you have run an experiment and have some data.</p>
-<div id="4a8a2ab0" class="cell" data-execution_count="3">
+<div id="882eed2a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pretend you don't know the functional form of the data.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>num_samples <span class="op">=</span> <span class="dv">11</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, num<span class="op">=</span>num_samples) <span class="op">+</span> np.random.normal(scale<span class="op">=</span><span class="fl">.2</span>, size<span class="op">=</span>num_samples)</span>
@@ -1011,12 +1011,12 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 </div>
 <p>Now you want to connect the dots … I mean interpolate your data.</p>
-<p>Numpy has a method (<a href="https://numpy.org/doc/2.3/reference/generated/numpy.interp.html" target="_blank"><code>numpy.interp</code></a>) for simple linear interpolation. The method takes in an array of new <code>x</code>’s where you want to calculate the new <code>y</code>’s. The original <code>x</code> and <code>y</code> points are also needed.</p>
-<div id="4c86d1fb" class="cell" data-execution_count="4">
+<p>NumPy has a method (<a href="https://numpy.org/doc/stable/reference/generated/numpy.interp.html" target="_blank"><code>numpy.interp</code></a>) for simple linear interpolation. The method takes in an array of new <code>x</code>’s where you want to calculate the new <code>y</code>’s. The original <code>x</code> and <code>y</code> points are also needed.</p>
+<div id="b8e5e335" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x_interp <span class="op">=</span> np.linspace(x_data.<span class="bu">min</span>(), x_data.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">1001</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y_interp <span class="op">=</span> np.interp(x_interp, x_data, y_data)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fix, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax.plot(x_interp, y_interp)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.plot(x_data, y_data, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -1027,16 +1027,16 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 </div>
 </div>
-<p>If you want a fancier smooth line SciPy has got you covered! The <a href="https://docs.scipy.org/doc/scipy/reference/interpolate.html" target="_blank"><code>interpolate</code></a> subpackage contains many methods to suit your needs. These methods follow a different pattern than the Numpy approach. When using the SciPy <code>interpolate</code> methods you provide the original data points and are returned a function you can call to interpolate new values.</p>
+<p>If you want a fancier smooth line SciPy has got you covered! The <a href="https://docs.scipy.org/doc/scipy/reference/interpolate.html" target="_blank"><code>interpolate</code></a> subpackage contains many methods to suit your needs. These methods follow a different pattern than the NumPy approach. When using the SciPy <code>interpolate</code> methods you provide the original data points and are returned a function you can call to interpolate new values.</p>
 <p>As an example consider the <code>CubicSpline</code> method</p>
-<div id="b8184b77" class="cell" data-execution_count="5">
+<div id="f28ccd28" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> CubicSpline</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> CubicSpline(x_data, y_data)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y_interp <span class="op">=</span> f(x_interp)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fix, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.plot(x_interp, y_interp)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax.plot(x_data, y_data, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -1048,14 +1048,14 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 </div>
 <p>Quick and easy! There are other interpolation methods. For instance, maybe you are concerned with the line overshooting the data. An alternative is to use a so-called <em>monotone</em> cubic interpolant which attempts to preserve the local shape implied by the data. An example is the <code>PchipInterpolator</code>.</p>
-<div id="0f2d0acf" class="cell" data-execution_count="6">
+<div id="fac4cd5e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> PchipInterpolator</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> PchipInterpolator(x_data, y_data)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_interp <span class="op">=</span> f(x_interp)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fix, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.plot(x_interp, y_interp)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.plot(x_data, y_data, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -1066,15 +1066,15 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 </div>
 </div>
-<p>These cubic methods are typically fine for most application. There is also a generalized method for making interpolating splines of any degree but use with caution. You may introduce unexpected wiggles!</p>
-<div id="4da46a62" class="cell" data-execution_count="7">
+<p>These cubic methods are typically fine for most applications. There is also a generalized method for making interpolating splines of any degree but use with caution. You may introduce unexpected wiggles!</p>
+<div id="0b7d3b1e" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> make_interp_spline</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> make_interp_spline(x_data, y_data, k<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>y_interp <span class="op">=</span> f(x_interp)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>fix, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>ax.plot(x_interp, y_interp)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>ax.plot(x_data, y_data, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -1085,7 +1085,7 @@ Table&nbsp;4.3: Hydrogen Ionization: Ratio of Ionized to Total
 </div>
 </div>
 </div>
-<p>There are other methods for 2-D interpolation and smoothing as well. Have a look at the SciPy <a href="https://docs.scipy.org/doc/scipy/tutorial/interpolate.html" data-targe="_blank">Interpolation User Guide</a> for more details.</p>
+<p>There are other methods for 2-D interpolation and smoothing as well. Have a look at the SciPy <a href="https://docs.scipy.org/doc/scipy/tutorial/interpolate.html" target="_blank">Interpolation User Guide</a> for more details.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
