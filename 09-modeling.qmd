@@ -243,9 +243,11 @@ $$
 y = a_1 + \sum_{n=2}^{4} a_n \sin[(n-1)\pi x]
 $$
 
-Determine the $a_n$'s and their errors for this dataset.
+Determine the $a_n$'s and their errors for this dataset. See @fig-data95.
 
 ```{python}
+#| label: fig-data95
+#| fig-cap: "Data and resulting fit for @nte-ex-9-5."
 #| echo: false
 
 import numpy as np
@@ -366,10 +368,12 @@ and comes with the directions: "Levenberg-Marquardt method, attempting to reduce
 
 The constant `alambda` in the above discussion refers to the constant in the method of steepest descent.
 
-The best way to explain how to use `mrqmin` is with an example. The following figure shows a histogram of data. The underlying theory is that the distribution of points in this diagram is a double Gaussian. We would like to fit these data to a function that looks like:
+The best way to explain how to use `mrqmin` is with an example. @fig-double-gaussian shows a histogram of data. The underlying theory is that the distribution of points in this diagram is a double Gaussian. We would like to fit these data to a function that looks like:
 
 <!-- TODO: Recreate Figure 2 showing histogram data to be fit with double Gaussian -->
 ```{python}
+#| label: fig-double-gaussian
+#| fig-cap: "We want to fit these data with a double Gaussian."
 #| echo: false
 
 import numpy as np
@@ -543,6 +547,8 @@ void fgauss(float x, float a[], float *y, float dyda[], int na)
 ```
 
 ```{python}
+#| label: fig-double-gaussian-fit
+#| fig-cap: "Here is the resulting fit."
 #| echo: false
 
 import numpy as np

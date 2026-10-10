@@ -156,6 +156,8 @@ x_n = x_{n-1} - \frac{f(x_{n-1})}{f'(x_{n-1})}
 $$
 
 ```{python}
+#| label: fig-newton
+#| fig-cap: "One Newton–Raphson step: the tangent at $x_0$ crosses zero at $x_1$, closer to the root $x_r$."
 #| echo: false
 
 import numpy as np
@@ -274,50 +276,50 @@ introductory or intermediate coursework. If the force of air resistance can be
 modeled as:
 
 $$
-F_x = -k m \dot{x} \tag{1}
-$$
+F_x = -k m \dot{x}
+$$ {#eq-drag-x}
 
 $$
-F_y = -k m \dot{y} \tag{2}
-$$
+F_y = -k m \dot{y}
+$$ {#eq-drag-y}
 
 then the $x(t)$ and $y(t)$ solutions are:
 
 $$
-x(t) = \frac{v_0 \cos \theta}{k} \left( 1 - e^{-k t} \right) \tag{3}
-$$
+x(t) = \frac{v_0 \cos \theta}{k} \left( 1 - e^{-k t} \right)
+$$ {#eq-proj-x}
 
 $$
-y(t) = - \frac{gt}{k} + \frac{k v_0 \sin \theta + g}{k^2} \left( 1 - e^{-k t} \right)  \tag{4}
-$$
+y(t) = - \frac{gt}{k} + \frac{k v_0 \sin \theta + g}{k^2} \left( 1 - e^{-k t} \right)
+$$ {#eq-proj-y}
 
 The time of flight of the projectile (the time elapsed before the projectile
 lands) is given as:
 
 $$
-T = \frac{v_0 \sin \theta + g}{gk} \left( 1 - e^{-k T} \right) \tag{5}
-$$
+T = \frac{v_0 \sin \theta + g}{gk} \left( 1 - e^{-k T} \right)
+$$ {#eq-flight-time}
 
-Notice that $T$ appears on both sides of equation (5). This is known as a
+Notice that $T$ appears on both sides of @eq-flight-time. This is known as a
 "transcendental equation" which can be solved numerically using iteration.
 Note that this equation collapses to the simple expression for $T$ when
 resistance is neglected ($k = 0$):
 
 $$
-T(k=0) = \frac{2 v_0 \sin \theta}{g} \tag{6}
-$$
+T(k=0) = \frac{2 v_0 \sin \theta}{g}
+$$ {#eq-flight-time-k0}
 
 The range of motion (the distance traveled by the projectile before landing)
 is:
 
 $$
-R = x(t = T) \tag{7}
-$$
+R = x(t = T)
+$$ {#eq-range}
 
 In the exercises below, use $\theta = 60^\circ$, $v_0 = 600 \, \text{m/s}$, and $|g| = 9.8 \, \text{m/s}^2$.
 
-a. Solve for $T$ (equation 5) numerically using iteration. In the first iteration,
-use the non-resistive expression for $T$ (equation 6). Iterate until the solution
+a. Solve for $T$ (@eq-flight-time) numerically using iteration. In the first iteration,
+use the non-resistive expression for $T$ (@eq-flight-time-k0). Iterate until the solution
 converges to within a user-defined tolerance (error) – e.g., $\Delta T$ over successive
 iterations is less than the tolerance. Use a value of $k = 0.005$ for this part only.
 
@@ -325,7 +327,7 @@ b. Find the value of $k$ that allows the projectile to travel 1500 meters ($R = 
 
 c. [**GRAD STUDENTS ONLY**] Plot $y$ vs. $x$ using gnuplot for $k$ values
 of 0.0, 0.005, 0.01, 0.02, 0.04, and 0.08. Also, show analytically how to get
-equation (6) from equation (5) (*Hint: Use perturbation methods – i.e., expand $1 - e^{-kT}$ in a power series expansion, and keep only the first few terms*).
+@eq-flight-time-k0 from @eq-flight-time (*Hint: Use perturbation methods – i.e., expand $1 - e^{-kT}$ in a power series expansion, and keep only the first few terms*).
 :::
 
 ## Root Finding in Python

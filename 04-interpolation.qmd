@@ -301,9 +301,11 @@ Some problems require interpolation in a two-dimensional grid of data. Let us
 suppose, for instance, that $y = y(x_1, x_2)$ where $x_1$ and $x_2$ are the two
 independent variables. The functional value $y$ is tabulated on a Cartesian
 grid, and so the first thing the programmer must do is to bracket the desired
-point $(x_1, x_2)$ in this grid (see figure below):
+point $(x_1, x_2)$ in this grid (see @fig-bilinear-grid):
 
 ```{python}
+#| label: fig-bilinear-grid
+#| fig-cap: "The grid cell that brackets the point $(x_1, x_2)$."
 #| echo: false
 
 import matplotlib.pyplot as plt
@@ -355,7 +357,7 @@ y_4 &= y(x_{1,i}, x_{2,j+1})
 \end{aligned}
 $$
 
-i.e., working our way counterclockwise around the above figure, then the
+i.e., working our way counterclockwise around @fig-bilinear-grid, then the
 interpolation formulae are:
 
 $$
