@@ -50,13 +50,15 @@ Work on a branch and open a pull request; the owner reviews on GitHub. Don't pus
 - Inline: `$...$` (NOT `\( \)`)
 - Display: `$$...$$` (NOT `\[ \]`)
 
-**Exercises:** Format as callout notes:
+**Exercises:** Callout notes with a `#nte-ex-<chapter>-<n>` id. Quarto numbers them per chapter and `_quarto.yml` labels them "Exercise", so don't type the number. Add `title=` only for a named exercise:
 
 ```qmd
-::: {.callout-note title="Exercise X.Y"}
+::: {#nte-ex-5-9 .callout-note title="An Iterative Problem"}
 Exercise content
 :::
 ```
+
+Refer to one with `@nte-ex-5-9` (renders as a linked "Exercise 5.9"). The automatic numbers match Gray's in every chapter; if you add, remove or reorder an exercise, check they still do.
 
 **Citations:** Use `@cite-key` format (e.g., `@knuth84`). Cite Numerical Recipes with a locator: `[@press92, sec. 10.4]`.
 

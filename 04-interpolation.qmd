@@ -75,7 +75,7 @@ simplest and quite often an entirely adequate assumption to make is that the
 actual function varies linearly between the tabulated values. This is the basis
 of **linear interpolation**.
 
-::: {.callout-note title="Exercise 4.1"}
+::: {#nte-ex-4-1 .callout-note}
 Determine, by hand, the value of the index of refraction of BK7 at $5000\text{Å}$ using
 linear interpolation.
 :::
@@ -138,7 +138,7 @@ $$
 B = \frac{x-x_j}{x_{j+1}-x_j}
 $$
 
-::: {.callout-note title="Exercise 4.2"}
+::: {#nte-ex-4-2 .callout-note}
 
 Write a C-function that will linearly interpolate the tabular data for the index
 of refraction of BK-7 and return a value for $n$ for wavelengths between $3511\text{Å}$
@@ -147,7 +147,7 @@ user for a wavelength and then print to screen the corresponding value of $n$.
 
 :::
 
-::: {.callout-note title="Exercise 4.3"}
+::: {#nte-ex-4-3 .callout-note}
 
 The file [`data/boiling.dat`](data/boiling.dat) contains data in two columns for the boiling point
 of water at different atmospheric pressures. The first column is the pressure in
@@ -239,23 +239,23 @@ first case, use the polynomial that would be used for an $x$ bracketed between
 the 2nd and 3rd tabulated points, and similarly for the last case.
 
 
-::: {.callout-note title="Exercise 4.4"}
+::: {#nte-ex-4-4 .callout-note}
 
 Write a C-function that will implement the 4-point Lagrangian interpolation
 formula above. For the endpoints, use the polynomial that would have been
 defined for the adjacent interval as described above. Modify the driver program
-in Exercise 4.2 (interpolation in a table of the wavelength and the index of
+in @nte-ex-4-2 (interpolation in a table of the wavelength and the index of
 refraction for BK-7 glass) to use this new C-function. Compare the results
 between the two programs.
 
 :::
 
-::: {.callout-note title="Exercise 4.5"}
+::: {#nte-ex-4-5 .callout-note}
 
 Write a C-function that will implement the 4-point Lagrangian interpolation
 formula above. For the endpoints, use the polynomial that would have been
 defined for the adjacent interval as described above. Modify the driver program
-in Exercise 4.3 (interpolation in a table of atmospheric pressure and the
+in @nte-ex-4-3 (interpolation in a table of atmospheric pressure and the
 boiling point of water) to use this new C-function. Compare the results between
 the two programs.
 
@@ -373,9 +373,9 @@ $$
 
 where $(x_1, x_2)$ are the coordinates of the desired point.
 
-::: {.callout-note title="Exercise 4.6"}
+::: {#nte-ex-4-6 .callout-note}
 
-\textbf{Exercise 4.6:} A good example of the need to carry out interpolation in two dimensions is found in the calculation of partition functions. In certain plasma-physics contexts, it is necessary to calculate the partition functions of atoms and ions. 
+A good example of the need to carry out interpolation in two dimensions is found in the calculation of partition functions. In certain plasma-physics contexts, it is necessary to calculate the partition functions of atoms and ions. 
 
 A partition function, $U$, is essentially an overall "statistical weight" for the atom, calculated by carrying out a weighted sum — weighted according to the populations of the levels — of the statistical weights for all of the energy levels in the atom. 
 
@@ -410,7 +410,7 @@ $(T,\Delta E)$: (16000, 0.25), (18500, 1.50), (19000, 0.15), (25023, 1.99).
 :::
 
 
-::: {.callout-note title="Exercise 4.7"}
+::: {#nte-ex-4-7 .callout-note}
 
 The study of plasmas is an important field of physics, and is essential in the
 understanding of the interiors of stars and the functioning of fusion reactors. 

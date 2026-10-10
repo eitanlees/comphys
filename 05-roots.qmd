@@ -61,7 +61,7 @@ $n^{\text{th}}$ evaluations of the midpoint are $x_{n-1}$ and $x_n$, and that
 the root was initially in the interval $(a, b)$. We would then be justified in
 stopping our search if $|x_n - x_{n-1}| < \epsilon_m |b - a|$.
 
-::: {.callout-note title="Exercise 5.1"}
+::: {#nte-ex-5-1 .callout-note}
 
 The polynomial $f(x) = 5x^2 + 9x - 80$ has a root in the interval $(3, 4)$. Find
 the root to a precision of $10^{-6}$ using the *bisection* method. Verify your
@@ -71,7 +71,7 @@ root analytically.
 
 ### Plotting Functions in `gnuplot` {.unnumbered}
 
-When finding roots, it is a good idea to plot the function to get an idea of the position of the roots. This can be done in `gnuplot`. To plot the function of Exercise 5.1, enter the following commands:
+When finding roots, it is a good idea to plot the function to get an idea of the position of the roots. This can be done in `gnuplot`. To plot the function of @nte-ex-5-1, enter the following commands:
 
 ```text
 gnuplot> f(x) = 5*x**2 + 9*x - 80
@@ -84,7 +84,7 @@ Note that exponentiation in `gnuplot` is accomplished with "`**`". Notice in the
 plot that $f(x)$ has a root at about -5 and another between 3 and 4.
 
 
-::: {.callout-note title="Exercise 5.2"}
+::: {#nte-ex-5-2 .callout-note}
 
 Bessel functions $J_0(x)$, $J_1(x)$, etc. often turn up in mathematical physics,
 especially in the context of optics and diffraction. The file `comphys.c`
@@ -95,11 +95,11 @@ has a canned version of the Bessel function $J_0(x)$. The function declaration
 float bessj0(float x)
 ```
 
-Modify your program from Exercise 5.1 to find the first two positive roots of $J_0(x)$.
+Modify your program from @nte-ex-5-1 to find the first two positive roots of $J_0(x)$.
 
 :::
 
-::: {.callout-note title="Exercise 5.3"}
+::: {#nte-ex-5-3 .callout-note}
 
 The viscosity of air (in micropascal seconds) is given to good accuracy by the following polynomial (valid between $T = 100\,\text{K}$ and $600\,\text{K}$):
 
@@ -111,7 +111,7 @@ Use this polynomial to find the temperature $T$ at which $\eta = 20.1\,\mu\text{
 
 :::
 
-::: {.callout-note title="Exercise 5.4"}
+::: {#nte-ex-5-4 .callout-note}
 
 An atomic state decays with two time constants $\tau_1$ and $\tau_2$ and can be described by the equation:
 
@@ -215,24 +215,24 @@ with plt.style.context(["styles/function_plot.mplstyle", {
     plt.show()
 ```
 
-::: {.callout-note title="Exercise 5.5"}
+::: {#nte-ex-5-5 .callout-note}
 
-Write a program to find the root for the polynomial of Exercise 5.1 using the
+Write a program to find the root for the polynomial of @nte-ex-5-1 using the
 Newton--Raphson method. Begin with an estimate $x_0 = 4$. See what happens if
 you use a different starting point. Explore both positive and negative values
 for the starting point.
 
 :::
 
-::: {.callout-note title="Exercise 5.6"}
+::: {#nte-ex-5-6 .callout-note}
 
-Write a program to solve the problem of Exercise 5.3 using the Newton--Raphson method. Begin with an estimate of $200\,\text{K}$.
+Write a program to solve the problem of @nte-ex-5-3 using the Newton--Raphson method. Begin with an estimate of $200\,\text{K}$.
 
 :::
 
-::: {.callout-note title="Exercise 5.7"}
+::: {#nte-ex-5-7 .callout-note}
 
-Write a program to solve the problem of Exercise 5.4 using the Newton--Raphson method.
+Write a program to solve the problem of @nte-ex-5-4 using the Newton--Raphson method.
 
 :::
 
@@ -245,7 +245,7 @@ minimum point, your program will never converge, but will blow up! Hence,
 as always, you should have a pretty good idea of the nature of your function
 before you attempt to find and "polish" roots.
 
-::: {.callout-note title="Exercise 5.8"}
+::: {#nte-ex-5-8 .callout-note}
 
 
 Use the fact that
@@ -266,7 +266,7 @@ which is contained in `comphys.h`.
 
 :::
 
-::: {.callout-note title="Exercise 5.9 An Iterative Problem"}
+::: {#nte-ex-5-9 .callout-note title="An Iterative Problem"}
 In ballistics, it is common to solve the equations of motion of a particle
 shot at an angle, $\theta$, above a horizontal surface with an initial velocity $v_0$.
 The effects of air resistance play an important role that is often neglected in
