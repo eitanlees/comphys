@@ -153,7 +153,7 @@ if(n == 0) {
 }
 ```
 
-The condition `n == 0` (which compares `n` to 0 -- note the double `=` sign)[^1] is called a *Boolean expression*. A Boolean expression evaluates to 1 if it is true and to 0 if it is false. So, if `n` is indeed 0, then `n == 0` takes on the value of 1. Else its value is 0. The table below lists the comparison operators that can be used in Boolean expressions.
+The condition `n == 0` (which compares `n` to 0 -- note the double `=` sign)[^1] is called a *Boolean expression*. A Boolean expression evaluates to 1 if it is true and to 0 if it is false. So, if `n` is indeed 0, then `n == 0` takes on the value of 1. Else its value is 0. @tbl-comparison lists the comparison operators that can be used in Boolean expressions.
 
 [^1]: A single `=` assigns a value to a variable, thus in `n = 0`, `n` is assigned the value 0. A double `==` sign *compares* the two, in this case `n` and 0. It does not set `n` equal to 0. This is an important distinction!
 
@@ -557,7 +557,7 @@ else if(n == 2) T = 200
 else T = 0
 ```
 
-can be represented in flowchart form by a series of decision boxes:
+can be represented in flowchart form by the following diagram (@fig-ifelse-flowchart):
 
 ```{python}
 #| echo: false
