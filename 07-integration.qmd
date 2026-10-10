@@ -172,7 +172,7 @@ In the previous section, we found that we could obtain significantly higher
 accuracy in numerical integration using the same number of points in a given
 interval by changing the *weighting* used for the points.  For instance, in
 trapezoidal integration, each point (except for the end points) enters into the
-formula (Equation 1) with equal weights. In Simpson’s rule (Equation 2) the
+formula (Equation 1) with equal weights. In Simpson's rule (Equation 2) the
 points are not given equal weights. Note that the odd *abscissas* are given
 weights of $2/3$, whereas the even abscissas are given weights of $4/3$.
 
@@ -197,8 +197,8 @@ $$
 
 The weights ($w_i$) and the abscissas ($x_i$) can be chosen, for a given $W(x)$,
 to make the approximation *exact* if $f(x)$ is a polynomial.  If $f(x)$ can be
-“well approximated” by a polynomial, then the integration formula above yields
-very high accuracy.  Different $W(x)$’s, of course, lead to different choices
+"well approximated" by a polynomial, then the integration formula above yields
+very high accuracy.  Different $W(x)$'s, of course, lead to different choices
 for the abscissas and weights.  
 
 For example:
@@ -208,8 +208,8 @@ For example:
 
 We will concentrate here on the simplest and most useful case, **Gauss–Legendre integration**.
 
-For a given number of abscissas, it is possible to compute the $x_i$’s and the
-$w_i$’s for Gauss–Legendre integration. We won’t go into how this is actually
+For a given number of abscissas, it is possible to compute the $x_i$'s and the
+$w_i$'s for Gauss–Legendre integration. We won't go into how this is actually
 done; details can be found in *Numerical Recipes* [@press92, sec. 4.5].  Below is a table listing the
 abscissas and weights for several values of $N$. These abscissas are based on
 the interval $[-1, 1]$:
@@ -270,7 +270,7 @@ symmetries of the integrand. For instance, if you are integrating a spherically
 symmetric function over a spherical region, switch to spherical coordinates. The
 integral will reduce to a one-dimensional integral!  If this does not work, and
 the function is otherwise fairly well behaved (for instance, is not strongly
-peaked in a certain region), and you don’t require great accuracy, explore
+peaked in a certain region), and you don't require great accuracy, explore
 *Monte Carlo* techniques (see @sec-mc-int).  Otherwise, a multidimensional
 integral can be attacked using one-dimensional techniques in the following way:
 
@@ -331,7 +331,7 @@ l1, l2: the limits
 twoDtrap: implements 2-D trapezoidal integration
 H: Carries out integration of the integrand for a given value of x
 x: to make things easy, x is declared as an external variable, so that
-we don’t have to pass it to each function
+we don't have to pass it to each function
 
 */
 #include <stdio.h>
@@ -517,7 +517,7 @@ Note that the error term in equation (3) is proportional to $1/\sqrt{N}$, which
 is one of the great disadvantages of the Monte Carlo method of numerical
 integration; the error reduces very slowly with increasing $N$, and thus many
 random points are needed for high accuracy.  Nonetheless, Monte Carlo
-integration is sometimes *“the only way to go”*, especially if the region of
+integration is sometimes *"the only way to go"*, especially if the region of
 integration is complicated.
 
 Before we proceed any further with Monte Carlo integration, we should discuss in

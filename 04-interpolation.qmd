@@ -18,7 +18,7 @@ leading to the phenomenon of dispersion. The index of refraction is tabulated in
 
 ::: {#tbl-bk-7 layout-ncol=3}
 
-|   $\lambda (Å)$  |                $n$ |
+|   $\lambda (\text{Å})$  |                $n$ |
 |-----------------:|-------------------:|
 |             3511 |            1.53894 |
 |             3638 |            1.53648 |
@@ -33,7 +33,7 @@ leading to the phenomenon of dispersion. The index of refraction is tabulated in
 |             4861 |            1.52238 |
 |             4880 |            1.52224 |
 
-|   $\lambda (Å)$  |                $n$ |
+|   $\lambda (\text{Å})$  |                $n$ |
 |-----------------:|-------------------:|
 |             4965 |            1.52165 |
 |             5017 |            1.5213  |
@@ -48,7 +48,7 @@ leading to the phenomenon of dispersion. The index of refraction is tabulated in
 |             6943 |            1.51322 |
 |             7860 |            1.51106 |
 
-|   $\lambda (Å)$  |                $n$ |
+|   $\lambda (\text{Å})$  |                $n$ |
 |-----------------:|-------------------:|
 |             8210 |            1.51037 |
 |             8300 |            1.51021 |
@@ -67,7 +67,7 @@ Refractive Index for BK7 Glass
 :::
 
 Let us suppose that we wish to find the index of refraction at a wavelength of
-$5000Å$. Unfortunately, that wavelength is not found in the table, and so we
+$5000\text{Å}$. Unfortunately, that wavelength is not found in the table, and so we
 must estimate it from the values in the table. We must make some assumption
 about how $n$ varies between the tabular values. Presumably it varies in a smooth
 sort of way and does not take wild excursions between the tabulated values. The
@@ -76,7 +76,7 @@ actual function varies linearly between the tabulated values. This is the basis
 of **linear interpolation**.
 
 ::: {.callout-note title="Exercise 4.1"}
-Determine, by hand, the value of the index of refraction of BK7 at $5000Å$ using
+Determine, by hand, the value of the index of refraction of BK7 at $5000\text{Å}$ using
 linear interpolation.
 :::
 
@@ -98,7 +98,7 @@ for(i=1;i<N;i++) {
 }
 ```
 
-where the `xn`’s are the tabulated points. When the `if` statement is satisfied, `j`
+where the `xn`'s are the tabulated points. When the `if` statement is satisfied, `j`
 is assigned the value of `i` and the procedure drops out of the loop. Please note
 that this is not the most efficient way to accomplish this task, especially if $N$
 is very large. We will look at a more efficient way later on.
@@ -141,8 +141,8 @@ $$
 ::: {.callout-note title="Exercise 4.2"}
 
 Write a C-function that will linearly interpolate the tabular data for the index
-of refraction of BK-7 and return a value for $n$ for wavelengths between $3511Å$
-and $23254Å$. Write a driver program that will use this function to prompt the
+of refraction of BK-7 and return a value for $n$ for wavelengths between $3511\text{Å}$
+and $23254\text{Å}$. Write a driver program that will use this function to prompt the
 user for a wavelength and then print to screen the corresponding value of $n$.
 
 :::
@@ -153,7 +153,7 @@ The file `data/boiling.dat` contains data in two columns for the boiling point
 of water at different atmospheric pressures. The first column is the pressure in
 millibars, the second is the corresponding boiling point temperature in degrees
 Celsius. Write a C-function that initializes two vectors, `P` and `T` with the
-data in that data file (don’t read in the datafile – hardwire the data into your
+data in that data file (don't read in the datafile – hardwire the data into your
 program), accepts the pressure as a double floating-point parameter, and returns
 the value of the temperature of the boiling point at that pressure. You should
 also write a driver program that will prompt the user for an atmospheric
@@ -267,7 +267,7 @@ defined points – is much more dangerous. Interpolation schemes can be used for
 extrapolation, but only with great care!
 
 Before we leave the subject of interpolation, let us examine one further
-subject, that of efficiently bracketing $x$. If we have a set of $x$’s (say in a
+subject, that of efficiently bracketing $x$. If we have a set of $x$'s (say in a
 vector `x[i]`) in numerical order that we must find interpolated values for, there
 is a simple time saving step that we can use, implemented in the following
 fragment of code (assume `x` is a vector of dimension `n`):
@@ -286,14 +286,14 @@ for(k=1;k<=n;k++) {
 ```
 
 Notice that the second `for` loop begins at `i=j` and not `i=1`; since the
-$x_k$’s are in numerical order, if $x_k$ is bracketed between `xn[j]` and
+$x_k$'s are in numerical order, if $x_k$ is bracketed between `xn[j]` and
 `xn[j+1]`, there is no need to search beginning at `i=1` for $x_{k+1}$ because
 it will either be bracketed between the same pair or later pairs (note that we
-are obviously also assuming that the `xn[j]`’s are in numerical order). This can
+are obviously also assuming that the `xn[j]`'s are in numerical order). This can
 save an enormous amount of time in a code that needs to interpolate in a large
 (say $N > 100$) table. Another useful trick is that of bisection. Further notes
 on bisection and other techniques for efficiently bracketing $x$ can be found in
-_Numerical Recipes_ [@press92, sec. 3.4].
+*Numerical Recipes* [@press92, sec. 3.4].
 
 ## Interpolation in 2 dimensions
 
@@ -343,7 +343,7 @@ plt.show()
 This bracketing can be done by bracketing in the two dimensions one at a time,
 using the technique discussed earlier.
 
-The simplest interpolation technique in two dimensions is _bilinear interpolation_. 
+The simplest interpolation technique in two dimensions is *bilinear interpolation*. 
 If we define
 
 $$
@@ -377,11 +377,11 @@ where $(x_1, x_2)$ are the coordinates of the desired point.
 
 \textbf{Exercise 4.6:} A good example of the need to carry out interpolation in two dimensions is found in the calculation of partition functions. In certain plasma-physics contexts, it is necessary to calculate the partition functions of atoms and ions. 
 
-A partition function, $U$, is essentially an overall “statistical weight” for the atom, calculated by carrying out a weighted sum — weighted according to the populations of the levels — of the statistical weights for all of the energy levels in the atom. 
+A partition function, $U$, is essentially an overall "statistical weight" for the atom, calculated by carrying out a weighted sum — weighted according to the populations of the levels — of the statistical weights for all of the energy levels in the atom. 
 
 At low temperatures, the partition function is simply the statistical weight of the ground level of the atom, but at higher temperatures, the partition function becomes larger, as the populations in the excited levels become significant. 
 
-The partition function is also a function of density, as at high densities in the plasma, the outermost energy levels are effectively “stripped off,” resulting in a lowering of the ionization energy, usually denoted as $\Delta E$. Thus, $U = U(T, \Delta E)$. 
+The partition function is also a function of density, as at high densities in the plasma, the outermost energy levels are effectively "stripped off," resulting in a lowering of the ionization energy, usually denoted as $\Delta E$. Thus, $U = U(T, \Delta E)$. 
 
 Because the calculation for a partition function can be very complex, they are usually calculated and tabulated so that users need not carry out the full calculation. The following table is a tabulation for the partition function for the hydrogen atom:
 
@@ -517,7 +517,7 @@ ax.plot(x_data, y_data, 'o')
 ```
 
 Quick and easy! There are other interpolation methods. For instance, maybe you are
-concerned with the line overshooting the data. An alternative is to use a so-called _monotone_ cubic interpolant which attempts to preserve the local shape implied by the data. An example is the `PchipInterpolator`.
+concerned with the line overshooting the data. An alternative is to use a so-called *monotone* cubic interpolant which attempts to preserve the local shape implied by the data. An example is the `PchipInterpolator`.
 
 
 ```{python}

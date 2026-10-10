@@ -39,7 +39,7 @@ Let us assume that our function is fairly free of pathologies and that we know
 that there is a root in the interval $(a, b)$ and that we want to find it more
 exactly.
 
-The simplest way to proceed is using the method of _bisection_. This method is
+The simplest way to proceed is using the method of *bisection*. This method is
 straightforward. If we know that a root is in $(a, b)$ because $f(a)$ has a
 different sign from $f(b)$, then evaluate the function $f$ at the midpoint of
 the interval, $(a + b)/2$, and examine its sign. Replace whichever limit (e.g.
@@ -51,7 +51,7 @@ class and lab, since computers use a fixed number of binary digits to represent
 floating-point numbers, there is a limit to the accuracy with which computers
 can represent numbers. To be precise, the smallest floating-point number which,
 when added to the floating-point number $1.0$, produces a floating-point number
-different from $1.0$, is termed the _machine accuracy_, $\epsilon_m$.  Using
+different from $1.0$, is termed the *machine accuracy*, $\epsilon_m$.  Using
 single precision, most machines have $\epsilon_m \approx 1 \times 10^{-8}$. 
 Using double precision, $\epsilon_m \approx 1 \times 10^{-16}$. It is always a
 good idea to back off from these numbers, and thus setting $\epsilon_m$ to
@@ -64,7 +64,7 @@ stopping our search if $|x_n - x_{n-1}| < \epsilon_m |b - a|$.
 ::: {.callout-note title="Exercise 5.1"}
 
 The polynomial $f(x) = 5x^2 + 9x - 80$ has a root in the interval $(3, 4)$. Find
-the root to a precision of $10^{-6}$ using the _bisection_ method. Verify your
+the root to a precision of $10^{-6}$ using the *bisection* method. Verify your
 root analytically.
 
 :::
@@ -243,7 +243,7 @@ one, or wander out to ±∞ at an ever accelerating pace. In addition, if
 you happen by bad luck to choose your beginning point at a maximum or
 minimum point, your program will never converge, but will blow up! Hence,
 as always, you should have a pretty good idea of the nature of your function
-before you attempt to find and “polish” roots.
+before you attempt to find and "polish" roots.
 
 ::: {.callout-note title="Exercise 5.8"}
 
@@ -325,7 +325,7 @@ b. Find the value of $k$ that allows the projectile to travel 1500 meters ($R = 
 
 c. [**GRAD STUDENTS ONLY**] Plot $y$ vs. $x$ using gnuplot for $k$ values
 of 0.0, 0.005, 0.01, 0.02, 0.04, and 0.08. Also, show analytically how to get
-equation (6) from equation (5) (_Hint: Use perturbation methods – i.e., expand $1 - e^{-kT}$ in a power series expansion, and keep only the first few terms_).
+equation (6) from equation (5) (*Hint: Use perturbation methods – i.e., expand $1 - e^{-kT}$ in a power series expansion, and keep only the first few terms*).
 :::
 
 ## Root Finding in Python
