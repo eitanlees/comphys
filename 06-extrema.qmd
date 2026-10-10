@@ -34,7 +34,7 @@ the global minimum of $f$.
 Finding the maximum of a function is equivalent to finding a minimum, because if
 $f(x)$ has a maximum at $x_m$, then $-f(x)$ has a minimum at the same point
 $x_m$. Thus, in what follows, we will consider algorithms to determine the
-_minimum_ of a function only.
+*minimum* of a function only.
 
 Let us first begin with 1-D functions, and then move on to multi-dimensional
 functions.
@@ -148,7 +148,7 @@ using the beginning bracket $(11, 15, 20)$. Print out intermediate results so th
 ::: callout-note
 #### Exercise 6.2
 
-Legendre polynomials appear in the solutions to Laplace’s equation in electrostatics, particularly for systems with spherical symmetries. For example, the general solution for the potential in 3-space, arrived at via separation of variables, takes the form:
+Legendre polynomials appear in the solutions to Laplace's equation in electrostatics, particularly for systems with spherical symmetries. For example, the general solution for the potential in 3-space, arrived at via separation of variables, takes the form:
 
 $$
 V(r, \theta) = \sum_{n=0}^{\infty} \left( A_n r^n + \frac{B_n}{r^{n+1}} \right) P_n(\cos \theta)
@@ -198,13 +198,13 @@ gnuplot> plot besj0(x)
 In the previous section, we cornered the minimum of our function by successively
 reducing the size of the bracketing interval until we knew the location of the
 minimum to the desired precision. We did this by arbitrarily selecting a new
-evaluation point in the center of the _largest_ interval, $(a, b)$ or $(b, c)$.
+evaluation point in the center of the *largest* interval, $(a, b)$ or $(b, c)$.
 Now, this is inefficient, as the minimum may not be in the largest interval, and
 so our algorithm actually wasted nearly 50% of its steps. If we can calculate
 the derivative of the function, we can use this information to determine which
 interval the minimum is actually in and thus avoid wasting steps.  Furthermore,
 if we retain the derivatives of the function at all bracketing points $a$, $b$,
-and $c$, then we can utilize linear _extrapolation_ to predict where the
+and $c$, then we can utilize linear *extrapolation* to predict where the
 derivative of the function goes to zero — i.e., the location of the minimum.
 This scheme should zero in on the minimum with far fewer steps than the previous
 algorithm.
@@ -287,9 +287,9 @@ $$
 ---
 
 ::: callout-note
-#### Exercise 6.7 — The Derivation of Wien’s Law
+#### Exercise 6.7 — The Derivation of Wien's Law
 
-Wien’s law is a property of the blackbody spectrum and can be written as:
+Wien's law is a property of the blackbody spectrum and can be written as:
 
 $$
 \lambda_{\text{max}}(\text{Å}) = \frac{2.9 \times 10^{7}\ \text{ÅK}}{T(\text{K})}
@@ -313,8 +313,8 @@ where wave is the wavelength in Ångströms and T is the temperature in Kelvin.
 
 Use the method of this section to determine the wavelength of the maximum of $B(\lambda)$ for the following temperatures:
 $T = 2000\text{K}, 5000\text{K}, 8000\text{K}, 11000\text{K}, 14000\text{K}$ and use gnuplot to plot these wavelengths against $1/T$ and show that the slope of the line is $2.9 \times 10^7,\text{ÅK}$.
-To learn how to get gnuplot to do this for you, see the “aside” below.
-_Hint_: keep in mind that $B(\lambda)$ has a _maximum_, so determine the minimum of $-B(\lambda)$.
+To learn how to get gnuplot to do this for you, see the "aside" below.
+*Hint*: keep in mind that $B(\lambda)$ has a *maximum*, so determine the minimum of $-B(\lambda)$.
 Another question to consider — how will you find the initial values of $(a, b, c)$ which bracket the minimum of $-B(\lambda)$? This is an important question — you will need to devise a C function that will come up with these three numbers.
 :::
 
@@ -369,7 +369,7 @@ $$
 &(x_1,\, x_2,\, \ldots,\, x_N + \Delta x_N)
 \end{aligned}
 $$
-The $\Delta x_j$’s can all be the same, or they can be different, according to
+The $\Delta x_j$'s can all be the same, or they can be different, according to
 the needs of the problem.  These $N + 1$ points define the initial simplex.
 
 The downhill simplex method now takes a number of steps in the "downhill"
@@ -459,7 +459,7 @@ int main()
   amoeba(p,y,2,0.001,f,&nfunk);
 
   /* the best value for the minimum is obtained by averaging the final
-  p’s. */
+  p's. */
 
   x0 = (p[1][1]+p[2][1]+p[3][1])/3.0;
   y0 = (p[1][2]+p[2][2]+p[3][2])/3.0;
@@ -707,7 +707,7 @@ Write a program that will prompt the user for $\xi_1$, check that $\xi_1 \le
 
 :::
 
-### Powell’s Method
+### Powell's Method
 
 The downhill simplex method has the virtue that it is easy to implement, and
 often will do the job as well as other much more sophisticated methods. A
@@ -736,7 +736,7 @@ first of these directions will be along the direction of maximum descent — i.e
 along the direction of that long narrow valley. The algorithm moves as far as it
 can along this direction; it then abandons that direction and finds the next
 direction of maximum descent, and so on, until the actual function minimum is
-found.  This is the basis of Powell’s method, which is implemented in the
+found.  This is the basis of Powell's method, which is implemented in the
 C-function `powell` found in `comphys.c`. The function definition is
 
 ```c
@@ -748,7 +748,7 @@ The *Numerical Recipes* instructions for this function are as follows [@press92,
 
 > Minimization of a function `func` of `n` variables. Input consists of an initial starting point `p[1...n]`; an initial matrix `xi[1..n][1..n]`, whose columns contain the initial set of directions (usually the *n* unit vectors); and `ftol`, the fractional tolerance in the function value such that failure to decrease by more than this amount on one iteration signals doneness. On output, `p` is set to the best point found, `xi` is the then-current direction set, `fret` is the returned function value at `p`, and `iter` is the number of iterations taken.
 
-Let us use Powell’s method to minimize the function $f(x, y) = x^2 + (y - 1)^2 + 1.0$
+Let us use Powell's method to minimize the function $f(x, y) = x^2 + (y - 1)^2 + 1.0$
 of the previous section. The following program does the job:
 
 ```c
@@ -807,12 +807,12 @@ float f(float x[])
 
 ::: {.callout-note}
 #### Exercise 6.10
-Repeat Exercise 6.8 using Powell’s method.
+Repeat Exercise 6.8 using Powell's method.
 :::
 
 ::: {.callout-note}
 #### Exercise 6.11
-Repeat Exercise 6.9 using Powell’s method.
+Repeat Exercise 6.9 using Powell's method.
 :::
 
 ## Optimization in Python
