@@ -32,9 +32,9 @@ $$
 \chi^2 = \sum_{i=1}^{N} \left( \frac{y_i - f(x_i; a_1, a_2, \ldots, a_m)}{\sigma_i} \right)^2
 $$
 
-Dividing each term in the sum by $\sigma_i^2$ *weights* each data point according to its error---those data points with the smallest errors contribute the most to the sum[^1]. If our model function is a straight line,
+Dividing each term in the sum by $\sigma_i^2$ *weights* each data point according to its error---those data points with the smallest errors contribute the most to the sum[^unit-errors]. If our model function is a straight line,
 
-[^1]: If individual errors $\sigma_i$ are not given or specified, one can set $\sigma_i = 1$ in this and all equations in this chapter.
+[^unit-errors]: If individual errors $\sigma_i$ are not given or specified, one can set $\sigma_i = 1$ in this and all equations in this chapter.
 
 $$
 f(x) = f(x; a, b) = a + bx
@@ -180,9 +180,9 @@ $$
 
 ## General Linear Least Squares
 
-To generalize our discussion in the last section, let us go back to @eq-model and suppose that our model function $f$ may be written as a linear combination of a set of $m$ linearly independent functions[^2] $X_i(x)$ such that
+To generalize our discussion in the last section, let us go back to @eq-model and suppose that our model function $f$ may be written as a linear combination of a set of $m$ linearly independent functions[^independent] $X_i(x)$ such that
 
-[^2]: A set of $m$ functions, $X_i(x)$ is called *linearly independent* if no function $X_j(x)$ in that set may be expressed as a linear combination of the other functions in that set. Thus, the set $1, x, x^2$ is a linearly independent set, as, for instance, $x$ may not be expressed as a sum of $1$ and $x^2$.
+[^independent]: A set of $m$ functions, $X_i(x)$ is called *linearly independent* if no function $X_j(x)$ in that set may be expressed as a linear combination of the other functions in that set. Thus, the set $1, x, x^2$ is a linearly independent set, as, for instance, $x$ may not be expressed as a sum of $1$ and $x^2$.
 
 $$
 y(x) = \sum_{k=1}^{m} a_k X_k(x)
