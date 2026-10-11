@@ -62,7 +62,7 @@ Exercise content
 
 Refer to one with `@nte-ex-5-9` (renders as a linked "Exercise 5.9"). The automatic numbers match Gray's in every chapter; if you add, remove or reorder an exercise, check they still do.
 
-**Citations:** Use `@cite-key` format (e.g., `@knuth84`). Cite Numerical Recipes with a locator: `[@press92, sec. 10.4]`.
+**Citations:** Use `@cite-key` format (e.g., `@kernighan88`). Cite Numerical Recipes with a locator: `[@press92, sec. 10.4]`.
 
 **Figures:** Each chapter runs in one kernel, so matplotlib styles leak between cells. Scope them with `with plt.style.context(...):` and call `plt.show()` inside the block, or the style is lost at draw time:
 
