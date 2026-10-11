@@ -5,8 +5,11 @@ project:
 
 book:
   title: "Computational Physics"
-  author: "Eitan Lees"
-  date: "2/24/2025"
+  subtitle: "Lecture notes from 2011, with Python additions"
+  author:
+    - Richard O. Gray
+    - Eitan Lees
+  date: last-modified
   chapters:
     - index.qmd
     - 01-c-intro-1.qmd

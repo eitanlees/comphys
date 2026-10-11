@@ -8,12 +8,13 @@ that I served as the TA the following year and later earned a PhD in
 Computational Science.
 
 I've kept the lecture notes on my various computers ever since. I want to convert the notes into a
-[Quarto](https://quarto.org/) book as a conservation project. In addition to replicating the source material 
-I want to add some examples from Python and Scipy.
+[Quarto](https://quarto.org/) book as a preservation project. In addition to replicating the source material
+I want to add some examples from Python and SciPy.
 
 ::: {.callout-note}
-This project is a work in progress. I will be releasing lectures out of order
-as I finish them. I will leave a note here when the project is complete.
+This project is a work in progress. All nine lectures are now converted, and I
+am checking each chapter against the original notes and adding the remaining
+Python sections. I will leave a note here when the project is complete.
 :::
 
 Found a mistake? Please [open an issue](https://github.com/eitanlees/comphys/issues).
@@ -22,8 +23,11 @@ for how I work.
 
 # Colophon {.unnumbered}
 
-This is a book created from markdown and executable code.
+Dr. Gray typeset the original notes in LaTeX for the 2011 course. This book
+carries his text into [Quarto](https://quarto.org/) markdown, with the equations
+retyped and most of the figures redrawn in Python with Matplotlib. The Python sections
+run each time the book is built, using the package versions pinned in the
+repository. The C programs from the course are in
+[`programs/`](https://github.com/eitanlees/comphys/tree/main/programs).
 
-See @knuth84 for additional discussion of literate programming.
-
-To learn more about Quarto books, visit <https://quarto.org/docs/books>
+The source for the book is on [GitHub](https://github.com/eitanlees/comphys).
