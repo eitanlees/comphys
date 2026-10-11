@@ -1,7 +1,7 @@
 project:
   type: book
   resources:
-    - data/
+    - /data/  # leading slash: without it, any data/ folder matches, even inside .venv
 
 book:
   title: "Computational Physics"
@@ -22,6 +22,7 @@ book:
     - 08-odes.qmd
     - 09-modeling.qmd
     - references.qmd
+  downloads: [pdf]
 
 bibliography: references.bib
 
@@ -38,3 +39,8 @@ format:
       - brand
   pdf:
     documentclass: scrreprt
+    fig-pos: H
+    include-in-header: pdf/preamble.tex
+    filters:
+      - at: post-render
+        path: pdf/exercise-titles.lua
