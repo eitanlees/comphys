@@ -26,7 +26,7 @@ uv run quarto preview 04-interpolation.qmd --to html
 
 Add a package with `uv add <name>`. Upgrade with `uv lock --upgrade` in its own PR, so changed figures or numbers show up in review. Don't `ipykernel install --user`; Quarto finds the venv's kernel on its own.
 
-Plain `uv run quarto render` also builds the PDF, which needs TeX (not installed locally), so the PDF goes unverified.
+Plain `uv run quarto render` also builds the PDF (`_book/Computational-Physics.pdf`, linked from the site's "Download PDF" button), which needs TeX. None is installed globally; to check the PDF, unpack a TinyTeX release into `experiments/` and put its `bin/x86_64-linux` first on `PATH`. Only the publish workflow builds the PDF, so a PR that breaks it passes the build check and fails after merge.
 
 Both workflows install from the lock with `uv sync --locked`, which fails if `uv.lock` is out of date with `pyproject.toml`. Pushing to `main` triggers the GitHub Action that builds and deploys to gh-pages. Pull requests into `main` get a build check (`pr-build.yml`) that renders the HTML without publishing. It fails on a code-cell error but not on a broken cross-reference (Quarto only warns), so still render locally to verify a change.
 
@@ -44,6 +44,7 @@ Work on a branch and open a pull request; the owner reviews on GitHub. Don't pus
 - `assets/images/`: images that haven't been redrawn
 - `experiments/`: gitignored scratch space; holds the lecture PDFs and the matplotlib figure recreations
 - `_quarto.yml`: book configuration
+- `pdf/`: PDF-only LaTeX preamble (code wrapping, figure height cap, per-chapter exercise numbers) and a Lua filter that titles exercise callouts "Exercise" in LaTeX
 
 ## Content Formatting Standards
 
@@ -61,6 +62,8 @@ Exercise content
 ```
 
 Refer to one with `@nte-ex-5-9` (renders as a linked "Exercise 5.9"). The automatic numbers match Gray's in every chapter; if you add, remove or reorder an exercise, check they still do.
+
+**Footnotes:** Use descriptive labels that are unique across the book (`[^fortran]`, not `[^1]`). The PDF is one document, so a label reused in another chapter silently replaces the earlier footnote's text.
 
 **Citations:** Use `@cite-key` format (e.g., `@kernighan88`). Cite Numerical Recipes with a locator: `[@press92, sec. 10.4]`.
 
