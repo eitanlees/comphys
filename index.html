@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Richard O. Gray">
 <meta name="author" content="Eitan Lees">
-<meta name="dcterms.date" content="2025-02-24">
+<meta name="dcterms.date" content="2026-10-11">
 
 <title>Computational Physics</title>
 <style>
@@ -28,26 +29,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -220,6 +202,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Computational Physics</h1>
+<p class="subtitle lead">Lecture notes from 2011, with Python additions</p>
 </div>
 
 
@@ -227,8 +210,9 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
+             <p>Richard O. Gray </p>
              <p>Eitan Lees </p>
           </div>
   </div>
@@ -236,7 +220,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 24, 2025</p>
+      <p class="date">October 11, 2026</p>
     </div>
   </div>
   
@@ -252,7 +236,7 @@ div.csl-indent {
 <h1 class="unnumbered">Preface</h1>
 <p>I first learned to program in 2011 in <a href="https://physics.appstate.edu/faculty-staff/dr-richard-o-gray">Dr.&nbsp;Richard O. Gray</a>’s computational physics course.</p>
 <p>It was a revelatory experience that shaped my life. I enjoyed the class so much that I served as the TA the following year and later earned a PhD in Computational Science.</p>
-<p>I’ve kept the lecture notes on my various computers ever since. I want to convert the notes into a <a href="https://quarto.org/">Quarto</a> book as a conservation project. In addition to replicating the source material I want to add some examples from Python and Scipy.</p>
+<p>I’ve kept the lecture notes on my various computers ever since. I want to convert the notes into a <a href="https://quarto.org/">Quarto</a> book as a preservation project. In addition to replicating the source material I want to add some examples from Python and SciPy.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -263,23 +247,17 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This project is a work in progress. I will be releasing lectures out of order as I finish them. I will leave a note here when the project is complete.</p>
+<p>This project is a work in progress. All nine lectures are now converted, and I am checking each chapter against the original notes and adding the remaining Python sections. I will leave a note here when the project is complete.</p>
 </div>
 </div>
 <p>Found a mistake? Please <a href="https://github.com/eitanlees/comphys/issues">open an issue</a>. See <a href="https://github.com/eitanlees/comphys/blob/main/CONTRIBUTING.md">CONTRIBUTING</a> for how I work.</p>
 </section>
 <section id="colophon" class="level1 unnumbered">
 <h1 class="unnumbered">Colophon</h1>
-<p>This is a book created from markdown and executable code.</p>
-<p>See <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
-<p>To learn more about Quarto books, visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a></p>
+<p>Dr.&nbsp;Gray typeset the original notes in LaTeX for the 2011 course. This book carries his text into <a href="https://quarto.org/">Quarto</a> markdown, with the equations retyped and most of the figures redrawn in Python with Matplotlib. The Python sections run each time the book is built, using the package versions pinned in the repository. The C programs from the course are in <a href="https://github.com/eitanlees/comphys/tree/main/programs"><code>programs/</code></a>.</p>
+<p>The source for the book is on <a href="https://github.com/eitanlees/comphys">GitHub</a>.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-knuth84" class="csl-entry" role="listitem">
-Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>The Computer Journal</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
